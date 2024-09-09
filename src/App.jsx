@@ -4,7 +4,6 @@ import { fetchUsersRequest } from "./redux/action/action";
 import FormPost from "./components/FormPost";
 import FormDelete from "./components/FormDelete";
 
-
 function App() {
   const dispatch = useDispatch();
   const { users, loading, error } = useSelector((state) => state.user);
@@ -14,7 +13,16 @@ function App() {
   }, []);
 
   return (
-    <div style={{ width: '100vh', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+    <div
+      style={{
+        width: "100vh",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
       <h3>User List</h3>
       {loading && <p>Loading...</p>}
       <ul>
@@ -29,4 +37,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
