@@ -1,40 +1,26 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUsersRequest } from "./redux/action/action";
-import FormPost from "./components/FormPost";
-import FormDelete from "./components/FormDelete";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import OpenAccount from "./Page/OpenAccount";
+
+const route = [
+  {
+    path: "/open-account",
+    element: <OpenAccount />,
+  },
+];
 
 function App() {
-  const dispatch = useDispatch();
-  const { users, loading, error } = useSelector((state) => state.user);
-
-  useEffect(() => {
-    dispatch(fetchUsersRequest());
-  }, []);
-
   return (
-    <div
-      style={{
-        width: "100vh",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
-      <h3>User List</h3>
-      {loading && <p>Loading...</p>}
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
-      <FormPost />
-      <FormDelete />
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <div>
+      <Router>
+        <Routes>
+          {route.map((r, i) => (
+            <Route path={r.path} element={r.element} key={i} />
+          ))}
+        </Routes>
+      </Router>
     </div>
   );
 }
 
-export default App
+export default App;
