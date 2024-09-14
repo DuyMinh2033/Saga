@@ -8,7 +8,6 @@ export const Method = {
 };
 
 export async function apiCall(url, method, payload = null) {
-    console.log("url", {url, method, payload })
     try {
         const response = await axios({
             method: method,

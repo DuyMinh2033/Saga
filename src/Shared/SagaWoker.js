@@ -5,7 +5,6 @@ import { apiCall } from './apiCall';
 
 
 export default function* workerSaga(url, method, options, action) {
-    console.log("woker sage",{url, method, options, action})
     try {
         const { type, payload } = action;
         yield put(setHttpRequesting(type));
