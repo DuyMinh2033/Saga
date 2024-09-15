@@ -14,7 +14,7 @@ const BottomSheet = ({ open, children, title, onClose }) => {
             <IoMdClose />
           </div>
         </div>
-        <div>{children}</div>
+        {children}
       </div>
     </div>
   );

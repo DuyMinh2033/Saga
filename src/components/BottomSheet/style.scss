@@ -25,6 +25,8 @@
         opacity: 0;
         border-radius: 24px 24px 0 0;
         animation: down 0.3s linear forwards;
+        display: flex;
+        flex-direction: column;
 
         &.up {
             animation: upBS 0.3s linear forwards;

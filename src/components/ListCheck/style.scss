@@ -1,0 +1,20 @@
+.icon__view {
+    position: absolute;
+    display: grid;
+    place-items: center center;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+
+    &.hidden {
+        display: none;
+    }
+}
+
+.item__term {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    height: 40px;
+}

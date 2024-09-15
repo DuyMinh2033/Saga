@@ -27,7 +27,7 @@ const OpenAccount = () => {
   };
 
   return (
-    <div>
+    <div style={{ width: "375px", margin: "0 auto" }}>
       <TermAndCondition onSubmit={handleSubmit} />
       {step === "step2" && (
         <CustomerInfo

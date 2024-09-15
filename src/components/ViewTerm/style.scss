@@ -1,0 +1,24 @@
+.container__term {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        overflow: auto;
+        height: 355px;
+    }
+
+    .btn {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            background-color: black;
+            color: #fff;
+            width: 100%;
+            padding: 15px;
+        }
+    }
+}

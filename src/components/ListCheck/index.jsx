@@ -1,7 +1,14 @@
 import { Fragment } from "react";
-
+import "./style.scss";
+import { MdNavigateNext } from "react-icons/md";
 /* eslint-disable react/prop-types */
-const ListCheck = ({ config, checked, setChecked }) => {
+const ListCheck = ({
+  config,
+  checked,
+  setChecked,
+  hidden = false,
+  onClickView,
+}) => {
   const { selectAllLabel, options = [] } = config;
 
   const handleOnchange = (e, value) => {
@@ -18,11 +25,13 @@ const ListCheck = ({ config, checked, setChecked }) => {
       setChecked([]);
     }
   };
-
+  const handleClickView = (value) => {
+    onClickView(value);
+  };
   return (
     <div>
       <div>
-        <label style={{ display: "flex", gap: "10px" }}>
+        <label style={{ display: "flex", gap: "10px", position: "relative" }}>
           <input
             onChange={onchangeAll}
             type="checkbox"
@@ -42,14 +51,22 @@ const ListCheck = ({ config, checked, setChecked }) => {
       >
         {options.map((item) => (
           <Fragment key={item}>
-            <label style={{ display: "flex", gap: "10px" }}>
-              <input
-                type="checkbox"
-                onChange={(e) => handleOnchange(e, item.value)}
-                checked={checked.includes(item.value)}
-              />
-              <p>{item.label}</p>
-            </label>
+            <div style={{ position: "relative" }}>
+              <label className="item__term">
+                <input
+                  type="checkbox"
+                  onChange={(e) => handleOnchange(e, item.value)}
+                  checked={checked.includes(item.value)}
+                />
+                <p>{item.label}</p>
+              </label>
+              <div className={`icon__view ${hidden ? "hidden" : ""}`}>
+                <MdNavigateNext
+                  size={25}
+                  onClick={() => handleClickView(item.value)}
+                />
+              </div>
+            </div>
           </Fragment>
         ))}
       </div>
