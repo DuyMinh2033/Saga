@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import OpenAccount from "./Page/OpenAccount";
 import SchemaForm from "./Page/ShemaForm";
+import AddressForm from "./Page/AdressCustomer";
 
 const route = [
   {
@@ -11,6 +12,10 @@ const route = [
   {
     path: "/form-schema",
     element: <SchemaForm />,
+  },
+  {
+    path: "/address",
+    element: <AddressForm />,
   },
 ];
 
