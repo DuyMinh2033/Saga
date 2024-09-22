@@ -11,6 +11,7 @@ import { useState } from "react";
 import CustomerInfo from "../CustomerInfo";
 import { useSelector } from "react-redux";
 import { customerInfo } from "./reudux/getCusTomer/selector";
+import { useNavigate } from "react-router-dom";
 const OpenAccount = () => {
   useSagas([{ key: "customer", saga: customerSaga }]);
   useReducer([{ key: "customer", reducer: customerReducer }]);
@@ -25,7 +26,7 @@ const OpenAccount = () => {
     setStep("step2");
     setOpenBs(true);
   };
-
+  const navigate = useNavigate();
   return (
     <div style={{ width: "375px", margin: "0 auto" }}>
       <TermAndCondition onSubmit={handleSubmit} />
@@ -36,6 +37,7 @@ const OpenAccount = () => {
           data={dataUserInfo}
         />
       )}
+      <button onClick={() => navigate("/axios")}>Navigate</button>
     </div>
   );
 };

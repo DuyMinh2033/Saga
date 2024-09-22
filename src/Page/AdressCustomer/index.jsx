@@ -1,89 +1,148 @@
 import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
-const FIELDS = ["street", "city", "state", "zipCode", "country"];
-
 const AddressForm = () => {
-  const [defaultAddress, setDefaultAddress] = useState({});
-  const [showVerification, setShowVerification] = useState(false);
+  const [addresses, setAddresses] = useState([]);
+  const [requireVerification, setRequireVerification] = useState(false);
+  const [initialValues, setInitialValues] = useState({});
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  const { control, watch, setValue, handleSubmit } = useForm({
-    defaultValues: FIELDS.reduce((acc, field) => ({ ...acc, [field]: "" }), {}),
-  });
-
-  const watchedFields = watch();
+  const watchedFields = watch(["addressId", "street", "city"]);
 
   useEffect(() => {
-    const fetchDefaultAddress = async () => {
-      // Giả lập API call
-      const response = await new Promise((resolve) =>
-        setTimeout(
-          () =>
-            resolve({
-              street: "123 Main St",
-              city: "Example City",
-              state: "Example State",
-              zipCode: "12345",
-              country: "Example Country",
-            }),
-          1000
-        )
-      );
-      setDefaultAddress(response);
-      FIELDS.forEach((field) => setValue(field, response[field]));
+    const fetchAddresses = async () => {
+      const response = {
+        addresses: [
+          {
+            id: 1,
+            type: "home",
+            value: "Home Address",
+            street: "123 Home St",
+            city: "Hometown",
+          },
+          {
+            id: 2,
+            type: "work",
+            value: "Work Address",
+            street: "456 Work Ave",
+            city: "Workville",
+          },
+        ],
+      };
+      setAddresses(response.addresses);
+      const initialAddress = response.addresses[0];
+      setInitialValues(initialAddress);
+      reset({
+        addressId: initialAddress.id,
+        street: initialAddress.street,
+        city: initialAddress.city,
+      });
     };
 
-    fetchDefaultAddress();
-  }, []); 
+    fetchAddresses();
+  }, [reset]);
 
   useEffect(() => {
-    const hasChanged = FIELDS.some(
-      (field) => watchedFields[field] !== defaultAddress[field]
+    const [selectedAddressId, street, city] = watchedFields;
+    const selectedAddress = addresses.find(
+      (addr) => addr.id === Number(selectedAddressId)
     );
-    setShowVerification(hasChanged);
-  }, [watchedFields, defaultAddress]);
+
+    if (selectedAddress?.type === "home") {
+      const isChanged =
+        street !== initialValues.street || city !== initialValues.city;
+      setRequireVerification(isChanged);
+    } else {
+      setRequireVerification(false);
+    }
+  }, [watchedFields, initialValues, addresses]);
 
   const onSubmit = (data) => {
+    if (requireVerification && !data.verificationImage) {
+      alert("Please upload a verification image for changed home address");
+      return;
+    }
     console.log(data);
+  };
+
+  const handleAddressChange = (e) => {
+    const selectedId = Number(e.target.value);
+    setValue("addressId", selectedId);
+    const selected = addresses.find((addr) => addr.id === selectedId);
+    setValue("street", selected.street);
+    setValue("city", selected.city);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {FIELDS.map((field) => (
-        <Controller
-          key={field}
-          name={field}
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <div>
-              <label htmlFor={field}>
-                {field.charAt(0).toUpperCase() + field.slice(1)}:
-              </label>
-              <input id={field} value={value} onChange={onChange} />
-            </div>
-          )}
-        />
-      ))}
+      <Controller
+        name="addressId"
+        control={control}
+        rules={{ required: "Address is required" }}
+        render={({ field }) => (
+          <select {...field} onChange={handleAddressChange}>
+            <option value="">Select an address</option>
+            {addresses.map((addr) => (
+              <option key={addr.id} value={addr.id}>
+                {addr.value}
+              </option>
+            ))}
+          </select>
+        )}
+      />
+      {errors.addressId && <p>{errors.addressId.message}</p>}
 
-      {showVerification && (
+      <Controller
+        name="street"
+        control={control}
+        rules={{ required: "Street is required" }}
+        render={({ field }) => <input {...field} placeholder="Street" />}
+      />
+      {errors.street && <p>{errors.street.message}</p>}
+
+      <Controller
+        name="city"
+        control={control}
+        rules={{ required: "City is required" }}
+        render={({ field }) => <input {...field} placeholder="City" />}
+      />
+      {errors.city && <p>{errors.city.message}</p>}
+
+      {requireVerification && (
         <Controller
-          name="upload"
+          name="verificationImage"
           control={control}
-          render={({ field: { onChange } }) => (
-            <div>
-              <label htmlFor="verification">Xác minh địa chỉ:</label>
-              <input
-                type="file"
-                id="verification"
-                onChange={(e) => onChange(e.target.files[0])}
-              />
-            </div>
+          rules={{
+            required: "Verification image is required for changed home address",
+            validate: (value) => {
+              if (!value) {
+                alert(
+                  "Please upload a verification image for changed home address"
+                );
+                return "Verification image is required";
+              }
+              return true;
+            },
+          }}
+          render={({ field }) => (
+            <input
+              type="file"
+              onChange={(e) => field.onChange(e.target.files[0])}
+            />
           )}
         />
       )}
+      {errors.verificationImage && <p>{errors.verificationImage.message}</p>}
 
       <button type="submit">Submit</button>
-    </form>
+    </form>    
   );
 };
 
