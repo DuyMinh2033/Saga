@@ -1,0 +1,14 @@
+.dropdown__container {
+  padding: 10px 20px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin-top: 10px;
+  display: flex;
+  .label {
+    flex: 1;
+  }
+}
+
+.dropdown {
+  height: 500px;
+}

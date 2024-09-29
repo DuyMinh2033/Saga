@@ -1,0 +1,23 @@
+// .item__container {
+//   height: 100vh;
+// }
+.item__title {
+  // margin-top: 120px;
+}
+
+.hello {
+  display: flex;
+  flex-direction: column;
+  gap: 500px;
+  height: 100vh;
+  overflow: auto;
+  padding-top: 120px;
+}
+.borrowing {
+  min-height: 100vh;
+  background-color: red;
+}
+.active__tab {
+  background-color: black;
+  color: white;
+}

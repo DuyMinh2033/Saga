@@ -1,0 +1,17 @@
+.scroll__body {
+  height: 100vh;
+}
+.header {
+  display: flex;
+  gap: 10px;
+  button {
+    background-color: aqua;
+    color: black;
+  }
+}
+.scroll__body {
+  margin-top: 100px;
+}
+.header {
+  position: fixed;
+}

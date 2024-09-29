@@ -1,20 +1,36 @@
 import { Controller, useForm } from "react-hook-form";
 import Input from "../../components/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const TestPage = () => {
   const { control } = useForm({
     defaultValues: "",
   });
   const [emailBlurred, setEmailBlurred] = useState(false);
-
+  const [state, setState] = useState({
+    isShow: false,
+    content: "",
+    value: "",
+  });
   const handleBlur = () => {
     setEmailBlurred(true);
   };
+  const handBtn = () => {
+    setState({
+      ...state,
+      isShow: true,
+    });
+  };
+
+  useEffect(() => {
+    if (state.isShow) {
+      console.log("hello");
+    }
+  }, [state]);
 
   return (
     <div>
-      <button>Click Me</button>
+      <button onClick={handBtn}>Click Me</button>
       <Controller
         control={control}
         name="email"

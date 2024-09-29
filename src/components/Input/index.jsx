@@ -8,7 +8,7 @@ const Input = (props) => {
   };
   return (
     <div>
-      <input type="text" {...field} onBlur={handleBlur} className={className} />
+      <input type="text" onBlur={handleBlur} className={className} {...field} />
     </div>
   );
 };

@@ -1,0 +1,25 @@
+.container__input {
+  border: 1px solid gray;
+  padding: 10px 20px;
+  display: flex;
+  border-radius: 4px;
+  .input__item {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+  }
+}
+
+.container {
+  &__countries {
+    height: 100vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__item {
+    display: flex;
+    color: black;
+  }
+}

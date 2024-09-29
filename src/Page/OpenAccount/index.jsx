@@ -26,7 +26,10 @@ const OpenAccount = () => {
     setStep("step2");
     setOpenBs(true);
   };
+
+  const [state, setState] = useState(false);
   const navigate = useNavigate();
+
   return (
     <div style={{ width: "375px", margin: "0 auto" }}>
       <TermAndCondition onSubmit={handleSubmit} />
@@ -37,7 +40,8 @@ const OpenAccount = () => {
           data={dataUserInfo}
         />
       )}
-      <button onClick={() => navigate("/axios")}>Navigate</button>
+      <div className={`${state && "concac"}`}>Hello</div>
+      <button onClick={() => setState(!state)}>Navigate</button>
     </div>
   );
 };

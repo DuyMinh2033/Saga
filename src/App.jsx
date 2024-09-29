@@ -6,6 +6,9 @@ import AddressForm from "./Page/AdressCustomer";
 import TestPage from "./Page/TestPage";
 import Axios from "./Page/Axios";
 import DynamicPage from "./Page/Dynamic";
+import ScrollPage from "./Page/ScrollPage";
+import ProductList from "./Page/ProductList/ProductList";
+import PraticePage from "./Page/PraticePage";
 
 const route = [
   {
@@ -31,6 +34,18 @@ const route = [
   {
     path: "/dynamic",
     element: <DynamicPage />,
+  },
+  {
+    path: "/scroll-page",
+    element: <ScrollPage />,
+  },
+  {
+    path: "/products",
+    element: <ProductList />,
+  },
+  {
+    path: "/pratice",
+    element: <PraticePage />,
   },
 ];
 
