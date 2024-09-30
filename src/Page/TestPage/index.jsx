@@ -1,47 +1,33 @@
 import { Controller, useForm } from "react-hook-form";
-import Input from "../../components/Input";
-import { useEffect, useState } from "react";
+import Timer from "./component/Timer/Timer";
+import { useRef } from "react";
 
 const TestPage = () => {
   const { control } = useForm({
     defaultValues: "",
   });
-  const [emailBlurred, setEmailBlurred] = useState(false);
-  const [state, setState] = useState({
-    isShow: false,
-    content: "",
-    value: "",
-  });
-  const handleBlur = () => {
-    setEmailBlurred(true);
-  };
-  const handBtn = () => {
-    setState({
-      ...state,
-      isShow: true,
-    });
-  };
 
-  useEffect(() => {
-    if (state.isShow) {
-      console.log("hello");
+  const resetTimerCallback = useRef(null);
+  const handBtn = () => {
+    if (resetTimerCallback.current) {
+      resetTimerCallback.current();
     }
-  }, [state]);
+  };
 
   return (
     <div>
       <button onClick={handBtn}>Click Me</button>
       <Controller
         control={control}
-        name="email"
+        name="timer"
         render={({ field }) => (
-          <Input {...field} className={emailBlurred ? "input-error" : ""} />
+          <Timer
+            onReset={(callback) => {
+              resetTimerCallback.current = callback;
+            }}
+            {...field}
+          />
         )}
-      />
-      <Controller
-        name="password"
-        control={control}
-        render={({ field }) => <Input {...field} onBlur={() => handleBlur()} />}
       />
     </div>
   );
