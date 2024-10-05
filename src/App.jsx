@@ -9,6 +9,9 @@ import DynamicPage from "./Page/Dynamic";
 import ScrollPage from "./Page/ScrollPage";
 import ProductList from "./Page/ProductList/ProductList";
 import PraticePage from "./Page/PraticePage";
+import ScrollFetch from "./Page/ScrollFetch";
+import SelectDate from "./common/components/ScrollSelectDate";
+import Notification from "./Page/Notification";
 
 const route = [
   {
@@ -46,6 +49,18 @@ const route = [
   {
     path: "/pratice",
     element: <PraticePage />,
+  },
+  {
+    path: "/scroll-fetch",
+    element: <ScrollFetch />,
+  },
+  {
+    path: "/select-date",
+    element: <SelectDate />,
+  },
+  {
+    path: "/notification",
+    element: <Notification />,
   },
 ];
 

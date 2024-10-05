@@ -5,6 +5,7 @@ export const productListData = [
     description: "A basic savings account with low interest rates.",
     dep_sjt_class: "1", // Banking product
     price: "$1000",
+    prdt_c: "1",
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ export const productListData = [
     description: "A high-return investment fund.",
     dep_sjt_class: "2", // Investment product
     price: "$5000",
+    prdt_c: 2,
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ export const productListData = [
     description: "Low interest personal loan.",
     dep_sjt_class: "3", // Borrowing product
     price: "$10000",
+    prdt_c: 3,
   },
   {
     id: 4,
@@ -26,6 +29,7 @@ export const productListData = [
     description: "Premium account with better benefits and interest rates.",
     dep_sjt_class: "1", // Banking product
     price: "$2000",
+    prdt_c: 4,
   },
   {
     id: 5,
@@ -33,6 +37,7 @@ export const productListData = [
     description: "A balanced portfolio investment fund.",
     dep_sjt_class: "2", // Investment product
     price: "$7000",
+    prdt_c: 5,
   },
   {
     id: 6,
@@ -40,6 +45,7 @@ export const productListData = [
     description: "Affordable mortgage loan with flexible terms.",
     dep_sjt_class: "3", // Borrowing product
     price: "$50000",
+    prdt_c: 6,
   },
 ];
 
@@ -54,3 +60,22 @@ export const ProductTabDisplay = {
   [ProductTab.INVESTMENT]: "Investment",
   [ProductTab.BORROWING]: "Borrowing",
 };
+
+export const bannerBaseProductCode = {
+  1: "anh1",
+  2: "anh2",
+  3: "anh3",
+  4: "anh4",
+  5: "anh5",
+  6: "anh6",
+};
+
+export const keyBanker = {
+  key: "banker",
+};
+export const dataBanker = [
+  {
+    title: "Minh",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut incidunt possimus illum. Fugiat possimus, deserunt quos vel perferendis placeat atque. Molestiae voluptates impedit, provident soluta fugiat laboriosam nesciunt id quos.",
+  },
+];
