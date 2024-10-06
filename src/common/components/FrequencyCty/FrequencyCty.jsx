@@ -18,13 +18,16 @@ const FrequencyCty = ({ open, onClose, onChange = () => {}, value = {} }) => {
   const [selectTypeOption, setSelectTypeOption] = useState(selectedValue);
 
   const handleConfirm = () => {
-    const { type, value } = valueRef.current;
-    // console.log("🚀 ~ handleConfirm ~  { type, value }:", { type, value });
-    onChange({
-      type,
+    const { value } = valueRef.current;
+    console.log("🚀 ~ handleConfirm ~  { type, value }:", {
+      selectTypeOption,
       value,
     });
-    onClose?.();
+    onChange({
+      type: selectTypeOption,
+      value,
+    });
+    // onClose?.();
   };
 
   const debounceChangeOption = (cb, delay) => {
@@ -45,7 +48,6 @@ const FrequencyCty = ({ open, onClose, onChange = () => {}, value = {} }) => {
 
   const changeValueOption = useCallback(
     debounceChangeOption((value) => {
-      valueRef.current.type = value;
       setSelectTypeOption(value);
     }, 200),
     []

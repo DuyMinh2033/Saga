@@ -1,16 +1,22 @@
 import { useState } from "react";
 import SelectFrequencyBottom from "../../common/components/SelectFrequecyBottom";
 import FrequencyCty from "../../common/components/FrequencyCty/FrequencyCty";
+import ViewBottomTerm from "../../common/components/ViewBottomTerm";
+import SelectTime from "../../common/components/SelectYear";
 
 const Notification = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpen2, setIsOpen2] = useState(true);
+  const [isOpen2, setIsOpen2] = useState(false);
+  const [isOpen3, setIsopen3] = useState(false);
   return (
     <div>
       <SelectFrequencyBottom open={isOpen} onClose={() => setIsOpen(false)} />
       <button onClick={() => setIsOpen(true)}>Select One</button>
       <FrequencyCty open={isOpen2} onClose={() => setIsOpen2(false)} />
       <button onClick={() => setIsOpen2(true)}>Select Two</button>
+      <ViewBottomTerm isOpen={isOpen3} onClose={() => setIsopen3(false)} />
+      <button onClick={() => setIsopen3(true)}>Show Terms</button>
+      <SelectTime />
     </div>
   );
 };

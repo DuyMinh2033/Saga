@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import "./styles.scss";
 
 const itemHeight = 30;
+let scrollTimeout = null;
 
 const ScrollSelect = ({
   options = [],
@@ -12,7 +13,6 @@ const ScrollSelect = ({
   // type = "",
 }) => {
   const containerRef = useRef(null);
-  let scrollTimeout = null;
 
   const scrollToIndex = (index, isModify = true) => {
     onChangeValue?.(
@@ -84,7 +84,7 @@ const ScrollSelect = ({
         if (scrollTimeout) {
           clearTimeout(scrollTimeout);
         }
-      }; 
+      };
     }
   }, [defaultValue, options]);
 
