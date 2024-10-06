@@ -1,0 +1,16 @@
+.product__section {
+  height: calc(100vh - 56px);
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50px;
+  gap: 20px;
+  .product__title {
+    font-size: 16px;
+    color: blue;
+  }
+  .product__content {
+    font-size: 14px;
+    color: gray;
+  }
+}

@@ -12,6 +12,9 @@ import PraticePage from "./Page/PraticePage";
 import ScrollFetch from "./Page/ScrollFetch";
 import SelectDate from "./common/components/ScrollSelectDate";
 import Notification from "./Page/Notification";
+import ProductCenter from "./Page/ProductCenter";
+import TestAnchorTab from "./Page/TestAnchorTab";
+import Demo from "./Page/Demo";
 
 const route = [
   {
@@ -60,7 +63,19 @@ const route = [
   },
   {
     path: "/notification",
-    element: <Notification />,
+    element: <Notification />, // scroll select date
+  },
+  {
+    path: "/product-center",
+    element: <ProductCenter />, //scroll to bottom then fetch data
+  },
+  {
+    path: "/anchor-tab",
+    element: <TestAnchorTab />, //anchor tab
+  },
+  {
+    path: "/demo",
+    element: <Demo />,
   },
 ];
 

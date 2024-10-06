@@ -10,7 +10,7 @@ import {
   frequencyValueByTypeOptions,
 } from "../SelectFrequecyBottom/constants";
 
-const FrequencyCty = ({ open, onClose, onChange, value = {} }) => {
+const FrequencyCty = ({ open, onClose, onChange = () => {}, value = {} }) => {
   const valueRef = useRef({});
   const selectedType = value?.type || FrequencyType.ONCE;
   const selectedValue = value?.value || frequencyOnceOptions[0].value;
@@ -19,11 +19,11 @@ const FrequencyCty = ({ open, onClose, onChange, value = {} }) => {
 
   const handleConfirm = () => {
     const { type, value } = valueRef.current;
-    console.log("🚀 ~ handleConfirm ~  { type, value }:", { type, value });
-    // onChange({
-    //   type,
-    //   value,
-    // });
+    // console.log("🚀 ~ handleConfirm ~  { type, value }:", { type, value });
+    onChange({
+      type,
+      value,
+    });
     onClose?.();
   };
 

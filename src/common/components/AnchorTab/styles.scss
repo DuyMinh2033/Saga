@@ -1,0 +1,16 @@
+.anchor__header {
+  padding: 0 24px;
+  display: flex;
+  gap: 8px;
+  .header__item__anchor {
+    padding: 10px;
+  }
+  .selected__anchor {
+    background-color: bisque;
+    border-radius: 5px;
+  }
+}
+.anchor__scroll {
+  height: calc(100vh - 112px);
+  overflow: scroll;
+}

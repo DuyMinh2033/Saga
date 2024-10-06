@@ -1,0 +1,12 @@
+.item__product {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  // padding-bottom: 600px;
+}
+.container__productList {
+  display: flex;
+  flex-direction: column;
+  // gap: 500px;
+  padding: 0 24px;
+}
