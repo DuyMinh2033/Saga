@@ -16,6 +16,8 @@ import ProductCenter from "./Page/ProductCenter";
 import TestAnchorTab from "./Page/TestAnchorTab";
 import Demo from "./Page/Demo";
 
+import Pdfss from "./Pdf";
+
 const route = [
   {
     path: "/open-account",
@@ -76,6 +78,10 @@ const route = [
   {
     path: "/demo",
     element: <Demo />,
+  },
+  {
+    path: "/pdf",
+    element: <Pdfss />,
   },
 ];
 

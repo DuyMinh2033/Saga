@@ -1,91 +1,38 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Demo = () => {
-  const container = useRef(null);
-  const sentinels = useRef([]);
-  const [activeItem, setActiveItem] = useState(null);
+  const [test, setTest] = useState(0);
+  const timeOut = useRef(null);
 
-  // Dữ liệu các item
-  const items = [
-    {
-      id: "item1",
-      content:
-        "Nội dung cho item 1   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em  ",
-    },
-    {
-      id: "item2",
-      content:
-        "Nội dung cho item 2   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em ",
-    },
-    {
-      id: "item3",
-      content:
-        "Nội dung cho item 3   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odit molestias, ratione hic voluptas iure alias nulla saepe ducimus tenetur ut id ipsum veniam eos! Non magnam magni perferendis commodi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptat em  ",
-    },
-  ];
-
-  // Hàm xử lý cuộn
-  const handleScroll = () => {
-    const containerRect = container.current.getBoundingClientRect();
-    const offset = containerRect.top;
-    sentinels.current.forEach((sentinel) => {
-      const sentinelRect = sentinel.getBoundingClientRect();
-      if (sentinelRect.top < offset && sentinelRect.bottom > offset) {
-        setActiveItem(sentinel.id);
-      }
-    });
+  const start = () => {
+    setTimeout(() => {
+      setTest(test + 1);
+    }, 1000);
   };
 
   useEffect(() => {
-    // Lưu các phần tử vào sentinels
-    sentinels.current = items.map((item) => document.getElementById(item.id));
+    if (test !== 0) {
+      timeOut.current = setTimeout(() => {
+        setTest(test + 1);
+      }, 1000);
+    }
+    return () => clearTimeout(timeOut.current);
+  }, [test]);
 
-    // Thêm sự kiện cuộn cho container
-    const currentContainer = container.current;
-    currentContainer.addEventListener("scroll", handleScroll);
-
-    // Cleanup event listener
-    return () => {
-      currentContainer.removeEventListener("scroll", handleScroll);
-    };
-  }, []); // Chạy lại useEffect nếu items thay đổi
+  const reset = () => {
+    clearTimeout(timeOut.current);
+    setTest(0);
+  };
 
   return (
-    <>
-      <div
-        style={{
-          position: "sticky",
-          top: 0,
-          background: "white",
-          padding: "10px",
-          zIndex: 1,
-        }}
-      >
-        Active Item: {activeItem}
+    <div>
+      <p>{test}</p>
+      <div>
+        <button onClick={() => clearTimeout(timeOut.current)}>stop</button>
+        <button onClick={start}>start</button>
+        <button onClick={reset}>reset</button>
       </div>
-      <div
-        style={{
-          height: "400px",
-          overflow: "auto",
-          display: "flex",
-          flexDirection: "column",
-          gap: "30px",
-        }}
-        ref={container}
-      >
-        {items.map(({ id, content }) => (
-          <div
-            key={id}
-            id={id}
-            style={{ paddingBottom: "30px", position: "relative" }}
-          >
-            <h1>{id}</h1>
-            <p>{content}</p>
-          </div>
-        ))}
-      </div>
-    </>
+    </div>
   );
 };
 
