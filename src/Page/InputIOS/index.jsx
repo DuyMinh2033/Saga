@@ -1,35 +1,35 @@
 import { useEffect, useRef, useState } from "react";
 
 const InputIOS = () => {
-  const [valueLabel, setValueLavel] = useState("");
+  const [valueLabel, setValueLabel] = useState("");
   const Ref = useRef(null);
+
   const handleKeyDown = (event) => {
     if (["e", "E", "-", "+", "."].includes(event.key)) {
       event.preventDefault();
     }
   };
 
-  const onChangeVaulue = (e) => {
-    const value = e.target.value;
-    setValueLavel(value);
+  const onChangeValue = (event) => {
+    const newValue = event.target.value;
+    // Chỉ cập nhật state nếu giá trị là số hợp lệ
+    if (/^\d*$/.test(newValue)) {
+      setValueLabel(newValue);
+    }
   };
 
   useEffect(() => {
     Ref.current.focus();
   }, []);
 
-  const handleInput = (event) => {
-    // Loại bỏ tất cả các ký tự không phải là số nguyên
-    event.target.value = event.target.value.replace(/[^0-9]/g, "");
-  };
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
       <input
         ref={Ref}
         type="number"
         onKeyDown={handleKeyDown}
-        onChange={onChangeVaulue}
-        onInput={handleInput}
+        onChange={onChangeValue}
+        value={valueLabel} // Đảm bảo rằng giá trị input luôn là giá trị hợp lệ
       />
       <label style={{ color: "red" }}>
         {valueLabel !== "" ? valueLabel : "No value"}
