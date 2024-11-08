@@ -17,6 +17,7 @@ import TestAnchorTab from "./Page/TestAnchorTab";
 import Demo from "./Page/Demo";
 
 import Pdfss from "./Pdf";
+import InputIOS from "./Page/InputIOS";
 
 const route = [
   {
@@ -82,6 +83,10 @@ const route = [
   {
     path: "/pdf",
     element: <Pdfss />,
+  },
+  {
+    path: "/ios",
+    element: <InputIOS />,
   },
 ];
 

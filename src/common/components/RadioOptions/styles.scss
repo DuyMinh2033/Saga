@@ -1,0 +1,15 @@
+.radio__options {
+  display: flex;
+  gap: 10px;
+  .radio__item {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding: 5px;
+    border: 2px solid brown;
+    border-radius: 7px;
+  }
+  .selected {
+    background-color: aqua;
+  }
+}
