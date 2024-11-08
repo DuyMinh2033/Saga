@@ -17,6 +17,11 @@ const InputIOS = () => {
   useEffect(() => {
     Ref.current.focus();
   }, []);
+
+  const handleInput = (event) => {
+    // Loại bỏ tất cả các ký tự không phải là số nguyên
+    event.target.value = event.target.value.replace(/[^0-9]/g, "");
+  };
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
       <input
@@ -24,6 +29,7 @@ const InputIOS = () => {
         type="number"
         onKeyDown={handleKeyDown}
         onChange={onChangeVaulue}
+        onInput={handleInput}
       />
       <label style={{ color: "red" }}>
         {valueLabel !== "" ? valueLabel : "No value"}
