@@ -23,7 +23,7 @@ const InputIOS = () => {
   };
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{ height: "100vh", padding: "0 24px" }}>
       <div
         style={{
           position: "sticky",
