@@ -23,7 +23,7 @@ const InputIOS = () => {
   };
 
   return (
-    <div style={{ height: "100vh", overflow: "hidden", padding: "0 24px" }}>
+    <div style={{ height: "100vh", overflow: "scroll", padding: "0 24px" }}>
       <div
         style={{
           position: "sticky",
@@ -44,8 +44,8 @@ const InputIOS = () => {
           display: "flex",
           flexDirection: "column",
           gap: "10px",
-          height: "calc(100vh - 56px)",
-          overflow: "scroll",
+          // height: "calc(100vh - 56px)",
+          // overflow: "scroll",
         }}
       >
         <Controller
