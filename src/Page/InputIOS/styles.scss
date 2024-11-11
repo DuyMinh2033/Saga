@@ -1,0 +1,5 @@
+@supports (-webkit-touch-callout: none) {
+  .scroll-header {
+    overflow: hidden; /* Tắt cuộn trên iOS khi cần */
+  }
+}

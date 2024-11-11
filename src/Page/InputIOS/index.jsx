@@ -1,6 +1,7 @@
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema } from "./Until/Yup";
+import "./styles.scss";
 const InputIOS = () => {
   const {
     control,
@@ -23,7 +24,10 @@ const InputIOS = () => {
   };
 
   return (
-    <div style={{ height: "100vh", overflow: "scroll", padding: "0 24px" }}>
+    <div
+      className="scroll-header"
+      style={{ height: "100vh", overflow: "scroll", padding: "0 24px" }}
+    >
       <div
         style={{
           position: "fixed",
