@@ -23,7 +23,7 @@ const InputIOS = () => {
   };
 
   return (
-    <div style={{height:'100vh'}}>
+    <div style={{ height: "100vh" }}>
       <div
         style={{
           position: "sticky",
@@ -31,11 +31,23 @@ const InputIOS = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          right: "0",
+          left: "0",
+          top: "0",
+          background: "red",
         }}
       >
         Header
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          height: "calc(100vh - 56px)",
+          overflow: "scroll",
+        }}
+      >
         <Controller
           name="thirdPartyChecked"
           control={control}
