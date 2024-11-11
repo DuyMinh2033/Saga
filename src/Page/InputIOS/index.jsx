@@ -1,37 +1,712 @@
-import { useEffect, useRef, useState } from "react";
-
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { validationSchema } from "./Until/Yup";
 const InputIOS = () => {
-  const [valueLabel, setValueLabel] = useState("");
-  const Ref = useRef(null);
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues: {
+      thirdPartyChecked: false,
+      relationship: "",
+      partnerName: "",
+      age: "",
+      email: "",
+    },
+  });
 
-  const handleKeyDown = (event) => {
-    // Ngăn các ký tự không phải số từ bàn phím
-    if (["e", "E", "-", "+", "."].includes(event.key)) {
-      event.preventDefault();
-    }
+  const onSubmit = (data) => {
+    console.log(data);
   };
-
-  const onChangeValue = (event) => {
-    const newValue = event.target.value;
-    setValueLabel(newValue);
-  };
-
-  useEffect(() => {
-    Ref.current.focus();
-  }, []);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-      <input
-        ref={Ref}
-        type="number"
-        onChange={onChangeValue}
-        onKeyDown={handleKeyDown}
-        inputMode="numeric"
-      />
-      <label style={{ color: "red" }}>
-        {valueLabel !== "" ? valueLabel : "No value"}
-      </label>
+    <div style={{height:'100vh'}}>
+      <div
+        style={{
+          position: "sticky",
+          height: "56px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        Header
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <Controller
+          name="thirdPartyChecked"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>
+                <input type="checkbox" {...field} />
+                Bên thứ ba tham gia
+              </label>
+              {errors.thirdPartyChecked && (
+                <p>{errors.thirdPartyChecked.message}</p>
+              )}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="relationship"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Mối quan hệ:</label>
+              <select {...field}>
+                <option value="">Chọn mối quan hệ</option>
+                <option value="friend">Bạn bè</option>
+                <option value="partner">Đối tác</option>
+              </select>
+              {errors.relationship && <p>{errors.relationship.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="partnerName"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tên đối tác:</label>
+              <input type="text" {...field} />
+              {errors.partnerName && <p>{errors.partnerName.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="age"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tuổi:</label>
+              <input inputMode="numeric" {...field} />
+              {errors.age && <p>{errors.age.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Email:</label>
+              <input type="email" {...field} />
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
+          )}
+        />
+        <Controller
+          name="thirdPartyChecked"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>
+                <input type="checkbox" {...field} />
+                Bên thứ ba tham gia
+              </label>
+              {errors.thirdPartyChecked && (
+                <p>{errors.thirdPartyChecked.message}</p>
+              )}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="relationship"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Mối quan hệ:</label>
+              <select {...field}>
+                <option value="">Chọn mối quan hệ</option>
+                <option value="friend">Bạn bè</option>
+                <option value="partner">Đối tác</option>
+              </select>
+              {errors.relationship && <p>{errors.relationship.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="partnerName"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tên đối tác:</label>
+              <input type="text" {...field} />
+              {errors.partnerName && <p>{errors.partnerName.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="age"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tuổi:</label>
+              <input inputMode="numeric" {...field} />
+              {errors.age && <p>{errors.age.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Email:</label>
+              <input type="email" {...field} />
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
+          )}
+        />
+        <Controller
+          name="thirdPartyChecked"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>
+                <input type="checkbox" {...field} />
+                Bên thứ ba tham gia
+              </label>
+              {errors.thirdPartyChecked && (
+                <p>{errors.thirdPartyChecked.message}</p>
+              )}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="relationship"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Mối quan hệ:</label>
+              <select {...field}>
+                <option value="">Chọn mối quan hệ</option>
+                <option value="friend">Bạn bè</option>
+                <option value="partner">Đối tác</option>
+              </select>
+              {errors.relationship && <p>{errors.relationship.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="partnerName"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tên đối tác:</label>
+              <input type="text" {...field} />
+              {errors.partnerName && <p>{errors.partnerName.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="age"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tuổi:</label>
+              <input inputMode="numeric" {...field} />
+              {errors.age && <p>{errors.age.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Email:</label>
+              <input type="email" {...field} />
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
+          )}
+        />
+        <Controller
+          name="thirdPartyChecked"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>
+                <input type="checkbox" {...field} />
+                Bên thứ ba tham gia
+              </label>
+              {errors.thirdPartyChecked && (
+                <p>{errors.thirdPartyChecked.message}</p>
+              )}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="relationship"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Mối quan hệ:</label>
+              <select {...field}>
+                <option value="">Chọn mối quan hệ</option>
+                <option value="friend">Bạn bè</option>
+                <option value="partner">Đối tác</option>
+              </select>
+              {errors.relationship && <p>{errors.relationship.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="partnerName"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tên đối tác:</label>
+              <input type="text" {...field} />
+              {errors.partnerName && <p>{errors.partnerName.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="age"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tuổi:</label>
+              <input inputMode="numeric" {...field} />
+              {errors.age && <p>{errors.age.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Email:</label>
+              <input type="email" {...field} />
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
+          )}
+        />
+        <Controller
+          name="thirdPartyChecked"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>
+                <input type="checkbox" {...field} />
+                Bên thứ ba tham gia
+              </label>
+              {errors.thirdPartyChecked && (
+                <p>{errors.thirdPartyChecked.message}</p>
+              )}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="relationship"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Mối quan hệ:</label>
+              <select {...field}>
+                <option value="">Chọn mối quan hệ</option>
+                <option value="friend">Bạn bè</option>
+                <option value="partner">Đối tác</option>
+              </select>
+              {errors.relationship && <p>{errors.relationship.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="partnerName"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tên đối tác:</label>
+              <input type="text" {...field} />
+              {errors.partnerName && <p>{errors.partnerName.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="age"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tuổi:</label>
+              <input inputMode="numeric" {...field} />
+              {errors.age && <p>{errors.age.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Email:</label>
+              <input type="email" {...field} />
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
+          )}
+        />
+        <Controller
+          name="thirdPartyChecked"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>
+                <input type="checkbox" {...field} />
+                Bên thứ ba tham gia
+              </label>
+              {errors.thirdPartyChecked && (
+                <p>{errors.thirdPartyChecked.message}</p>
+              )}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="relationship"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Mối quan hệ:</label>
+              <select {...field}>
+                <option value="">Chọn mối quan hệ</option>
+                <option value="friend">Bạn bè</option>
+                <option value="partner">Đối tác</option>
+              </select>
+              {errors.relationship && <p>{errors.relationship.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="partnerName"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tên đối tác:</label>
+              <input type="text" {...field} />
+              {errors.partnerName && <p>{errors.partnerName.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="age"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tuổi:</label>
+              <input inputMode="numeric" {...field} />
+              {errors.age && <p>{errors.age.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Email:</label>
+              <input type="email" {...field} />
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
+          )}
+        />
+        <Controller
+          name="thirdPartyChecked"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>
+                <input type="checkbox" {...field} />
+                Bên thứ ba tham gia
+              </label>
+              {errors.thirdPartyChecked && (
+                <p>{errors.thirdPartyChecked.message}</p>
+              )}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="relationship"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Mối quan hệ:</label>
+              <select {...field}>
+                <option value="">Chọn mối quan hệ</option>
+                <option value="friend">Bạn bè</option>
+                <option value="partner">Đối tác</option>
+              </select>
+              {errors.relationship && <p>{errors.relationship.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="partnerName"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tên đối tác:</label>
+              <input type="text" {...field} />
+              {errors.partnerName && <p>{errors.partnerName.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="age"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tuổi:</label>
+              <input inputMode="numeric" {...field} />
+              {errors.age && <p>{errors.age.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Email:</label>
+              <input type="email" {...field} />
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
+          )}
+        />
+        <Controller
+          name="thirdPartyChecked"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>
+                <input type="checkbox" {...field} />
+                Bên thứ ba tham gia
+              </label>
+              {errors.thirdPartyChecked && (
+                <p>{errors.thirdPartyChecked.message}</p>
+              )}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="relationship"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Mối quan hệ:</label>
+              <select {...field}>
+                <option value="">Chọn mối quan hệ</option>
+                <option value="friend">Bạn bè</option>
+                <option value="partner">Đối tác</option>
+              </select>
+              {errors.relationship && <p>{errors.relationship.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="partnerName"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tên đối tác:</label>
+              <input type="text" {...field} />
+              {errors.partnerName && <p>{errors.partnerName.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="age"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tuổi:</label>
+              <input inputMode="numeric" {...field} />
+              {errors.age && <p>{errors.age.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Email:</label>
+              <input type="email" {...field} />
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
+          )}
+        />
+        <Controller
+          name="thirdPartyChecked"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>
+                <input type="checkbox" {...field} />
+                Bên thứ ba tham gia
+              </label>
+              {errors.thirdPartyChecked && (
+                <p>{errors.thirdPartyChecked.message}</p>
+              )}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="relationship"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Mối quan hệ:</label>
+              <select {...field}>
+                <option value="">Chọn mối quan hệ</option>
+                <option value="friend">Bạn bè</option>
+                <option value="partner">Đối tác</option>
+              </select>
+              {errors.relationship && <p>{errors.relationship.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="partnerName"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tên đối tác:</label>
+              <input type="text" {...field} />
+              {errors.partnerName && <p>{errors.partnerName.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="age"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tuổi:</label>
+              <input inputMode="numeric" {...field} />
+              {errors.age && <p>{errors.age.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Email:</label>
+              <input type="email" {...field} />
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
+          )}
+        />
+        <Controller
+          name="thirdPartyChecked"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>
+                <input type="checkbox" {...field} />
+                Bên thứ ba tham gia
+              </label>
+              {errors.thirdPartyChecked && (
+                <p>{errors.thirdPartyChecked.message}</p>
+              )}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="relationship"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Mối quan hệ:</label>
+              <select {...field}>
+                <option value="">Chọn mối quan hệ</option>
+                <option value="friend">Bạn bè</option>
+                <option value="partner">Đối tác</option>
+              </select>
+              {errors.relationship && <p>{errors.relationship.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="partnerName"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tên đối tác:</label>
+              <input type="text" {...field} />
+              {errors.partnerName && <p>{errors.partnerName.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="age"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Tuổi:</label>
+              <input inputMode="numeric" {...field} />
+              {errors.age && <p>{errors.age.message}</p>}
+            </div>
+          )}
+        />
+
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <label>Email:</label>
+              <input type="email" {...field} />
+              {errors.email && <p>{errors.email.message}</p>}
+            </div>
+          )}
+        />
+      </div>
     </div>
   );
 };

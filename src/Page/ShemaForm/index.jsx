@@ -57,25 +57,25 @@ const SchemaForm = () => {
     control,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     resolver: yupResolver(openAccountSchema),
-    defaultValues: {
-      accountNo: "",
-      amount: "",
-      intendedUseAccount: "",
-      debitCardIssuance: false,
-      thirdPartyChecked: false,
-      thirdPartyName: "",
-      dob: "",
-      address: "",
-      city: "",
-      province: "",
-      postalCode: "",
-      occupation: "",
-      relationship: "",
-      referralCode: "",
-    },
+    // defaultValues: {
+    //   accountNo: "",
+    //   amount: "",
+    //   intendedUseAccount: "",
+    //   debitCardIssuance: false,
+    //   thirdPartyChecked: false,
+    //   thirdPartyName: "",
+    //   dob: "",
+    //   address: "",
+    //   city: "",
+    //   province: "",
+    //   postalCode: "",
+    //   occupation: "",
+    //   relationship: "",
+    //   referralCode: "",
+    // },
   });
 
   const thirdPartyChecked = watch("thirdPartyChecked");
@@ -230,7 +230,9 @@ const SchemaForm = () => {
         />
       </div>
 
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={!isValid}>
+        Submit
+      </button>
     </form>
   );
 };

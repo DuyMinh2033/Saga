@@ -7,7 +7,7 @@ import { customerSagaPost } from "./reudux/PostCustomer/saga";
 import { customerReducerPost } from "./reudux/PostCustomer/reducer";
 import TermAndCondition from "../../components/TermAndConditions";
 import { getCustomerInfo } from "./reudux/getCusTomer/action";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomerInfo from "../CustomerInfo";
 import { useSelector } from "react-redux";
 import { customerInfo } from "./reudux/getCusTomer/selector";
@@ -22,13 +22,18 @@ const OpenAccount = () => {
   const [step, setStep] = useState("");
   const [openBS, setOpenBs] = useState(false);
   const handleSubmit = () => {
-    getCustomerInfo();
     setStep("step2");
     setOpenBs(true);
   };
 
   const [state, setState] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (openBS && !dataUserInfo) {
+      getCustomerInfo();
+    }
+  }, [openBS]);
 
   return (
     <div style={{ width: "375px", margin: "0 auto" }}>
