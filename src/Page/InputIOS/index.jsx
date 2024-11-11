@@ -26,7 +26,7 @@ const InputIOS = () => {
     <div style={{ height: "100vh", overflow: "scroll", padding: "0 24px" }}>
       <div
         style={{
-          position: "sticky",
+          position: "fixed",
           height: "56px",
           display: "flex",
           justifyContent: "center",
@@ -46,6 +46,7 @@ const InputIOS = () => {
           gap: "10px",
           // height: "calc(100vh - 56px)",
           // overflow: "scroll",
+          marginTop: "75px",
         }}
       >
         <Controller
