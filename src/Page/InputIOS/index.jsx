@@ -37,7 +37,7 @@ const InputIOS = () => {
         setTimeout(() => {
           activeInput.scrollIntoView({
             behavior: "smooth",
-            block: "center",
+            block: "nearest",
           });
         }, 300); // Slight delay to allow for keyboard appearance on mobile
       }
