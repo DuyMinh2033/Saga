@@ -10,7 +10,7 @@ const InputIOS = () => {
       if (inputRefs.current.includes(activeInput)) {
         activeInput.scrollIntoView({
           behavior: "smooth",
-          block: "nearest",
+          block: "center",
         });
       }
     };
