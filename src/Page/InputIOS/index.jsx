@@ -10,7 +10,7 @@ const InputIOS = () => {
   //     if (inputRefs.current.includes(activeInput)) {
   //       activeInput.scrollIntoView({
   //         behavior: "smooth",
-  //         block: "center",
+  //         block: "nearest",
   //       });
   //     }
   //   };
@@ -31,50 +31,42 @@ const InputIOS = () => {
   // }, []);
 
   useEffect(() => {
-    const handleFocus = (event) => {
-      const activeInput = event.target;
+    let lastViewportHeight = window.innerHeight;
+
+    const handleViewportChange = () => {
+      const activeInput = document.activeElement;
+
+      // Check if an input is focused and if viewport height has changed
       if (inputRefs.current.includes(activeInput)) {
-        setTimeout(() => {
+        const currentViewportHeight = window.innerHeight;
+
+        if (currentViewportHeight < lastViewportHeight) {
+          // Likely, the keyboard has opened, so scroll the active input to the top
           activeInput.scrollIntoView({
             behavior: "smooth",
-            block: "nearest",
+            block: "center", // Scroll to top when keyboard opens
           });
-        }, 300); // Slight delay to allow for keyboard appearance on mobile
+        }
+
+        lastViewportHeight = currentViewportHeight;
       }
     };
 
-    const addFocusListeners = () => {
-      inputRefs.current.forEach((input) => {
-        input.addEventListener("focus", handleFocus);
-      });
-    };
-
-    const removeFocusListeners = () => {
-      inputRefs.current.forEach((input) => {
-        input.removeEventListener("focus", handleFocus);
-      });
-    };
-
-    // Set up listeners initially
-    addFocusListeners();
-
-    // Fallback for resize, mainly helpful on Android
-    const handleResize = () => {
-      const activeInput = document.activeElement;
-      if (inputRefs.current.includes(activeInput)) {
-        activeInput.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      }
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      removeFocusListeners();
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [inputRefs]);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", handleViewportChange);
+      return () => {
+        window.visualViewport.removeEventListener(
+          "resize",
+          handleViewportChange
+        );
+      };
+    } else {
+      window.addEventListener("resize", handleViewportChange);
+      return () => {
+        window.removeEventListener("resize", handleViewportChange);
+      };
+    }
+  }, []);
 
   return (
     <div
