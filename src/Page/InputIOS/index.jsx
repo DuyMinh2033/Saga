@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./styles.scss";
 
 function scrollIntoViewIfNeeded(event) {
@@ -24,6 +25,24 @@ const InputIOS = () => {
     scrollIntoViewIfNeeded(event);
   };
 
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Kiểm tra xem bàn phím có mở hay không
+      if (window.innerHeight < 600) {
+        setKeyboardVisible(true); // Bàn phím mở
+      } else {
+        setKeyboardVisible(false); // Bàn phím đóng
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div
       className="scroll-header"
@@ -49,7 +68,7 @@ const InputIOS = () => {
       >
         Header
       </div>
-      <div
+      {/* <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -255,7 +274,18 @@ const InputIOS = () => {
         <input type="text" onFocus={scrollToInput} />
         <input type="text" onFocus={scrollToInput} />
         <input type="text" onFocus={scrollToInput} />
+      </div> */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          marginTop: "75px",
+        }}
+      >
+        <input type="text" />
       </div>
+      {keyboardVisible && <div style={{ color: "red" }}>Bàn phím đang mở</div>}
     </div>
   );
 };
