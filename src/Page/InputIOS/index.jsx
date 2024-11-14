@@ -1,42 +1,27 @@
+import { useEffect, useRef } from "react";
 import "./styles.scss";
 
 const InputIOS = () => {
-  function scrollIntoViewIfNeeded(element, options = {}) {
-    if (!element) return;
+  const inputRef = useRef(null);
 
-    // Lấy thông tin vị trí của phần tử và của container hiện tại
-    const rect = element.getBoundingClientRect();
-    const { top, left, bottom, right } = rect;
-
-    // Lấy thông tin của viewport (khung nhìn của trình duyệt)
-    const { innerHeight, innerWidth } = window;
-
-    // Kiểm tra nếu phần tử đã ở trong viewport
-    const isInViewport =
-      top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
-
-    // Nếu phần tử đã trong viewport rồi, không làm gì
-    if (isInViewport) return;
-
-    // Tính toán vị trí cuộn
-    const scrollOptions = {
-      behavior: options.behavior || "smooth",
-      block: options.block || "center", // Căn chỉnh dọc
-      inline: options.inline || "center", // Căn chỉnh ngang
+  useEffect(() => {
+    const handleResize = () => {
+      if (document.activeElement === inputRef.current) {
+        setTimeout(() => {
+          inputRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+        }, 0);
+      }
     };
 
-    // Cuộn đến phần tử
-    element.scrollIntoView(scrollOptions);
-  }
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
-  const handleFocus = (e) => {
-    const element = e.target;
-    scrollIntoViewIfNeeded(element, {
-      behavior: "smooth",
-      block: "center",
-      inline: "center",
-    });
-  };
   return (
     <div
       className="scroll-header"
@@ -73,12 +58,7 @@ const InputIOS = () => {
         {Array(150)
           .fill(0)
           .map((_, index) => (
-            <input
-              key={index}
-              type="text"
-              placeholder={`Input ${index + 1}`}
-              onFocus={handleFocus}
-            />
+            <input key={index} type="text" placeholder={`Input ${index + 1}`} />
           ))}
       </div>
     </div>
