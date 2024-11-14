@@ -1,13 +1,27 @@
 import "./styles.scss";
-import scrollIntoViewIfNeeded from "scroll-into-view-if-needed";
+
+function scrollIntoViewIfNeeded(event) {
+  const element = event.target;
+  const rect = element.getBoundingClientRect();
+  const isInViewport =
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+
+  if (!isInViewport) {
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "center",
+    });
+  }
+}
 
 const InputIOS = () => {
   const scrollToInput = (event) => {
-    scrollIntoViewIfNeeded(event.target, {
-      behavior: "smooth",
-      block: "center",
-      scrollMode: "if-needed",
-    });
+    scrollIntoViewIfNeeded(event);
   };
 
   return (
