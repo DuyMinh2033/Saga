@@ -31,39 +31,40 @@ const InputIOS = () => {
   // }, []);
 
   useEffect(() => {
-    let lastViewportHeight = window.innerHeight;
+    const handleResize = () => {
+      // Lấy chiều cao của viewport (bao gồm cả khi bàn phím xuất hiện)
+      const viewportHeight = window.visualViewport
+        ? window.visualViewport.height
+        : window.innerHeight;
 
-    const handleViewportChange = () => {
-      const activeInput = document.activeElement;
-
-      // Check if an input is focused and if viewport height has changed
+      const activeInput = document.activeElement; // Trường input hiện tại đang được focus
       if (inputRefs.current.includes(activeInput)) {
-        const currentViewportHeight = window.innerHeight;
+        // Lấy vị trí của trường input đang focus trong viewport
+        const inputRect = activeInput.getBoundingClientRect();
+        const inputTop = inputRect.top;
 
-        if (currentViewportHeight < lastViewportHeight) {
-          // Likely, the keyboard has opened, so scroll the active input to the top
-          activeInput.scrollIntoView({
-            behavior: "smooth",
-            block: "center", // Scroll to top when keyboard opens
-          });
-        }
+        // Tính toán vị trí cuộn sao cho trường input nằm ở giữa của viewport
+        const scrollToPosition =
+          inputTop - (viewportHeight / 2 - inputRect.height / 2);
 
-        lastViewportHeight = currentViewportHeight;
+        // Cuộn trang đến vị trí của trường input sao cho nó nằm chính giữa
+        window.scrollTo({
+          top: scrollToPosition,
+          behavior: "smooth",
+        });
       }
     };
 
+    // Lắng nghe sự kiện thay đổi kích thước viewport
     if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", handleViewportChange);
+      window.visualViewport.addEventListener("resize", handleResize);
       return () => {
-        window.visualViewport.removeEventListener(
-          "resize",
-          handleViewportChange
-        );
+        window.visualViewport.removeEventListener("resize", handleResize);
       };
     } else {
-      window.addEventListener("resize", handleViewportChange);
+      window.addEventListener("resize", handleResize);
       return () => {
-        window.removeEventListener("resize", handleViewportChange);
+        window.removeEventListener("resize", handleResize);
       };
     }
   }, []);
