@@ -4,67 +4,28 @@ import "./styles.scss";
 const InputIOS = () => {
   const inputRefs = useRef([]);
 
-  // useEffect(() => {
-  //   const handleViewportChange = () => {
-  //     const activeInput = document.activeElement;
-  //     if (inputRefs.current.includes(activeInput)) {
-  //       activeInput.scrollIntoView({
-  //         behavior: "smooth",
-  //         block: "nearest",
-  //       });
-  //     }
-  //   };
-  //   if (window.visualViewport) {
-  //     window.visualViewport.addEventListener("resize", handleViewportChange);
-  //     return () => {
-  //       window.visualViewport.removeEventListener(
-  //         "resize",
-  //         handleViewportChange
-  //       );
-  //     };
-  //   } else {
-  //     window.addEventListener("resize", handleViewportChange);
-  //     return () => {
-  //       window.removeEventListener("resize", handleViewportChange);
-  //     };
-  //   }
-  // }, []);
-
   useEffect(() => {
-    const handleResize = () => {
-      // Lấy chiều cao của viewport (bao gồm cả khi bàn phím xuất hiện)
-      const viewportHeight = window.visualViewport
-        ? window.visualViewport.height
-        : window.innerHeight;
-
-      const activeInput = document.activeElement; // Trường input hiện tại đang được focus
+    const handleViewportChange = () => {
+      const activeInput = document.activeElement;
       if (inputRefs.current.includes(activeInput)) {
-        // Lấy vị trí của trường input đang focus trong viewport
-        const inputRect = activeInput.getBoundingClientRect();
-        const inputTop = inputRect.top;
-
-        // Tính toán vị trí cuộn sao cho trường input nằm ở giữa của viewport
-        const scrollToPosition =
-          inputTop - (viewportHeight / 2 - inputRect.height / 2);
-
-        // Cuộn trang đến vị trí của trường input sao cho nó nằm chính giữa
-        window.scrollTo({
-          top: scrollToPosition,
+        activeInput.scrollIntoView({
           behavior: "smooth",
+          block: "nearest",
         });
       }
     };
-
-    // Lắng nghe sự kiện thay đổi kích thước viewport
     if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", handleResize);
+      window.visualViewport.addEventListener("resize", handleViewportChange);
       return () => {
-        window.visualViewport.removeEventListener("resize", handleResize);
+        window.visualViewport.removeEventListener(
+          "resize",
+          handleViewportChange
+        );
       };
     } else {
-      window.addEventListener("resize", handleResize);
+      window.addEventListener("resize", handleViewportChange);
       return () => {
-        window.removeEventListener("resize", handleResize);
+        window.removeEventListener("resize", handleViewportChange);
       };
     }
   }, []);
