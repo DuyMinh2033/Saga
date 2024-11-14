@@ -23,13 +23,12 @@ const InputIOS = () => {
   }, [windowHeight]);
 
   const scrollToInput = (event) => {
-    const remainingHeight = (windowHeight - keyboardHeight) / 2;
-    event.target.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-      inline: "center",
-    });
-    window.scrollTo(0, window.scrollY - remainingHeight);
+    setTimeout(() => {
+      event.target.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }, 100);
   };
 
   return (
