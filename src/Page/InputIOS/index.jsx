@@ -8,12 +8,10 @@ const InputIOS = () => {
     const handleResize = () => {
       const activeInput = document.activeElement;
       if (inputRefs.current.includes(activeInput)) {
-        setTimeout(() => {
-          activeInput.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
-        }, 0);
+        activeInput.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
       }
     };
 
