@@ -1,34 +1,13 @@
-import { useState, useEffect } from "react";
 import "./styles.scss";
+import scrollIntoViewIfNeeded from "scroll-into-view-if-needed";
 
 const InputIOS = () => {
-  const [keyboardHeight, setKeyboardHeight] = useState(0);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
-
-  useEffect(() => {
-    const handleResize = () => {
-      // Khi bàn phím bật lên, innerHeight sẽ giảm
-      const newHeight = window.innerHeight;
-      if (newHeight < windowHeight) {
-        setKeyboardHeight(windowHeight - newHeight);
-      } else {
-        setKeyboardHeight(0); // Bàn phím đóng
-      }
-      setWindowHeight(newHeight);
-    };
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [windowHeight]);
-
   const scrollToInput = (event) => {
-    setTimeout(() => {
-      event.target.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }, 100);
+    scrollIntoViewIfNeeded(event.target, {
+      behavior: "smooth",
+      block: "center",
+      scrollMode: "if-needed",
+    });
   };
 
   return (
