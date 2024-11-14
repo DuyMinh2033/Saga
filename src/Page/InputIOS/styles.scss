@@ -6,11 +6,10 @@
 
 .content__container {
   height: calc(100vh - 166px);
-  padding-bottom: 200px;
   overflow: auto;
 }
 .fixed__btn {
-  position: absolute;
+  position: sticky;
   bottom: 0;
   right: 0;
   left: 0;
