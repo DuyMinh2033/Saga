@@ -4,8 +4,62 @@ import "./styles.scss";
 const InputIOS = () => {
   const inputRefs = useRef([]);
 
+  // useEffect(() => {
+  //   const handleViewportChange = () => {
+  //     const activeInput = document.activeElement;
+  //     if (inputRefs.current.includes(activeInput)) {
+  //       activeInput.scrollIntoView({
+  //         behavior: "smooth",
+  //         block: "center",
+  //       });
+  //     }
+  //   };
+  //   if (window.visualViewport) {
+  //     window.visualViewport.addEventListener("resize", handleViewportChange);
+  //     return () => {
+  //       window.visualViewport.removeEventListener(
+  //         "resize",
+  //         handleViewportChange
+  //       );
+  //     };
+  //   } else {
+  //     window.addEventListener("resize", handleViewportChange);
+  //     return () => {
+  //       window.removeEventListener("resize", handleViewportChange);
+  //     };
+  //   }
+  // }, []);
+
   useEffect(() => {
-    const handleViewportChange = () => {
+    const handleFocus = (event) => {
+      const activeInput = event.target;
+      if (inputRefs.current.includes(activeInput)) {
+        setTimeout(() => {
+          activeInput.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+        }, 300); // Slight delay to allow for keyboard appearance on mobile
+      }
+    };
+
+    const addFocusListeners = () => {
+      inputRefs.current.forEach((input) => {
+        input.addEventListener("focus", handleFocus);
+      });
+    };
+
+    const removeFocusListeners = () => {
+      inputRefs.current.forEach((input) => {
+        input.removeEventListener("focus", handleFocus);
+      });
+    };
+
+    // Set up listeners initially
+    addFocusListeners();
+
+    // Fallback for resize, mainly helpful on Android
+    const handleResize = () => {
       const activeInput = document.activeElement;
       if (inputRefs.current.includes(activeInput)) {
         activeInput.scrollIntoView({
@@ -14,21 +68,13 @@ const InputIOS = () => {
         });
       }
     };
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", handleViewportChange);
-      return () => {
-        window.visualViewport.removeEventListener(
-          "resize",
-          handleViewportChange
-        );
-      };
-    } else {
-      window.addEventListener("resize", handleViewportChange);
-      return () => {
-        window.removeEventListener("resize", handleViewportChange);
-      };
-    }
-  }, []);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      removeFocusListeners();
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [inputRefs]);
 
   return (
     <div
