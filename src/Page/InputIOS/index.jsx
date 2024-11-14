@@ -1,27 +1,35 @@
-// import { useForm } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
-// import { validationSchema } from "./Until/Yup";
+import { useState, useEffect } from "react";
 import "./styles.scss";
-const InputIOS = () => {
-  // const {
-  //   // formState: { errors, isValid },
-  // } = useForm({
-  //   resolver: yupResolver(validationSchema),
-  //   defaultValues: {
-  //     thirdPartyChecked: false,
-  //     relationship: "",
-  //     partnerName: "",
-  //     age: "",
-  //     email: "",
-  //   },
-  // });
 
-  // const onSubmit = (data) => {
-  //   console.log(data);
-  // };
+const InputIOS = () => {
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Khi bàn phím bật lên, innerHeight sẽ giảm
+      const newHeight = window.innerHeight;
+      if (newHeight < windowHeight) {
+        setKeyboardHeight(windowHeight - newHeight);
+      } else {
+        setKeyboardHeight(0); // Bàn phím đóng
+      }
+      setWindowHeight(newHeight);
+    };
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [windowHeight]);
 
   const scrollToInput = (event) => {
-    event.target.scrollIntoView({ behavior: "smooth", block: "center" });
+    const remainingHeight = (windowHeight - keyboardHeight) / 2;
+    event.target.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "center",
+    });
+    window.scrollTo(0, window.scrollY - remainingHeight);
   };
 
   return (
@@ -29,9 +37,9 @@ const InputIOS = () => {
       className="scroll-header"
       style={{
         height: "100vh",
-        overflow: "scroll",
+        overflowY: "auto",
         padding: "0 24px",
-        paddingBottom: "200px",
+        paddingBottom: "100px",
       }}
     >
       <div
@@ -54,921 +62,207 @@ const InputIOS = () => {
           display: "flex",
           flexDirection: "column",
           gap: "10px",
-          // height: "calc(100vh - 56px)",
-          // overflow: "scroll",
           marginTop: "75px",
         }}
       >
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
-        <input
-          type="text"
-          onFocus={scrollToInput}
-          onBlur={() => window.scrollTo(0, 0)}
-        />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
+        <input type="text" onFocus={scrollToInput} />
       </div>
     </div>
   );
