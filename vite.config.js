@@ -5,4 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/", // Đảm bảo base được đặt thành root
+  optimizeDeps: {
+    include: ["scroll-into-view-if-needed"],
+  },
 });
