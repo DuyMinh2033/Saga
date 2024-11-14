@@ -1,32 +1,38 @@
-import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { validationSchema } from "./Until/Yup";
+// import { useForm } from "react-hook-form";
+// import { yupResolver } from "@hookform/resolvers/yup";
+// import { validationSchema } from "./Until/Yup";
 import "./styles.scss";
 const InputIOS = () => {
-  const {
-    control,
-    handleSubmit,
-    reset,
-    formState: { errors, isValid },
-  } = useForm({
-    resolver: yupResolver(validationSchema),
-    defaultValues: {
-      thirdPartyChecked: false,
-      relationship: "",
-      partnerName: "",
-      age: "",
-      email: "",
-    },
-  });
+  // const {
+  //   // formState: { errors, isValid },
+  // } = useForm({
+  //   resolver: yupResolver(validationSchema),
+  //   defaultValues: {
+  //     thirdPartyChecked: false,
+  //     relationship: "",
+  //     partnerName: "",
+  //     age: "",
+  //     email: "",
+  //   },
+  // });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  // const onSubmit = (data) => {
+  //   console.log(data);
+  // };
+
+  const scrollToInput = (event) => {
+    event.target.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   return (
     <div
       className="scroll-header"
-      style={{ height: "100vh", overflow: "scroll", padding: "0 24px" }}
+      style={{
+        height: "100vh",
+        overflow: "scroll",
+        padding: "0 24px",
+        paddingBottom: "200px",
+      }}
     >
       <div
         style={{
@@ -53,675 +59,96 @@ const InputIOS = () => {
           marginTop: "75px",
         }}
       >
-        <Controller
-          name="thirdPartyChecked"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>
-                <input type="checkbox" {...field} />
-                Bên thứ ba tham gia
-              </label>
-              {errors.thirdPartyChecked && (
-                <p>{errors.thirdPartyChecked.message}</p>
-              )}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
+        />
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
 
-        <Controller
-          name="relationship"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Mối quan hệ:</label>
-              <select {...field}>
-                <option value="">Chọn mối quan hệ</option>
-                <option value="friend">Bạn bè</option>
-                <option value="partner">Đối tác</option>
-              </select>
-              {errors.relationship && <p>{errors.relationship.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-
-        <Controller
-          name="partnerName"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tên đối tác:</label>
-              <input type="text" {...field} />
-              {errors.partnerName && <p>{errors.partnerName.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-
-        <Controller
-          name="age"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tuổi:</label>
-              <input inputMode="numeric" {...field} />
-              {errors.age && <p>{errors.age.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Email:</label>
-              <input type="email" {...field} />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-        <Controller
-          name="thirdPartyChecked"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>
-                <input type="checkbox" {...field} />
-                Bên thứ ba tham gia
-              </label>
-              {errors.thirdPartyChecked && (
-                <p>{errors.thirdPartyChecked.message}</p>
-              )}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-
-        <Controller
-          name="relationship"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Mối quan hệ:</label>
-              <select {...field}>
-                <option value="">Chọn mối quan hệ</option>
-                <option value="friend">Bạn bè</option>
-                <option value="partner">Đối tác</option>
-              </select>
-              {errors.relationship && <p>{errors.relationship.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-
-        <Controller
-          name="partnerName"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tên đối tác:</label>
-              <input type="text" {...field} />
-              {errors.partnerName && <p>{errors.partnerName.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-
-        <Controller
-          name="age"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tuổi:</label>
-              <input inputMode="numeric" {...field} />
-              {errors.age && <p>{errors.age.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Email:</label>
-              <input type="email" {...field} />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-        <Controller
-          name="thirdPartyChecked"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>
-                <input type="checkbox" {...field} />
-                Bên thứ ba tham gia
-              </label>
-              {errors.thirdPartyChecked && (
-                <p>{errors.thirdPartyChecked.message}</p>
-              )}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-
-        <Controller
-          name="relationship"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Mối quan hệ:</label>
-              <select {...field}>
-                <option value="">Chọn mối quan hệ</option>
-                <option value="friend">Bạn bè</option>
-                <option value="partner">Đối tác</option>
-              </select>
-              {errors.relationship && <p>{errors.relationship.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-
-        <Controller
-          name="partnerName"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tên đối tác:</label>
-              <input type="text" {...field} />
-              {errors.partnerName && <p>{errors.partnerName.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-
-        <Controller
-          name="age"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tuổi:</label>
-              <input inputMode="numeric" {...field} />
-              {errors.age && <p>{errors.age.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Email:</label>
-              <input type="email" {...field} />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-        <Controller
-          name="thirdPartyChecked"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>
-                <input type="checkbox" {...field} />
-                Bên thứ ba tham gia
-              </label>
-              {errors.thirdPartyChecked && (
-                <p>{errors.thirdPartyChecked.message}</p>
-              )}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
-
-        <Controller
-          name="relationship"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Mối quan hệ:</label>
-              <select {...field}>
-                <option value="">Chọn mối quan hệ</option>
-                <option value="friend">Bạn bè</option>
-                <option value="partner">Đối tác</option>
-              </select>
-              {errors.relationship && <p>{errors.relationship.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="partnerName"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tên đối tác:</label>
-              <input type="text" {...field} />
-              {errors.partnerName && <p>{errors.partnerName.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="age"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tuổi:</label>
-              <input inputMode="numeric" {...field} />
-              {errors.age && <p>{errors.age.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Email:</label>
-              <input type="email" {...field} />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-          )}
-        />
-        <Controller
-          name="thirdPartyChecked"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>
-                <input type="checkbox" {...field} />
-                Bên thứ ba tham gia
-              </label>
-              {errors.thirdPartyChecked && (
-                <p>{errors.thirdPartyChecked.message}</p>
-              )}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="relationship"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Mối quan hệ:</label>
-              <select {...field}>
-                <option value="">Chọn mối quan hệ</option>
-                <option value="friend">Bạn bè</option>
-                <option value="partner">Đối tác</option>
-              </select>
-              {errors.relationship && <p>{errors.relationship.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="partnerName"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tên đối tác:</label>
-              <input type="text" {...field} />
-              {errors.partnerName && <p>{errors.partnerName.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="age"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tuổi:</label>
-              <input inputMode="numeric" {...field} />
-              {errors.age && <p>{errors.age.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Email:</label>
-              <input type="email" {...field} />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-          )}
-        />
-        <Controller
-          name="thirdPartyChecked"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>
-                <input type="checkbox" {...field} />
-                Bên thứ ba tham gia
-              </label>
-              {errors.thirdPartyChecked && (
-                <p>{errors.thirdPartyChecked.message}</p>
-              )}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="relationship"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Mối quan hệ:</label>
-              <select {...field}>
-                <option value="">Chọn mối quan hệ</option>
-                <option value="friend">Bạn bè</option>
-                <option value="partner">Đối tác</option>
-              </select>
-              {errors.relationship && <p>{errors.relationship.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="partnerName"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tên đối tác:</label>
-              <input type="text" {...field} />
-              {errors.partnerName && <p>{errors.partnerName.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="age"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tuổi:</label>
-              <input inputMode="numeric" {...field} />
-              {errors.age && <p>{errors.age.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Email:</label>
-              <input type="email" {...field} />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-          )}
-        />
-        <Controller
-          name="thirdPartyChecked"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>
-                <input type="checkbox" {...field} />
-                Bên thứ ba tham gia
-              </label>
-              {errors.thirdPartyChecked && (
-                <p>{errors.thirdPartyChecked.message}</p>
-              )}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="relationship"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Mối quan hệ:</label>
-              <select {...field}>
-                <option value="">Chọn mối quan hệ</option>
-                <option value="friend">Bạn bè</option>
-                <option value="partner">Đối tác</option>
-              </select>
-              {errors.relationship && <p>{errors.relationship.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="partnerName"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tên đối tác:</label>
-              <input type="text" {...field} />
-              {errors.partnerName && <p>{errors.partnerName.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="age"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tuổi:</label>
-              <input inputMode="numeric" {...field} />
-              {errors.age && <p>{errors.age.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Email:</label>
-              <input type="email" {...field} />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-          )}
-        />
-        <Controller
-          name="thirdPartyChecked"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>
-                <input type="checkbox" {...field} />
-                Bên thứ ba tham gia
-              </label>
-              {errors.thirdPartyChecked && (
-                <p>{errors.thirdPartyChecked.message}</p>
-              )}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="relationship"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Mối quan hệ:</label>
-              <select {...field}>
-                <option value="">Chọn mối quan hệ</option>
-                <option value="friend">Bạn bè</option>
-                <option value="partner">Đối tác</option>
-              </select>
-              {errors.relationship && <p>{errors.relationship.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="partnerName"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tên đối tác:</label>
-              <input type="text" {...field} />
-              {errors.partnerName && <p>{errors.partnerName.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="age"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tuổi:</label>
-              <input inputMode="numeric" {...field} />
-              {errors.age && <p>{errors.age.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Email:</label>
-              <input type="email" {...field} />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-          )}
-        />
-        <Controller
-          name="thirdPartyChecked"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>
-                <input type="checkbox" {...field} />
-                Bên thứ ba tham gia
-              </label>
-              {errors.thirdPartyChecked && (
-                <p>{errors.thirdPartyChecked.message}</p>
-              )}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="relationship"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Mối quan hệ:</label>
-              <select {...field}>
-                <option value="">Chọn mối quan hệ</option>
-                <option value="friend">Bạn bè</option>
-                <option value="partner">Đối tác</option>
-              </select>
-              {errors.relationship && <p>{errors.relationship.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="partnerName"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tên đối tác:</label>
-              <input type="text" {...field} />
-              {errors.partnerName && <p>{errors.partnerName.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="age"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tuổi:</label>
-              <input inputMode="numeric" {...field} />
-              {errors.age && <p>{errors.age.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Email:</label>
-              <input type="email" {...field} />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-          )}
-        />
-        <Controller
-          name="thirdPartyChecked"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>
-                <input type="checkbox" {...field} />
-                Bên thứ ba tham gia
-              </label>
-              {errors.thirdPartyChecked && (
-                <p>{errors.thirdPartyChecked.message}</p>
-              )}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="relationship"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Mối quan hệ:</label>
-              <select {...field}>
-                <option value="">Chọn mối quan hệ</option>
-                <option value="friend">Bạn bè</option>
-                <option value="partner">Đối tác</option>
-              </select>
-              {errors.relationship && <p>{errors.relationship.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="partnerName"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tên đối tác:</label>
-              <input type="text" {...field} />
-              {errors.partnerName && <p>{errors.partnerName.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="age"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Tuổi:</label>
-              <input inputMode="numeric" {...field} />
-              {errors.age && <p>{errors.age.message}</p>}
-            </div>
-          )}
-        />
-
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <div>
-              <label>Email:</label>
-              <input type="email" {...field} />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-          )}
+        <input
+          type="text"
+          onFocus={scrollToInput}
+          onBlur={() => window.scrollTo(0, 0)}
         />
       </div>
     </div>
