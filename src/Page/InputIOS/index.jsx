@@ -2,13 +2,14 @@ import { useEffect, useRef } from "react";
 import "./styles.scss";
 
 const InputIOS = () => {
-  const inputRef = useRef(null);
+  const inputRefs = useRef([]);
 
   useEffect(() => {
     const handleResize = () => {
-      if (document.activeElement === inputRef.current) {
+      const activeInput = document.activeElement;
+      if (inputRefs.current.includes(activeInput)) {
         setTimeout(() => {
-          inputRef.current.scrollIntoView({
+          activeInput.scrollIntoView({
             behavior: "smooth",
             block: "center",
           });
@@ -58,7 +59,12 @@ const InputIOS = () => {
         {Array(150)
           .fill(0)
           .map((_, index) => (
-            <input key={index} type="text" placeholder={`Input ${index + 1}`} />
+            <input
+              key={index}
+              ref={(el) => (inputRefs.current[index] = el)}
+              type="text"
+              placeholder={`Input ${index + 1}`}
+            />
           ))}
       </div>
     </div>
