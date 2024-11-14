@@ -52,26 +52,28 @@ const InputIOS = () => {
       >
         Header
       </div>
-      <div
-        className="content__container"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "18px",
-          padding: "0 24px",
-        }}
-      >
-        {Array(20)
-          .fill(0)
-          .map((_, index) => (
-            <input
-              className="input__style"
-              key={index}
-              ref={(el) => (inputRefs.current[index] = el)}
-              type="text"
-              placeholder={`Input ${index + 1}`}
-            />
-          ))}
+      <div>
+        <div
+          className="content__container"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "18px",
+            padding: "0 24px",
+          }}
+        >
+          {Array(20)
+            .fill(0)
+            .map((_, index) => (
+              <input
+                className="input__style"
+                key={index}
+                ref={(el) => (inputRefs.current[index] = el)}
+                type="text"
+                placeholder={`Input ${index + 1}`}
+              />
+            ))}
+        </div>
         <div className="fixed__btn">
           <button className="button">Submit</button>
         </div>
