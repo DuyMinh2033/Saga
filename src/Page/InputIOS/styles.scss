@@ -1,5 +1,29 @@
-@supports (-webkit-touch-callout: none) {
-  .scroll-header {
-    overflow: hidden; /* Tắt cuộn trên iOS khi cần */
-  }
+.input__style {
+  min-height: 42px;
+  border: 2px solid blue;
+  border-radius: 5px;
+}
+
+.content__container {
+  height: calc(100vh - 166px);
+  padding-bottom: 200px;
+  overflow: auto;
+}
+.fixed__btn {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 110px;
+  padding: 0 24px;
+}
+.button {
+  background: blue;
+  width: 100%;
+  padding: 15px 0;
+  border: none;
+  border-radius: 20px;
 }

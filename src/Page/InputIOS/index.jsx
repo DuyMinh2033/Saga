@@ -5,7 +5,7 @@ const InputIOS = () => {
   const inputRefs = useRef([]);
 
   useEffect(() => {
-    const handleResize = () => {
+    const handleViewportChange = () => {
       const activeInput = document.activeElement;
       if (inputRefs.current.includes(activeInput)) {
         activeInput.scrollIntoView({
@@ -14,11 +14,20 @@ const InputIOS = () => {
         });
       }
     };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", handleViewportChange);
+      return () => {
+        window.visualViewport.removeEventListener(
+          "resize",
+          handleViewportChange
+        );
+      };
+    } else {
+      window.addEventListener("resize", handleViewportChange);
+      return () => {
+        window.removeEventListener("resize", handleViewportChange);
+      };
+    }
   }, []);
 
   return (
@@ -26,14 +35,11 @@ const InputIOS = () => {
       className="scroll-header"
       style={{
         height: "100vh",
-        overflowY: "auto",
-        padding: "0 24px",
-        paddingBottom: "100px",
       }}
     >
       <div
         style={{
-          position: "fixed",
+          position: "sticky",
           height: "56px",
           display: "flex",
           justifyContent: "center",
@@ -47,23 +53,28 @@ const InputIOS = () => {
         Header
       </div>
       <div
+        className="content__container"
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "10px",
-          marginTop: "75px",
+          gap: "18px",
+          padding: "0 24px",
         }}
       >
-        {Array(150)
+        {Array(20)
           .fill(0)
           .map((_, index) => (
             <input
+              className="input__style"
               key={index}
               ref={(el) => (inputRefs.current[index] = el)}
               type="text"
               placeholder={`Input ${index + 1}`}
             />
           ))}
+        <div className="fixed__btn">
+          <button className="button">Submit</button>
+        </div>
       </div>
     </div>
   );
