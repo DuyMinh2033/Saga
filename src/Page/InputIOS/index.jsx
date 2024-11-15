@@ -37,8 +37,13 @@ const InputIOS = () => {
       // eslint-disable-next-line no-debugger
       if (inputRefs.current.includes(activeInput)) {
         const targetRef = inputRefs.current.find((ref) => ref === activeInput);
-        console.log(targetRef);
-        containerRef.current.scrollTop = targetRef.offsetTop - 200; // Trừ chiều cao của header để không bị che khuất
+        // debugger;
+        const containerHeight = containerRef.current.offsetHeight;
+        const targetPosition = targetRef.offsetTop;
+        const targetHeight = targetRef.offsetHeight;
+        const scrollTo =
+          targetPosition - containerHeight / 2 + targetHeight / 2;
+        containerRef.current.scrollTop = scrollTo;
       }
     };
     if (window.visualViewport) {
