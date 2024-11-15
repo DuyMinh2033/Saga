@@ -43,7 +43,7 @@ const InputIOS = () => {
         const targetHeight = targetRef.offsetHeight;
         const scrollTo =
           targetPosition - containerHeight / 2 + targetHeight / 2;
-        containerRef.current.scrollTop = scrollTo;
+        containerRef.current.scrollTop = scrollTo - 100;
       }
     };
     if (window.visualViewport) {
