@@ -17,6 +17,7 @@ import TestAnchorTab from "./Page/TestAnchorTab";
 import Demo from "./Page/Demo";
 
 import InputIOS from "./Page/InputIOS";
+import KeyBoard from "./Page/TestOpenKeyboard";
 
 const route = [
   {
@@ -86,6 +87,10 @@ const route = [
   {
     path: "/ios",
     element: <InputIOS />,
+  },
+  {
+    path: "/KeyBoard",
+    element: <KeyBoard />,
   },
 ];
 

@@ -1,35 +1,36 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import "./styles.scss";
+import useRestoreSelection from "../TestOpenKeyboard/useKeyboard";
 
 const InputIOS = () => {
   const inputRefs = useRef([]);
   const containerRef = useRef(null);
-
-  useEffect(() => {
-    const handleViewportChange = () => {
-      const activeInput = document.activeElement;
-      if (inputRefs.current.includes(activeInput)) {
-        activeInput.scrollIntoView({
-          behavior: "smooth",
-          // block: "center",
-        });
-      }
-    };
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", handleViewportChange);
-      return () => {
-        window.visualViewport.removeEventListener(
-          "resize",
-          handleViewportChange
-        );
-      };
-    } else {
-      window.addEventListener("resize", handleViewportChange);
-      return () => {
-        window.removeEventListener("resize", handleViewportChange);
-      };
-    }
-  }, []);
+  useRestoreSelection();
+  // useEffect(() => {
+  //   const handleViewportChange = () => {
+  //     const activeInput = document.activeElement;
+  //     if (inputRefs.current.includes(activeInput)) {
+  //       activeInput.scrollIntoView({
+  //         behavior: "smooth",
+  //         block: "center",
+  //       });
+  //     }
+  //   };
+  //   if (window.visualViewport) {
+  //     window.visualViewport.addEventListener("resize", handleViewportChange);
+  //     return () => {
+  //       window.visualViewport.removeEventListener(
+  //         "resize",
+  //         handleViewportChange
+  //       );
+  //     };
+  //   } else {
+  //     window.addEventListener("resize", handleViewportChange);
+  //     return () => {
+  //       window.removeEventListener("resize", handleViewportChange);
+  //     };
+  //   }
+  // }, []);
 
   // useEffect(() => {
   //   const handleViewportChange = () => {
