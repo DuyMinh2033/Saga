@@ -5,31 +5,31 @@ const InputIOS = () => {
   const inputRefs = useRef([]);
   const containerRef = useRef(null);
 
-  // useEffect(() => {
-  //   const handleViewportChange = () => {
-  //     const activeInput = document.activeElement;
-  //     if (inputRefs.current.includes(activeInput)) {
-  //       activeInput.scrollIntoView({
-  //         behavior: "smooth",
-  //         block: "center",
-  //       });
-  //     }
-  //   };
-  //   if (window.visualViewport) {
-  //     window.visualViewport.addEventListener("resize", handleViewportChange);
-  //     return () => {
-  //       window.visualViewport.removeEventListener(
-  //         "resize",
-  //         handleViewportChange
-  //       );
-  //     };
-  //   } else {
-  //     window.addEventListener("resize", handleViewportChange);
-  //     return () => {
-  //       window.removeEventListener("resize", handleViewportChange);
-  //     };
-  //   }
-  // }, []);
+  useEffect(() => {
+    const handleViewportChange = () => {
+      const activeInput = document.activeElement;
+      if (inputRefs.current.includes(activeInput)) {
+        activeInput.scrollIntoView({
+          behavior: "smooth",
+          // block: "center",
+        });
+      }
+    };
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", handleViewportChange);
+      return () => {
+        window.visualViewport.removeEventListener(
+          "resize",
+          handleViewportChange
+        );
+      };
+    } else {
+      window.addEventListener("resize", handleViewportChange);
+      return () => {
+        window.removeEventListener("resize", handleViewportChange);
+      };
+    }
+  }, []);
 
   // useEffect(() => {
   //   const handleViewportChange = () => {
@@ -63,41 +63,44 @@ const InputIOS = () => {
   //   }
   // }, []);
 
-  useEffect(() => {
-    const handleViewportChange = () => {
-      const activeInput = document.activeElement;
+  // useEffect(() => {
+  //   const handleViewportChange = () => {
+  //     const activeInput = document.activeElement;
 
-      // Kiểm tra nếu activeInput nằm trong inputRefs
-      if (inputRefs.current.includes(activeInput)) {
-        const targetRef = activeInput;
-        const container = containerRef.current;
+  //     // Kiểm tra nếu activeInput nằm trong inputRefs
+  //     if (inputRefs.current.includes(activeInput)) {
+  //       const targetRef = activeInput;
+  //       const container = containerRef.current;
 
-        if (!container || !targetRef) return;
+  //       if (!container || !targetRef) return;
 
-        const containerHeight = container.offsetHeight; // Chiều cao container
-        const targetPosition = targetRef.offsetTop; // Vị trí top của input đang active
-        const targetHeight = targetRef.offsetHeight; // Chiều cao của input
+  //       const containerHeight = container.offsetHeight; // Chiều cao container
+  //       const targetPosition = targetRef.offsetTop; // Vị trí top của input đang active
+  //       const targetHeight = targetRef.offsetHeight; // Chiều cao của input
 
-        // Tính toán vị trí scroll cần thiết để căn giữa
-        const scrollTo = Math.max(
-          0,
-          targetPosition - (containerHeight - targetHeight) / 2
-        );
+  //       console.log("containerHeight:", containerHeight);
+  //       console.log("targetPosition:", targetPosition);
+  //       console.log("targetHeight:", targetHeight);
+  //       // Tính toán vị trí scroll cần thiết để căn giữa
+  //       const scrollTo = Math.max(
+  //         0,
+  //         targetPosition - (containerHeight - targetHeight) / 2
+  //       );
 
-        // Áp dụng giá trị scroll mới
-        container.scrollTop = scrollTo - 100; // Thêm offset nếu cần
-      }
-    };
+  //       // Áp dụng giá trị scroll mới
+  //       container.scrollTop = scrollTo - 100; // Thêm offset nếu cần
+  //     }
+  //   };
 
-    const resizeEvent = window.visualViewport ? "resize" : "resize";
-    const viewport = window.visualViewport || window;
+  //   const resizeEvent = window.visualViewport ? "resize" : "resize";
+  //   const viewport = window.visualViewport || window;
 
-    viewport.addEventListener(resizeEvent, handleViewportChange);
+  //   viewport.addEventListener(resizeEvent, handleViewportChange);
 
-    return () => {
-      viewport.removeEventListener(resizeEvent, handleViewportChange);
-    };
-  }, []);
+  //   return () => {
+  //     viewport.removeEventListener(resizeEvent, handleViewportChange);
+  //   };
+  // }, []);
 
   return (
     <div
