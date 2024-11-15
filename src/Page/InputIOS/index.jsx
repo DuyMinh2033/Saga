@@ -34,15 +34,16 @@ const InputIOS = () => {
   useEffect(() => {
     const handleViewportChange = () => {
       const activeInput = document.activeElement;
-      // eslint-disable-next-line no-debugger
       if (inputRefs.current.includes(activeInput)) {
         const targetRef = inputRefs.current.find((ref) => ref === activeInput);
         // debugger;
-        const containerHeight = containerRef.current.offsetHeight;
-        const targetPosition = targetRef.offsetTop;
-        const targetHeight = targetRef.offsetHeight;
-        const scrollTo =
-          targetPosition - containerHeight / 2 + targetHeight / 2;
+        const containerHeight = containerRef.current.offsetHeight; // Chiều cao container
+        const targetPosition = targetRef.offsetTop; // Vị trí top của input đang active
+        const targetHeight = targetRef.offsetHeight; // Chiều cao của input
+
+        // 2. Tính toán vị trí scroll cần thiết để căn giữa
+        const scrollTo = targetPosition - (containerHeight - targetHeight) / 2;
+
         containerRef.current.scrollTop = scrollTo - 100;
       }
     };
