@@ -4,67 +4,16 @@ import "./styles.scss";
 const InputIOS = () => {
   const inputRefs = useRef([]);
   const containerRef = useRef(null);
-  // useEffect(() => {
-  //   const handleViewportChange = () => {
-  //     console.log("test", window.visualViewport.height / 2);
-  //     const activeInput = document.activeElement;
-  //     if (inputRefs.current.includes(activeInput)) {
-  //       activeInput.scrollIntoView({
-  //         behavior: "smooth",
-  //         block: "nearest",
-  //         inline: "end",
-  //       });
-  //     }
-  //   };
-  //   if (window.visualViewport) {
-  //     window.visualViewport.addEventListener("resize", handleViewportChange);
-  //     return () => {
-  //       window.visualViewport.removeEventListener(
-  //         "resize",
-  //         handleViewportChange
-  //       );
-  //     };
-  //   } else {
-  //     window.addEventListener("resize", handleViewportChange);
-  //     return () => {
-  //       window.removeEventListener("resize", handleViewportChange);
-  //     };
-  //   }
-  // }, []);
-
   useEffect(() => {
     const handleViewportChange = () => {
       const activeInput = document.activeElement;
-      const container = containerRef.current;
-
-      if (inputRefs.current.includes(activeInput) && container) {
-        // Lấy vị trí của element so với container
-        const elementRect = activeInput.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
-        const relativeElementTop = elementRect.top - containerRect.top;
-
-        // Tính toán vị trí scroll mong muốn
-        const middleOfViewport = window.visualViewport
-          ? window.visualViewport.height / 2
-          : window.innerHeight / 2;
-
-        // Tính toán vị trí scroll để element nằm ở giữa viewport
-        const scrollPosition =
-          relativeElementTop + container.scrollTop - 200 - middleOfViewport;
-        console.log("🚀 ~ handleViewportChange ~ relativeElementTop:", {
-          relativeElementTop,
-          container: container.scrollTop,
-          middleOfViewport,
-          total: scrollPosition,
-        });
-        // Scroll container đến vị trí đã tính
-        container.scrollTo({
-          top: scrollPosition,
+      if (inputRefs.current.includes(activeInput)) {
+        activeInput.scrollIntoView({
           behavior: "smooth",
+          block: "center",
         });
       }
     };
-
     if (window.visualViewport) {
       window.visualViewport.addEventListener("resize", handleViewportChange);
       return () => {
