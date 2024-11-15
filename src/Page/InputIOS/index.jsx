@@ -3,7 +3,7 @@ import "./styles.scss";
 
 const InputIOS = () => {
   const inputRefs = useRef([]);
-
+  const containerRef = useRef(null);
   // useEffect(() => {
   //   const handleViewportChange = () => {
   //     console.log("test", window.visualViewport.height / 2);
@@ -35,10 +35,13 @@ const InputIOS = () => {
   useEffect(() => {
     const handleViewportChange = () => {
       const activeInput = document.activeElement;
-      if (inputRefs.current.includes(activeInput)) {
-        // Lấy vị trí của element so với top của document
+      const container = containerRef.current;
+
+      if (inputRefs.current.includes(activeInput) && container) {
+        // Lấy vị trí của element so với container
         const elementRect = activeInput.getBoundingClientRect();
-        const absoluteElementTop = elementRect.top + window.pageYOffset;
+        const containerRect = container.getBoundingClientRect();
+        const relativeElementTop = elementRect.top - containerRect.top;
 
         // Tính toán vị trí scroll mong muốn
         const middleOfViewport = window.visualViewport
@@ -46,10 +49,11 @@ const InputIOS = () => {
           : window.innerHeight / 2;
 
         // Tính toán vị trí scroll để element nằm ở giữa viewport
-        const scrollPosition = absoluteElementTop - middleOfViewport;
+        const scrollPosition =
+          relativeElementTop + container.scrollTop - middleOfViewport;
 
-        // Scroll đến vị trí đã tính
-        window.scrollTo({
+        // Scroll container đến vị trí đã tính
+        container.scrollTo({
           top: scrollPosition,
           behavior: "smooth",
         });
@@ -97,6 +101,7 @@ const InputIOS = () => {
 
       <div
         className="content__container"
+        ref={containerRef}
         style={{
           display: "flex",
           flexDirection: "column",
