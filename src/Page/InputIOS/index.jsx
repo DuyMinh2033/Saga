@@ -50,8 +50,13 @@ const InputIOS = () => {
 
         // Tính toán vị trí scroll để element nằm ở giữa viewport
         const scrollPosition =
-          relativeElementTop + container.scrollTop - middleOfViewport;
-
+          relativeElementTop + container.scrollTop - 200 - middleOfViewport;
+        console.log("🚀 ~ handleViewportChange ~ relativeElementTop:", {
+          relativeElementTop,
+          container: container.scrollTop,
+          middleOfViewport,
+          total: scrollPosition,
+        });
         // Scroll container đến vị trí đã tính
         container.scrollTo({
           top: scrollPosition,
