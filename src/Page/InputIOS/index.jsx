@@ -26,7 +26,7 @@ const InputIOS = () => {
         });
       }
     };
-    const bounce = debounceChangeOption(handleViewportChange, 300);
+    const bounce = debounceChangeOption(handleViewportChange, 50);
 
     if (window.visualViewport) {
       window.visualViewport.addEventListener("resize", bounce);
