@@ -1,83 +1,44 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles.scss";
 
 const InputIOS = () => {
   const inputRefs = useRef([]);
-
+  const [bottomOffset, setBottomOffset] = useState(0);
   useEffect(() => {
-    const handleViewportChange = () => {
-      const activeInput = document.activeElement;
-      if (inputRefs.current.includes(activeInput)) {
-        activeInput.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
+    const handleResize = () => {
+      // Kiểm tra nếu visualViewport.height nhỏ hơn innerHeight, nghĩa là bàn phím đang bật lên
+      if (
+        window.visualViewport &&
+        window.visualViewport.height < window.innerHeight
+      ) {
+        const keyboardHeight =
+          window.innerHeight - window.visualViewport.height;
+        setBottomOffset(keyboardHeight);
+      } else {
+        setBottomOffset(0); // Đặt lại khi bàn phím đóng
       }
     };
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", handleViewportChange);
-      return () => {
-        window.visualViewport.removeEventListener(
-          "resize",
-          handleViewportChange
-        );
-      };
-    } else {
-      window.addEventListener("resize", handleViewportChange);
-      return () => {
-        window.removeEventListener("resize", handleViewportChange);
-      };
-    }
+
+    window.visualViewport.addEventListener("resize", handleResize);
+
+    return () => {
+      window.visualViewport.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
-    <div
-      className="scroll-header"
-      style={{
-        height: "100vh",
-      }}
-    >
-      <div
+    <div style={{ paddingBottom: bottomOffset }}>
+      <input type="text" placeholder="Nhập vào đây để bật bàn phím" />
+      <button
         style={{
-          position: "sticky",
-          height: "56px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          right: "0",
-          left: "0",
-          top: "0",
-          background: "green",
+          position: "fixed",
+          bottom: bottomOffset + 10, // Đẩy nút lên trên bàn phím với khoảng cách 10px
+          left: "50%",
+          transform: "translateX(-50%)",
         }}
       >
-        Header
-      </div>
-
-      <div
-        className="content__container"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "18px",
-          padding: "0 24px",
-          paddingBottom: "200px",
-        }}
-      >
-        {Array(20)
-          .fill(0)
-          .map((_, index) => (
-            <input
-              className="input__style"
-              key={index}
-              ref={(el) => (inputRefs.current[index] = el)}
-              type="text"
-              placeholder={`Input ${index + 1}`}
-            />
-          ))}
-      </div>
-      <div className="fixed__btn">
-        <button className="button">Submit</button>
-      </div>
+        Button cố định
+      </button>
     </div>
   );
 };
