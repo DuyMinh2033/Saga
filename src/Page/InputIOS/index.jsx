@@ -1,51 +1,20 @@
 import { useEffect, useRef } from "react";
 import "./styles.scss";
-import useRestoreSelection from "../TestOpenKeyboard/useKeyboard";
 
 const InputIOS = () => {
   const inputRefs = useRef([]);
   const containerRef = useRef(null);
-  useRestoreSelection();
-  useEffect(() => {
-    const handleViewportChange = () => {
-      const activeInput = document.activeElement;
-      if (inputRefs.current.includes(activeInput)) {
-        activeInput.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      }
-    };
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", handleViewportChange);
-      return () => {
-        window.visualViewport.removeEventListener(
-          "resize",
-          handleViewportChange
-        );
-      };
-    } else {
-      window.addEventListener("resize", handleViewportChange);
-      return () => {
-        window.removeEventListener("resize", handleViewportChange);
-      };
-    }
-  }, []);
 
   // useEffect(() => {
   //   const handleViewportChange = () => {
+  //     console.log("window.visualViewport", window.visualViewport);
   //     const activeInput = document.activeElement;
   //     if (inputRefs.current.includes(activeInput)) {
-  //       const targetRef = inputRefs.current.find((ref) => ref === activeInput);
-  //       // debugger;
-  //       const containerHeight = containerRef.current.offsetHeight; // Chiều cao container
-  //       const targetPosition = targetRef.offsetTop; // Vị trí top của input đang active
-  //       const targetHeight = targetRef.offsetHeight; // Chiều cao của input
-
-  //       // 2. Tính toán vị trí scroll cần thiết để căn giữa
-  //       const scrollTo = targetPosition - (containerHeight - targetHeight) / 2;
-
-  //       containerRef.current.scrollTop = scrollTo - 100;
+  //       // activeInput.scrollIntoView({
+  //       //   behavior: "smooth",
+  //       //   block: "center",
+  //       // });
+  //       containerRef.current.scrollTop = window.visualViewport;
   //     }
   //   };
   //   if (window.visualViewport) {
@@ -64,44 +33,56 @@ const InputIOS = () => {
   //   }
   // }, []);
 
-  // useEffect(() => {
-  //   const handleViewportChange = () => {
-  //     const activeInput = document.activeElement;
+  const debounceChangeOption = (cb, delay) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        cb(...args);
+      }, delay);
+    };
+  };
+  const handleViewportChange = () => {
+    const activeInput = document.activeElement;
 
-  //     // Kiểm tra nếu activeInput nằm trong inputRefs
-  //     if (inputRefs.current.includes(activeInput)) {
-  //       const targetRef = activeInput;
-  //       const container = containerRef.current;
+    // Kiểm tra nếu phần tử đang active là một trong những input bạn quan tâm
+    if (inputRefs.current.includes(activeInput)) {
+      // Lấy kích thước của viewport
+      const viewportHeight = window.visualViewport
+        ? window.visualViewport.height
+        : window.innerHeight;
 
-  //       if (!container || !targetRef) return;
+      // Tính toán vị trí cần thiết để field nằm ở giữa viewport
+      const offset = (viewportHeight - 166) / 2;
+      console.log("activeInput.offsetTop", activeInput.offsetTop);
+      // Đảm bảo `containerRef` là phần tử cha chứa tất cả input
+      containerRef.current.scrollTo({
+        top: activeInput.offsetTop - offset,
+        behavior: "smooth",
+      });
+    }
+  };
 
-  //       const containerHeight = container.offsetHeight; // Chiều cao container
-  //       const targetPosition = targetRef.offsetTop; // Vị trí top của input đang active
-  //       const targetHeight = targetRef.offsetHeight; // Chiều cao của input
+  const bounce = debounceChangeOption(handleViewportChange, 200);
+  useEffect(() => {
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", bounce);
+    } else {
+      window.addEventListener("resize", bounce);
+    }
 
-  //       console.log("containerHeight:", containerHeight);
-  //       console.log("targetPosition:", targetPosition);
-  //       console.log("targetHeight:", targetHeight);
-  //       // Tính toán vị trí scroll cần thiết để căn giữa
-  //       const scrollTo = Math.max(
-  //         0,
-  //         targetPosition - (containerHeight - targetHeight) / 2
-  //       );
-
-  //       // Áp dụng giá trị scroll mới
-  //       container.scrollTop = scrollTo - 100; // Thêm offset nếu cần
-  //     }
-  //   };
-
-  //   const resizeEvent = window.visualViewport ? "resize" : "resize";
-  //   const viewport = window.visualViewport || window;
-
-  //   viewport.addEventListener(resizeEvent, handleViewportChange);
-
-  //   return () => {
-  //     viewport.removeEventListener(resizeEvent, handleViewportChange);
-  //   };
-  // }, []);
+    // Cleanup khi unmount
+    return () => {
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener(
+          "resize",
+          handleViewportChange
+        );
+      } else {
+        window.removeEventListener("resize", handleViewportChange);
+      }
+    };
+  }, []);
 
   return (
     <div
@@ -130,24 +111,29 @@ const InputIOS = () => {
         className="content__container"
         ref={containerRef}
         style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "18px",
           padding: "0 24px",
           paddingBottom: "200px",
         }}
       >
-        {Array(20)
-          .fill(0)
-          .map((_, index) => (
-            <input
-              className="input__style"
-              key={index}
-              ref={(el) => (inputRefs.current[index] = el)}
-              type="text"
-              placeholder={`Input ${index + 1}`}
-            />
-          ))}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "18px",
+          }}
+        >
+          {Array(20)
+            .fill(0)
+            .map((_, index) => (
+              <input
+                className="input__style"
+                key={index}
+                ref={(el) => (inputRefs.current[index] = el)}
+                type="text"
+                placeholder={`Input ${index + 1}`}
+              />
+            ))}
+        </div>
       </div>
       <div className="fixed__btn">
         <button className="button">Submit</button>
