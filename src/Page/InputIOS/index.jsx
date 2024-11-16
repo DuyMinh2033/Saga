@@ -17,7 +17,6 @@ const InputIOS = () => {
 
   useEffect(() => {
     const handleViewportChange = () => {
-      console.log("window.visualViewport", window.visualViewport);
       const activeInput = document.activeElement;
       if (inputRefs.current.includes(activeInput)) {
         activeInput.scrollIntoView({

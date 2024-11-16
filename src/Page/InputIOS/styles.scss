@@ -10,7 +10,9 @@
 }
 .fixed__btn {
   position: sticky;
-  bottom: 0;
+  bottom: calc(
+    env(safe-area-inset-bottom) + 0
+  ); /* Khoảng cách 16px từ safe area */
   right: 0;
   left: 0;
   display: flex;
