@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from "react";
 import "./styles.scss";
 // eslint-disable-next-line react/prop-types
@@ -7,6 +8,7 @@ const AnchorTabPractice = ({ data = [], children }) => {
   const [hasScroll, setHasScroll] = useState(false);
 
   const timOut = useRef(null);
+
   const handleClick = (idx) => {
     if (timOut.current) clearTimeout(timOut.current);
     setSelectedAnchor(idx);
@@ -29,6 +31,13 @@ const AnchorTabPractice = ({ data = [], children }) => {
       const offset = containerRect.top + 20;
       data.forEach(({ ref }, idx) => {
         const sentinelRect = ref.current.getBoundingClientRect();
+        if (idx === 1) {
+          console.log("🚀 ~ handleScroll ~ offset:", {
+            offset,
+            TopRef: sentinelRect.top,
+            BottomRef: sentinelRect.bottom,
+          });
+        }
         if (sentinelRect.top < offset && sentinelRect.bottom > offset) {
           setSelectedAnchor(idx);
         }

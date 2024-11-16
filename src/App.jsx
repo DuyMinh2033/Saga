@@ -90,7 +90,7 @@ const route = [
   },
   {
     path: "/KeyBoard",
-    element: <KeyBoard />,
+    element: <KeyBoard />
   },
 ];
 

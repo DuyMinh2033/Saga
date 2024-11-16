@@ -15,29 +15,57 @@ const InputIOS = () => {
     };
   };
 
+  // useEffect(() => {
+  //   const handleViewportChange = () => {
+  //     const activeInput = document.activeElement;
+  //     if (inputRefs.current.includes(activeInput)) {
+  //       activeInput.scrollIntoView({
+  //         behavior: "smooth",
+  //         block: "center",
+  //       });
+  //     }
+  //   };
+  //   const bounce = debounceChangeOption(handleViewportChange, 50);
+
+  //   if (window.visualViewport) {
+  //     window.visualViewport.addEventListener("resize", bounce);
+  //     return () => {
+  //       window.visualViewport.removeEventListener("resize", bounce);
+  //     };
+  //   } else {
+  //     window.addEventListener("resize", bounce);
+  //     return () => {
+  //       window.removeEventListener("resize", bounce);
+  //     };
+  //   }
+  // }, []);
+
   useEffect(() => {
     const handleViewportChange = () => {
       const activeInput = document.activeElement;
       if (inputRefs.current.includes(activeInput)) {
-        activeInput.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
+        const headerFooterHeight = 166; // Tổng chiều cao của header và footer
+
+        // Cuộn đến vị trí của input đang được focus trong container
+        containerRef.current.scrollTo({
+          top:
+            activeInput.offsetTop -
+            window.innerHeight / 2 +
+            activeInput.offsetHeight / 2 -
+            headerFooterHeight,
+          behavior: "auto", // Hoặc "smooth" nếu cần cuộn mượt
         });
       }
     };
+
     const bounce = debounceChangeOption(handleViewportChange, 50);
 
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener("resize", bounce);
-      return () => {
-        window.visualViewport.removeEventListener("resize", bounce);
-      };
-    } else {
-      window.addEventListener("resize", bounce);
-      return () => {
-        window.removeEventListener("resize", bounce);
-      };
-    }
+    // Thêm listener cho sự kiện resize
+    window.addEventListener("resize", bounce);
+
+    return () => {
+      window.removeEventListener("resize", bounce);
+    };
   }, []);
 
   return (
