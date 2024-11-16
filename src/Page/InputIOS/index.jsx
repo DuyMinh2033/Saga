@@ -40,47 +40,6 @@ const InputIOS = () => {
     }
   }, []);
 
-  // const handleViewportChange = () => {
-  //   const activeInput = document.activeElement;
-
-  //   // Kiểm tra nếu phần tử đang active là một trong những input bạn quan tâm
-  //   if (inputRefs.current.includes(activeInput)) {
-  //     // Lấy kích thước của viewport
-  //     const viewportHeight = window.visualViewport
-  //       ? window.visualViewport.height
-  //       : window.innerHeight;
-
-  //     // Tính toán vị trí cần thiết để field nằm ở giữa viewport
-  //     const offset = (viewportHeight - 166) / 2;
-  //     console.log("activeInput.offsetTop", activeInput.offsetTop);
-  //     // Đảm bảo `containerRef` là phần tử cha chứa tất cả input
-  //     containerRef.current.scrollTo({
-  //       top: activeInput.offsetTop - offset,
-  //       behavior: "smooth",
-  //     });
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (window.visualViewport) {
-  //     window.visualViewport.addEventListener("resize", bounce);
-  //   } else {
-  //     window.addEventListener("resize", bounce);
-  //   }
-
-  //   // Cleanup khi unmount
-  //   return () => {
-  //     if (window.visualViewport) {
-  //       window.visualViewport.removeEventListener(
-  //         "resize",
-  //         handleViewportChange
-  //       );
-  //     } else {
-  //       window.removeEventListener("resize", handleViewportChange);
-  //     }
-  //   };
-  // }, []);
-
   return (
     <div
       className="scroll-header"

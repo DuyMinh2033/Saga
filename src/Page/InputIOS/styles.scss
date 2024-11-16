@@ -9,12 +9,13 @@
   overflow: auto;
 }
 .fixed__btn {
-  position: sticky;
-  bottom: calc(
-    env(safe-area-inset-bottom) + 0
-  ); /* Khoảng cách 16px từ safe area */
-  right: 0;
-  left: 0;
+  // position: sticky;
+  // bottom: calc(
+  //   env(safe-area-inset-bottom) + 0
+  // ); /* Khoảng cách 16px từ safe area */
+  // right: 0;
+  // left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,4 +29,8 @@
   padding: 15px 0;
   border: none;
   border-radius: 20px;
+}
+
+input:focus {
+  scroll-margin-bottom: 200px;
 }
