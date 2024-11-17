@@ -5,16 +5,6 @@ const InputIOS = () => {
   const inputRefs = useRef([]);
   const containerRef = useRef(null);
 
-  const debounceChangeOption = (cb, delay) => {
-    let timeout;
-    return (...args) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        cb(...args);
-      }, delay);
-    };
-  };
-
   // useEffect(() => {
   //   const handleViewportChange = () => {
   //     const activeInput = document.activeElement;
@@ -25,48 +15,51 @@ const InputIOS = () => {
   //       });
   //     }
   //   };
-  //   const bounce = debounceChangeOption(handleViewportChange, 50);
 
-  //   if (window.visualViewport) {
-  //     window.visualViewport.addEventListener("resize", bounce);
-  //     return () => {
-  //       window.visualViewport.removeEventListener("resize", bounce);
-  //     };
-  //   } else {
-  //     window.addEventListener("resize", bounce);
-  //     return () => {
-  //       window.removeEventListener("resize", bounce);
-  //     };
-  //   }
-  // }, []);
+  //   const viewPort = window.visualViewport ? window.visualViewport : window;
 
-  // useEffect(() => {
-  //   const handleViewportChange = () => {
-  //     const activeInput = document.activeElement;
-  //     if (inputRefs.current.includes(activeInput)) {
-  //       const headerFooterHeight = 166; // Tổng chiều cao của header và footer
-
-  //       // Cuộn đến vị trí của input đang được focus trong container
-  //       containerRef.current.scrollTo({
-  //         top:
-  //           activeInput.offsetTop -
-  //           window.innerHeight / 2 +
-  //           activeInput.offsetHeight / 2 -
-  //           headerFooterHeight,
-  //         behavior: "auto", // Hoặc "smooth" nếu cần cuộn mượt
-  //       });
-  //     }
-  //   };
-
-  //   const bounce = debounceChangeOption(handleViewportChange, 50);
-
-  //   // Thêm listener cho sự kiện resize
-  //   window.addEventListener("resize", bounce);
-
+  //   viewPort.addEventListener("resize", handleViewportChange);
   //   return () => {
-  //     window.removeEventListener("resize", bounce);
+  //     viewPort.removeEventListener("resize", handleViewportChange);
   //   };
   // }, []);
+
+  useEffect(() => {
+    const handleViewportChange = () => {
+      const activeInput = document.activeElement;
+      if (inputRefs.current.includes(activeInput)) {
+        const headerFooterHeight = 166; // Tổng chiều cao của header và footer
+
+        console.log("test", {
+          offsetTop: activeInput.offsetTop,
+          clientHeight: containerRef.current.clientHeight,
+          activeOffset: activeInput.offsetHeight,
+          total:
+            activeInput.offsetTop -
+            containerRef.current.clientHeight / 2 +
+            activeInput.offsetHeight / 2 -
+            headerFooterHeight,
+        });
+
+        containerRef.current.scrollTo({
+          top:
+            activeInput.offsetTop -
+            containerRef.current.clientHeight / 2 +
+            activeInput.offsetHeight / 2 -
+            headerFooterHeight +
+            100,
+          behavior: "smooth",
+        });
+      }
+    };
+
+    const viewPort = window.visualViewport ? window.visualViewport : window;
+
+    viewPort.addEventListener("resize", handleViewportChange);
+    return () => {
+      viewPort.removeEventListener("resize", handleViewportChange);
+    };
+  }, []);
 
   return (
     <div
