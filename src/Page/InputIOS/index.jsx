@@ -4,104 +4,42 @@ import "./styles.scss";
 const InputIOS = () => {
   const inputRefs = useRef([]);
   const containerRef = useRef(null);
-
-  // useEffect(() => {
-  //   const handleViewportChange = () => {
-  //     const activeInput = document.activeElement;
-  //     if (inputRefs.current.includes(activeInput)) {
-  //       activeInput.scrollIntoView({
-  //         behavior: "smooth",
-  //         block: "center",
-  //       });
-  //     }
-  //   };
-
-  //   const viewPort = window.visualViewport ? window.visualViewport : window;
-
-  //   viewPort.addEventListener("resize", handleViewportChange);
-  //   return () => {
-  //     viewPort.removeEventListener("resize", handleViewportChange);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   const handleViewportChange = () => {
-  //     const activeInput = document.activeElement;
-  //     if (inputRefs.current.includes(activeInput)) {
-  //       const headerFooterHeight = 166; // Tổng chiều cao của header và footer
-
-  //       console.log("test", {
-  //         offsetTop: activeInput.offsetTop,
-  //         clientHeight: containerRef.current.clientHeight,
-  //         activeOffset: activeInput.offsetHeight,
-  //         total:
-  //           activeInput.offsetTop -
-  //           containerRef.current.clientHeight / 2 +
-  //           activeInput.offsetHeight / 2 -
-  //           headerFooterHeight,
-  //       });
-
-  //       containerRef.current.scrollTo({
-  //         top:
-  //           activeInput.offsetTop -
-  //           containerRef.current.clientHeight / 2 +
-  //           activeInput.offsetHeight / 2 -
-  //           headerFooterHeight +
-  //           100,
-  //         behavior: "smooth",
-  //       });
-  //     }
-  //   };
-
-  //   const viewPort = window.visualViewport ? window.visualViewport : window;
-
-  //   viewPort.addEventListener("resize", handleViewportChange);
-  //   return () => {
-  //     viewPort.removeEventListener("resize", handleViewportChange);
-  //   };
-  // }, []);
+  const buttonRef = useRef(null);
 
   useEffect(() => {
-    const handleViewportChange = () => {
-      const activeInput = document.activeElement;
+    const handleFocus = (event) => {
+      const activeInput = event.target;
       if (inputRefs.current.includes(activeInput)) {
-        const headerFooterHeight = 166; // Tổng chiều cao của header và footer
+        const rect = activeInput.getBoundingClientRect();
+        const buttonRect = buttonRef.current.getBoundingClientRect();
+        const visualViewport = window.visualViewport || window;
 
-        containerRef.current.scrollTo({
-          top:
-            activeInput.offsetTop -
-            containerRef.current.clientHeight / 2 +
-            activeInput.offsetHeight / 2 -
-            headerFooterHeight,
-          behavior: "smooth",
-        });
+        // Kiểm tra xem input có bị che bởi bàn phím không
+        if (rect.bottom > visualViewport.height - buttonRect.height) {
+          // Cuộn container để input nằm trên bàn phím
+          containerRef.current.scrollTo({
+            top:
+              containerRef.current.scrollTop +
+              rect.bottom -
+              visualViewport.height +
+              buttonRect.height +
+              20, // 20 là khoảng cách thêm vào để có khoảng trống nhỏ giữa input và bàn phím
+            behavior: "smooth",
+          });
+        }
       }
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          handleViewportChange();
-        }
-      },
-      {
-        root: containerRef.current,
-        threshold: 1.0, // Đảm bảo phần tử hoàn toàn nằm trong viewport
-      }
-    );
-
-    // Observe mỗi input trong danh sách
+    // Thêm sự kiện focus cho mỗi input
     inputRefs.current.forEach((input) => {
-      observer.observe(input);
+      input.addEventListener("focus", handleFocus);
     });
 
-    const viewPort = window.visualViewport ? window.visualViewport : window;
-    viewPort.addEventListener("resize", handleViewportChange);
-
     return () => {
-      viewPort.removeEventListener("resize", handleViewportChange);
-      observer.disconnect(); // Hủy bỏ observer khi component unmount
+      // Xóa sự kiện focus khi component unmount
+      inputRefs.current.forEach((input) => {
+        input.removeEventListener("focus", handleFocus);
+      });
     };
   }, []);
 
@@ -156,7 +94,7 @@ const InputIOS = () => {
             ))}
         </div>
       </div>
-      <div className="fixed__btn">
+      <div className="fixed__btn" ref={buttonRef}>
         <button className="button">Submit</button>
       </div>
     </div>
