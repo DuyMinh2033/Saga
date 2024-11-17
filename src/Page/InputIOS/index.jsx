@@ -24,40 +24,84 @@ const InputIOS = () => {
   //   };
   // }, []);
 
+  // useEffect(() => {
+  //   const handleViewportChange = () => {
+  //     const activeInput = document.activeElement;
+  //     if (inputRefs.current.includes(activeInput)) {
+  //       const headerFooterHeight = 166; // Tổng chiều cao của header và footer
+
+  //       console.log("test", {
+  //         offsetTop: activeInput.offsetTop,
+  //         clientHeight: containerRef.current.clientHeight,
+  //         activeOffset: activeInput.offsetHeight,
+  //         total:
+  //           activeInput.offsetTop -
+  //           containerRef.current.clientHeight / 2 +
+  //           activeInput.offsetHeight / 2 -
+  //           headerFooterHeight,
+  //       });
+
+  //       containerRef.current.scrollTo({
+  //         top:
+  //           activeInput.offsetTop -
+  //           containerRef.current.clientHeight / 2 +
+  //           activeInput.offsetHeight / 2 -
+  //           headerFooterHeight +
+  //           100,
+  //         behavior: "smooth",
+  //       });
+  //     }
+  //   };
+
+  //   const viewPort = window.visualViewport ? window.visualViewport : window;
+
+  //   viewPort.addEventListener("resize", handleViewportChange);
+  //   return () => {
+  //     viewPort.removeEventListener("resize", handleViewportChange);
+  //   };
+  // }, []);
+
   useEffect(() => {
     const handleViewportChange = () => {
       const activeInput = document.activeElement;
       if (inputRefs.current.includes(activeInput)) {
         const headerFooterHeight = 166; // Tổng chiều cao của header và footer
 
-        console.log("test", {
-          offsetTop: activeInput.offsetTop,
-          clientHeight: containerRef.current.clientHeight,
-          activeOffset: activeInput.offsetHeight,
-          total:
-            activeInput.offsetTop -
-            containerRef.current.clientHeight / 2 +
-            activeInput.offsetHeight / 2 -
-            headerFooterHeight,
-        });
-
         containerRef.current.scrollTo({
           top:
             activeInput.offsetTop -
             containerRef.current.clientHeight / 2 +
             activeInput.offsetHeight / 2 -
-            headerFooterHeight +
-            100,
+            headerFooterHeight,
           behavior: "smooth",
         });
       }
     };
 
-    const viewPort = window.visualViewport ? window.visualViewport : window;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          handleViewportChange();
+        }
+      },
+      {
+        root: containerRef.current,
+        threshold: 1.0, // Đảm bảo phần tử hoàn toàn nằm trong viewport
+      }
+    );
 
+    // Observe mỗi input trong danh sách
+    inputRefs.current.forEach((input) => {
+      observer.observe(input);
+    });
+
+    const viewPort = window.visualViewport ? window.visualViewport : window;
     viewPort.addEventListener("resize", handleViewportChange);
+
     return () => {
       viewPort.removeEventListener("resize", handleViewportChange);
+      observer.disconnect(); // Hủy bỏ observer khi component unmount
     };
   }, []);
 
