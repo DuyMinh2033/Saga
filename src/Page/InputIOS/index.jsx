@@ -14,6 +14,11 @@ const InputIOS = () => {
         const buttonRect = buttonRef.current.getBoundingClientRect();
         const visualViewport = window.visualViewport || window;
 
+        window.scrollTo({
+          top: document.body.scrollHeight - window.innerHeight,
+          behavior: "smooth",
+        });
+
         // Kiểm tra xem input có bị che bởi bàn phím không
         if (rect.bottom > visualViewport.height - buttonRect.height) {
           // Cuộn container để input nằm trên bàn phím
