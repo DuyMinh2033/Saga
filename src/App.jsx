@@ -18,6 +18,7 @@ import Demo from "./Page/Demo";
 
 import InputIOS from "./Page/InputIOS";
 import KeyBoard from "./Page/TestOpenKeyboard";
+import TestDirty from "./Page/TestIsDrityReact";
 
 const route = [
   {
@@ -90,7 +91,11 @@ const route = [
   },
   {
     path: "/KeyBoard",
-    element: <KeyBoard />
+    element: <KeyBoard />,
+  },
+  {
+    path: "/testDirty",
+    element: <TestDirty />,
   },
 ];
 
