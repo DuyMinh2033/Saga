@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import OpenAccount from "./Page/OpenAccount";
 import SchemaForm from "./Page/ShemaForm";
 import AddressForm from "./Page/AdressCustomer";
@@ -18,19 +18,9 @@ import Demo from "./Page/Demo";
 
 import InputIOS from "./Page/InputIOS";
 import KeyBoard from "./Page/TestOpenKeyboard";
-import TestDirty from "./Page/TestIsDrityReact";
 
-import LoginPage from "./Page/Login";
-import useSagas from "./hooks/useSaga";
-import useReducers from "./hooks/useReducer";
-import { customerSaga } from "./RequestInfoUser/saga";
-import { customerReducer } from "./RequestInfoUser/reducer";
-import { useEffect, useRef, useState } from "react";
-import { getCustomerInfo } from "./RequestInfoUser/action";
-import { useSelector } from "react-redux";
-import { customerInfo } from "./RequestInfoUser/selector";
-import { apiCall } from "./Shared/apiCall";
-import BottomSheet from "./components/BottomSheet";
+// import LoginPage from "./Page/Login";
+
 import PinchZoomPDF from "./Page/ZoomMobile";
 
 const route = [
@@ -106,54 +96,51 @@ const route = [
     path: "/KeyBoard",
     element: <KeyBoard />,
   },
-  // {
-  //   path: "/testDirty",
-  //   element: <TestDirty />,
-  // },
+
   {
     path: "/zoom",
     element: <PinchZoomPDF />,
   },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
+  // {
+  //   path: "/login",
+  //   element: <LoginPage />,
+  // },
 ];
-const url = "http://localhost:8800/api/user/get-user";
+// const url = "http://localhost:8800/api/user/get-user";
 const pathUrl = "http://localhost:5173/login";
 function App() {
-  useSagas([{ key: "customer", saga: customerSaga }]);
-  useReducers([{ key: "customer", reducer: customerReducer }]);
-  const infoUser = useSelector(customerInfo);
-  const { id: idUserInfo } = infoUser || {};
-  const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-  const currentUrl = window.location.href;
-  const getUserInfo = async () => {
-    await getCustomerInfo();
-  };
-  const refTimeOut = useRef(null);
-  useEffect(() => {
-    if (!(pathUrl === currentUrl)) {
-      refTimeOut.current = setTimeout(() => {
-        if (!idUserInfo) {
-          setOpen(true);
-        }
-      }, 1000);
-    }
-    return () => clearTimeout(refTimeOut?.current);
-  }, [infoUser]);
+  // useSagas([{ key: "customer", saga: customerSaga }]);
+  // useReducers([{ key: "customer", reducer: customerReducer }]);
+  // const infoUser = useSelector(customerInfo);
+  // const { id: idUserInfo } = infoUser || {};
+  // const navigate = useNavigate();
+  // const [open, setOpen] = useState(false);
+  // const currentUrl = window.location.href;
+  // const getUserInfo = async () => {
+  //   await getCustomerInfo();
+  // };
+  // const refTimeOut = useRef(null);
+  // useEffect(() => {
+  //   if (!(pathUrl === currentUrl)) {
+  //     refTimeOut.current = setTimeout(() => {
+  //       if (!idUserInfo) {
+  //         setOpen(true);
+  //       }
+  //     }, 1000);
+  //   }
+  //   return () => clearTimeout(refTimeOut?.current);
+  // }, [infoUser]);
 
-  useEffect(() => {
-    !(pathUrl === currentUrl) && getUserInfo();
-  }, []);
+  // useEffect(() => {
+  //   !(pathUrl === currentUrl) && getUserInfo();
+  // }, []);
 
-  const handleConfirm = () => {
-    if (!(pathUrl === currentUrl)) {
-      navigate("/login");
-    }
-    setOpen(false);
-  };
+  // const handleConfirm = () => {
+  //   if (!(pathUrl === currentUrl)) {
+  //     navigate("/login");
+  //   }
+  //   setOpen(false);
+  // };
 
   return (
     <div>
@@ -162,10 +149,10 @@ function App() {
           <Route path={r.path} element={r.element} key={i} />
         ))}
       </Routes>
-      <BottomSheet open={open} title={"Alert"} onClose={() => setOpen(false)}>
+      {/* <BottomSheet open={open} title={"Alert"} onClose={() => setOpen(false)}>
         <p>Required Login</p>
         <button onClick={handleConfirm}>Confirm</button>
-      </BottomSheet>
+      </BottomSheet> */}
     </div>
   );
 }

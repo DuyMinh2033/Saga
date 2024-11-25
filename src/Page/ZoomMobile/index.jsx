@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-
+import "./styles.scss";
 const PinchZoomPDF = () => {
   const [scale, setScale] = useState(1);
   const containerRef = useRef(null);
@@ -34,6 +34,7 @@ const PinchZoomPDF = () => {
       <img
         src="https://cdn.tgdd.vn/Files/2022/03/31/1423175/chuyen-anh-sang-pdf.jpg"
         alt="PDF Preview"
+        className="img__zom"
       />
     </div>
   );
