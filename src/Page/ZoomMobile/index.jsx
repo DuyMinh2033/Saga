@@ -22,20 +22,22 @@ const PinchZoomPDF = () => {
   };
 
   return (
-    <div
-      ref={containerRef}
-      onTouchMove={handleTouchMove}
-      style={{
-        transform: `scale(${scale})`,
-        transformOrigin: "center",
-        touchAction: "none",
-      }}
-    >
-      <img
-        src="https://cdn.tgdd.vn/Files/2022/03/31/1423175/chuyen-anh-sang-pdf.jpg"
-        alt="PDF Preview"
-        className="img__zom"
-      />
+    <div className="page__zoom">
+      <div
+        ref={containerRef}
+        onTouchMove={handleTouchMove}
+        style={{
+          transform: `scale(${scale})`,
+          transformOrigin: "center",
+          touchAction: "none",
+        }}
+      >
+        <img
+          src="https://cdn.tgdd.vn/Files/2022/03/31/1423175/chuyen-anh-sang-pdf.jpg"
+          alt="PDF Preview"
+          className="img__zom"
+        />
+      </div>
     </div>
   );
 };
