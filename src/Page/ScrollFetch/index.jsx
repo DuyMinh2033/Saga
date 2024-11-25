@@ -25,6 +25,7 @@ const ScrollFetch = () => {
   //   };
 
   const fetchDataWhenScrollBottom = () => {
+    debugger;
     const elementScroll = notificationListRef.current;
     const listAllItem = document.querySelectorAll(".notification__list");
     const lastItemEle = listAllItem.length

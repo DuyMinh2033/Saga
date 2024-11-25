@@ -19,6 +19,7 @@ import Demo from "./Page/Demo";
 import InputIOS from "./Page/InputIOS";
 import KeyBoard from "./Page/TestOpenKeyboard";
 import TestDirty from "./Page/TestIsDrityReact";
+import PinchZoomPDF from "./Page/ZoomMobile";
 
 const route = [
   {
@@ -96,6 +97,10 @@ const route = [
   {
     path: "/testDirty",
     element: <TestDirty />,
+  },
+  {
+    path: "/zoom",
+    element: <PinchZoomPDF />,
   },
 ];
 
