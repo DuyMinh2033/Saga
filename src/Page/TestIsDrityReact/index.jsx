@@ -12,8 +12,9 @@ const TestDirty = () => {
     setValue,
   } = useForm({
     mode: "onChange",
-    // defaultValues: { name: "" },
+    defaultValues: { name: "", username: "", email: "" }, // Giả sử các giá trị mặc định
   });
+
 
   const [isUpload] = watch(["isUpload"]);
 
@@ -33,20 +34,26 @@ const TestDirty = () => {
         });
       }, 1200); // Giả lập độ trễ 1.2 giây
     });
+
+  // Giả lập gọi API để lấy dữ liệu
+  const fetchData = async () => {
+    const fetchData = await fetch("https://jsonplaceholder.typicode.com/users");
+    const data = await fetchData.json();
+    return data;
+
   };
 
   useEffect(() => {
     const getData = async () => {
       const apiData = await fetchData(); // Chờ dữ liệu từ API
-      reset(apiData); // Cập nhật giá trị mặc định
+      const find = apiData.find((item) => item.id === 1);
+      reset(find); // Cập nhật giá trị mặc định
     };
 
     getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [reset]);
 
   const handleShow = () => {
-    console.log("getValues", getValues());
   };
 
   const handleOnchange = (e) => {
@@ -63,12 +70,12 @@ const TestDirty = () => {
       />
       <Controller
         control={control}
-        name="age"
+        name="username"
         render={({ field }) => <input {...field} />}
       />
       <Controller
         control={control}
-        name="country"
+        name="email"
         render={({ field }) => <input {...field} />}
       />
       <Controller

@@ -1,14 +1,20 @@
 /* eslint-disable react/prop-types */
 import "./style.scss";
 const Input = (props) => {
-  const { onBlur = () => {}, className, ...field } = props;
+  const { placeholder, onBlur = () => {}, className, ...field } = props;
 
   const handleBlur = () => {
     onBlur();
   };
   return (
     <div>
-      <input type="text" onBlur={handleBlur} className={className} {...field} />
+      <input
+        placeholder={placeholder}
+        type="number"
+        onBlur={handleBlur}
+        className={className}
+        {...field}
+      />
     </div>
   );
 };

@@ -2,7 +2,6 @@
 import { useRef, useState } from "react";
 import Completed from "./Completed";
 import { contents, optionsRadio, value } from "./contanst";
-import RadioOptions from "../../common/components/RadioOptions";
 import Section from "./Section";
 
 const Demo = () => {

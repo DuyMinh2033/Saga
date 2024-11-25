@@ -20,7 +20,7 @@ const ScrollAnchor = ({ sections, options, children }) => {
   };
 
   const handleScrollToActive = () => {
-    const scrollContainer = containerRef.current
+    const scrollContainer = containerRef.current;
     const scrollTop = scrollContainer.scrollTop || window.scrollY;
     const headerHeight = document.querySelector(classHeader)?.offsetHeight || 0;
     const anchorTabHeight =
@@ -51,9 +51,11 @@ const ScrollAnchor = ({ sections, options, children }) => {
       const handleScroll = () => {
         handleScrollToActive();
       };
-      scrollContainer.addEventListener("scroll", handleScroll);
+      scrollContainer?.addEventListener("scroll", handleScroll);
       return () => {
-        scrollContainer.removeEventListener("scroll", handleScroll);
+        if (scrollContainer) {
+          return scrollContainer.removeEventListener("scroll", handleScroll);
+        }
       };
     }
   }, []);
