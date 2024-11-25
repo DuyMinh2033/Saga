@@ -29,9 +29,10 @@ const PinchZoomPDF = () => {
       );
 
       const scaleChange = newDistance / initialDistance.current;
-      setScale((prevScale) =>
-        Math.max(0.5, Math.min(4, prevScale * scaleChange))
-      );
+      setScale((prevScale) => {
+        const isWork = Math.max(0.5, Math.min(4, prevScale * scaleChange));
+        return isWork > 1 ? isWork : 1;
+      });
       initialDistance.current = newDistance; // cập nhật khoảng cách ban đầu
     }
   };

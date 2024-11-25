@@ -1,8 +1,6 @@
 .page__zoom {
   height: 100vh;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
+  overflow: auto;
   .btn {
     background-color: red;
   }
