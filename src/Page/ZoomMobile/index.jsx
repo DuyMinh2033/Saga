@@ -9,6 +9,10 @@ const PinchZoomPDF = () => {
   const [scale, setScale] = useState(1);
   const containerRef = useRef(null);
   const initialDistance = useRef(0);
+  const deviceWidth =
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
 
   const handleTouchStart = (e) => {
     if (e.touches.length === 2) {

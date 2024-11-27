@@ -54,7 +54,7 @@ const AnchorTabPractice = ({ data = [], children }) => {
   }, [hasScroll]);
 
   return (
-    <div>
+    <div className="anchor__tab-wrapper">
       <div className="anchor__header">
         {data.map((item, idx) => (
           <div

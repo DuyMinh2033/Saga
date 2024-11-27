@@ -1,7 +1,24 @@
-.anchor__header {
-  padding: 0 24px;
-  display: flex;
-  gap: 8px;
+.anchor__tab-wrapper {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 78px;
+    height: 10px;
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .anchor__header {
+    padding: 20px 24px;
+    display: flex;
+    gap: 8px;
+  }
   .header__item__anchor {
     padding: 10px;
   }
@@ -11,6 +28,8 @@
   }
 }
 .anchor__scroll {
-  height: calc(100vh - 112px);
+  padding-top: 20px;
+  height: calc(100vh - 132px);
   overflow: scroll;
+  background-color: purple;
 }
