@@ -8,17 +8,17 @@ const PinchZoomPDF = () => {
   const containerRef = useRef(null);
   const [open, setIsOpen] = useState(false);
   const [scale, setScale] = useState(1);
-<<<<<<< HEAD
-  const containerRef = useRef(null);
+
+
   const initialDistance = useRef(0);
   const deviceWidth =
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth;
-=======
+
   const [origin, setOrigin] = useState({ x: 0, y: 0 });
   const lastDistanceRef = useRef(null);
->>>>>>> 819f5ab085e2d3b08f6740eb57d7006a1eb218aa
+
 
   const handleTouchStart = (e) => {
     if (e.touches.length === 2) {

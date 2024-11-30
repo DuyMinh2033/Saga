@@ -107,7 +107,7 @@ const route = [
   // },
 ];
 // const url = "http://localhost:8800/api/user/get-user";
-const pathUrl = "http://localhost:5173/login";
+// const pathUrl = "http://localhost:5173/login";
 function App() {
   // useSagas([{ key: "customer", saga: customerSaga }]);
   // useReducers([{ key: "customer", reducer: customerReducer }]);

@@ -1,0 +1,46 @@
+.accordion__wrapper {
+  padding: 10px 24px 0 24px;
+  .accordion__container {
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: space-around;
+  }
+  .unShow {
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    animation: unShow 0.5s alternate linear;
+  }
+  .show {
+    height: 200px;
+    visibility: visible;
+    opacity: 1;
+    animation: show 0.5s alternate linear;
+  }
+}
+
+// @keyframes show {
+//   from {
+//     height: 0;
+//     visibility: hidden;
+//     opacity: 0;
+//   }
+//   to {
+//     visibility: visible;
+//     opacity: 1;
+//     height: 200px;
+//   }
+// }
+
+// @keyframes unShow {
+//   from {
+//     visibility: visible;
+//     opacity: 1;
+//     height: 200px;
+//   }
+//   to {
+//     visibility: hidden;
+//     height: 0;
+//     opacity: 0;
+//   }
+// }

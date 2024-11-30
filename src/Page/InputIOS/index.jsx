@@ -7,44 +7,21 @@ const InputIOS = () => {
   const buttonRef = useRef(null);
 
   useEffect(() => {
-    const handleFocus = (event) => {
-      const activeInput = event.target;
-      if (inputRefs.current.includes(activeInput)) {
-        const rect = activeInput.getBoundingClientRect();
-        const buttonRect = buttonRef.current.getBoundingClientRect();
-        const visualViewport = window.visualViewport || window;
-
-        window.scrollTo({
-          top: document.body.scrollHeight - window.innerHeight,
+    const handleResize = () => {
+      const activeInput = inputRefs.current.find(
+        (input) => document.activeElement === input
+      );
+      if (activeInput) {
+        activeInput.scrollIntoView({
           behavior: "smooth",
+          block: "center",
         });
-
-        // Kiểm tra xem input có bị che bởi bàn phím không
-        if (rect.bottom > visualViewport.height - buttonRect.height) {
-          // Cuộn container để input nằm trên bàn phím
-          containerRef.current.scrollTo({
-            top:
-              containerRef.current.scrollTop +
-              rect.bottom -
-              visualViewport.height +
-              buttonRect.height +
-              20, // 20 là khoảng cách thêm vào để có khoảng trống nhỏ giữa input và bàn phím
-            behavior: "smooth",
-          });
-        }
       }
     };
-
-    // Thêm sự kiện focus cho mỗi input
-    inputRefs.current.forEach((input) => {
-      input.addEventListener("focus", handleFocus);
-    });
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      // Xóa sự kiện focus khi component unmount
-      inputRefs.current.forEach((input) => {
-        input.removeEventListener("focus", handleFocus);
-      });
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
