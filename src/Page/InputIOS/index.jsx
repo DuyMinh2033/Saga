@@ -6,37 +6,37 @@ const InputIOS = () => {
   const containerRef = useRef(null);
   const buttonRef = useRef(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const activeInput = inputRefs.current.find(
-        (input) => document.activeElement === input
-      );
-      if (activeInput) {
-        activeInput.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      }
-    };
-    const viewPort = window.visualViewport ? window.visualViewport : window;
-    viewPort.addEventListener("resize", handleResize);
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     const activeInput = inputRefs.current.find(
+  //       (input) => document.activeElement === input
+  //     );
+  //     if (activeInput) {
+  //       activeInput.scrollIntoView({
+  //         behavior: "smooth",
+  //         block: "center",
+  //       });
+  //     }
+  //   };
+  //   const viewPort = window.visualViewport ? window.visualViewport : window;
+  //   viewPort.addEventListener("resize", handleResize);
 
-    return () => {
-      viewPort.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     viewPort.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    const setViewportHeight = () => {
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    };
-    const viewPort = window.visualViewport ? window.visualViewport : window;
+  // useEffect(() => {
+  //   const setViewportHeight = () => {
+  //     let vh = window.innerHeight * 0.01;
+  //     document.documentElement.style.setProperty("--vh", `${vh}px`);
+  //   };
+  //   const viewPort = window.visualViewport ? window.visualViewport : window;
 
-    viewPort.addEventListener("resize", setViewportHeight);
-    setViewportHeight(); // Gọi lần đầu khi component được render
-    return () => viewPort.removeEventListener("resize", setViewportHeight);
-  }, []);
+  //   viewPort.addEventListener("resize", setViewportHeight);
+  //   setViewportHeight(); // Gọi lần đầu khi component được render
+  //   return () => viewPort.removeEventListener("resize", setViewportHeight);
+  // }, []);
 
   return (
     <div
