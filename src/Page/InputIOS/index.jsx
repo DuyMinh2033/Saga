@@ -26,6 +26,11 @@ const InputIOS = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (window.KeyboardDisplayRequiresUserAction !== undefined) {
+      window.KeyboardDisplayRequiresUserAction = false; // Bật tự động hiển thị bàn phím
+    }
+  }, []);
   return (
     <div
       className="scroll-header"

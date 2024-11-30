@@ -8,8 +8,7 @@ html {
 }
 
 body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  overflow: hidden; /* Ngăn cuộn */
+  touch-action: none; /* Ngăn các hành động vuốt */
+  height: 100%;
 }
