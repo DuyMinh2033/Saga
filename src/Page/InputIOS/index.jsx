@@ -38,6 +38,18 @@ const InputIOS = () => {
   //   return () => viewPort.removeEventListener("resize", setViewportHeight);
   // }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      window.scrollTo(0, document.body.scrollHeight); // Cuộn xuống cuối màn hình
+    };
+    const viewPort = window.visualViewport ? window.visualViewport : window;
+
+    viewPort.addEventListener("resize", handleResize);
+    return () => {
+      viewPort.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div
       className="scroll-header"
