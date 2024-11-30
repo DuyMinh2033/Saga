@@ -3,3 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}

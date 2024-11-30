@@ -18,10 +18,11 @@ const InputIOS = () => {
         });
       }
     };
-    window.addEventListener("resize", handleResize);
+    const viewPort = window.visualViewport ? window.visualViewport : window;
+    viewPort.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      viewPort.removeEventListener("resize", handleResize);
     };
   }, []);
 
