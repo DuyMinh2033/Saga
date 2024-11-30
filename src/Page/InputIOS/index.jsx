@@ -27,11 +27,17 @@ const InputIOS = () => {
   }, []);
 
   useEffect(() => {
-    console.log(window.KeyboardDisplayRequiresUserAction)
-    if (window.KeyboardDisplayRequiresUserAction !== undefined) {
-      window.KeyboardDisplayRequiresUserAction = false; // Bật tự động hiển thị bàn phím
-    }
+    const setViewportHeight = () => {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+    const viewPort = window.visualViewport ? window.visualViewport : window;
+
+    viewPort.addEventListener("resize", setViewportHeight);
+    setViewportHeight(); // Gọi lần đầu khi component được render
+    return () => viewPort.removeEventListener("resize", setViewportHeight);
   }, []);
+
   return (
     <div
       className="scroll-header"
