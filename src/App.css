@@ -8,7 +8,9 @@ html {
 }
 
 body {
-  overflow: hidden; /* Ngăn cuộn */
-  touch-action: none; /* Ngăn các hành động vuốt */
-  height: 100%;
+ position: fixed;
+ right: 0;
+ left: 0;
+ top: 0;
+ bottom: 0;
 }

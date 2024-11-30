@@ -27,6 +27,7 @@ const InputIOS = () => {
   }, []);
 
   useEffect(() => {
+    console.log(window.KeyboardDisplayRequiresUserAction)
     if (window.KeyboardDisplayRequiresUserAction !== undefined) {
       window.KeyboardDisplayRequiresUserAction = false; // Bật tự động hiển thị bàn phím
     }
