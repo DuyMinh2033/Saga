@@ -12,7 +12,7 @@
   position: fixed;
   right: 0;
   left: 0;
-  bottom: 0;
+  bottom: env(safe-area-inset-bottom, 0); /* Sử dụng khoảng cách an toàn */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,6 +20,7 @@
   padding: 0 24px;
   background-color: white;
   z-index: 10000;
+  transform: translateY(0);
 }
 .button {
   background: blue;
