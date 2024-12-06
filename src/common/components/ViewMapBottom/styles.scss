@@ -1,0 +1,27 @@
+.view__map {
+  position: relative;
+  .link {
+    position: absolute;
+    height: 40px;
+    width: 56%;
+    top: 75px;
+    left: 11px;
+    z-index: 1000;
+    background: rebeccapurple;
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 451px) {
+  .link {
+    position: absolute !important;
+    top: 37px !important;
+  }
+}
+
+@media (max-width: 251px) {
+  .link {
+    position: absolute !important;
+    top: 12px !important;
+  }
+}

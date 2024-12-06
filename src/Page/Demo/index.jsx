@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import { useRef, useState } from "react";
 import Completed from "./Completed";
@@ -7,13 +6,14 @@ import { contents, options, optionsRadio, value } from "./contanst";
 import IMG from "../../assets/test.png";
 import "./styles.scss";
 import Accordion from "../../common/components/Ancordion";
+import ViewMapBottom from "../../common/components/ViewMapBottom";
 
 const Demo = () => {
   const [limitTransfer, setLimitTransfer] = useState(50);
   const [step, setStep] = useState();
   const valueOnchange = useRef("");
   const result = useRef("");
-
+  const [isOpen, setIsOpen] = useState(false);
   const handleSubmit = () => {
     if (valueOnchange.current === "" || valueOnchange.current === "0") return;
 
@@ -60,36 +60,8 @@ const Demo = () => {
   };
   return (
     <>
-      <div style={{ padding: "0 24px", height: "500px", overflow: "auto" }}>
-        {/* {step !== "completed" && (
-          <div>
-            <p>{limitTransfer}</p>
-            <input
-              type="text"
-              placeholder="enter amount"
-              onChange={handleOnchange}
-            />
-            <div>
-              <button onClick={handleSubmit}>submit</button>
-            </div>
-            <button onClick={handleTest}>Test</button>
-          </div>
-        )}
-        {step === "completed" && <Completed title={result.current} />} */}
-        {/* <Section /> */}
-      </div>
-      {options.map(({ value, title, options }, index) => (
-        <Accordion
-          option={{ value, title }}
-          onClick={() => handleClick(index)}
-          isExpand={isShow === index}
-        >
-          <div ref={(el) => (refExpand.current[index] = el)}>
-            <p>{options.title}</p>
-            <p>{options.value}</p>
-          </div>
-        </Accordion>
-      ))}
+      <button onClick={() => setIsOpen(true)}>click</button>
+      <ViewMapBottom isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 };
