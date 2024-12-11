@@ -10,13 +10,16 @@ import ViewMapBottom from "../../common/components/ViewMapBottom";
 
 const Demo = () => {
   const [valueInput, setValeInput] = useState("");
+  const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/;
 
   const handleOnChange = (e) => {
-    setValeInput(e.target.value);
+    let value = e.target.value;
+    if (value) {
+      value = value.replace(invalidNameRegex, "");
+    }
+    setValeInput(value);
   };
 
-  
-  const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/;
   const handleKeyDown = (event) => {
     console.log(">>>", {
       invalid: invalidNameRegex.test(event.key),
@@ -35,6 +38,7 @@ const Demo = () => {
         placeholder="street name"
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
+        autoComplete="off"
       />
       <input type="text" placeholder="city" />
       <p style={{ color: "red" }}>{valueInput}</p>
