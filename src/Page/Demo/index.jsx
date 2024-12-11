@@ -46,6 +46,8 @@ const Demo = () => {
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
         autoComplete="off"
+        autoCorrect="off"
+        spellCheck="false"
       />
       <input
         type="text"
@@ -53,6 +55,8 @@ const Demo = () => {
         value={valueInput2}
         onChange={handleOnChange2}
         autoComplete="off"
+        autoCorrect="off"
+        spellCheck="false"
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
