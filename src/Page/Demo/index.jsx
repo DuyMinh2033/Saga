@@ -56,6 +56,7 @@ const Demo = () => {
         spellCheck="false"
         inputMode="text"
         onCompositionStart={() => setValeInput(valueInput)}
+        onCompositionEnd={() => setValeInput(valueInput)}
       />
       <input
         key={key + 2}
@@ -69,6 +70,7 @@ const Demo = () => {
         spellCheck="false"
         inputMode="text"
         onCompositionStart={() => setValeInput(valueInput)}
+        onCompositionEnd={() => setValeInput(valueInput)}
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
