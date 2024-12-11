@@ -11,12 +11,8 @@ import ViewMapBottom from "../../common/components/ViewMapBottom";
 const Demo = () => {
   const [valueInput, setValeInput] = useState("");
   const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/;
-  const [isComposing, setIsComposing] = useState(false);
-  const handleOnComposition = (isComposing) => {
-    setIsComposing(isComposing);
-  };
+
   const handleOnChange = (e) => {
-    if (isComposing) return;
     const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
     let value = e.target.value;
     if (value && invalidTest.test(value)) {
@@ -43,11 +39,9 @@ const Demo = () => {
         placeholder="street name"
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
-        onCompositionStart={() => handleOnComposition(true)}
-        onCompositionEnd={() => handleOnComposition(false)}
         autoComplete="off"
       />
-      <input type="text" placeholder="city" />
+      <input type="text" placeholder="city" value={""} />
       <p style={{ color: "red" }}>{valueInput}</p>
     </>
   );
