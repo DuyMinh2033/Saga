@@ -10,6 +10,8 @@ import ViewMapBottom from "../../common/components/ViewMapBottom";
 
 const Demo = () => {
   const [valueInput, setValeInput] = useState("");
+  const [valueInput2, setValeInput2] = useState("");
+
   const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/;
 
   const handleOnChange = (e) => {
@@ -31,6 +33,10 @@ const Demo = () => {
     }
   };
 
+  const handleOnChange2 = (e) => {
+    setValeInput2(e.target.value);
+  };
+
   return (
     <>
       <input
@@ -41,8 +47,14 @@ const Demo = () => {
         onKeyDown={handleKeyDown}
         autoComplete="off"
       />
-      <input type="text" placeholder="city" value={""} />
-      <p style={{ color: "red" }}>{valueInput}</p>
+      <input
+        type="text"
+        placeholder="city"
+        value={valueInput2}
+        onChange={handleOnChange2}
+      />
+      <p style={{ color: "red" }}>input 1 : {valueInput}</p>
+      <p style={{ color: "red" }}>input 2: {valueInput2}</p>
     </>
   );
 };
