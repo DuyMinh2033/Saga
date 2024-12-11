@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Completed from "./Completed";
 import { contents, options, optionsRadio, value } from "./contanst";
 // import Section from "./Section";
@@ -12,24 +12,25 @@ const Demo = () => {
   const [valueInput, setValeInput] = useState("");
 
   const handleOnChange = (e) => {
-    const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/;
-    let value = e.target.value;
-    if (value) {
-      value = value.replace(invalidNameRegex, "");
-    }
-    setValeInput(value);
+    setValeInput(e.target.value);
   };
 
+  const invalidNameRegex = /[^0-9a-zA-Z.,'‘’—\s-]/g;
   // const handleKeyDown = (event) => {
   //   console.log(">>>", {
   //     invalid: invalidNameRegex.test(event.key),
-  //     test: /[^0-9a-zA-Z.,‘’'-\s]/.test(event.key),
+  //     match: !!event.key.match(invalidNameRegex),
   //   });
   //   if (invalidNameRegex.test(event.key) && !event.ctrlKey && !event.metaKey) {
   //     event.preventDefault();
   //   }
   // };
 
+  useEffect(() => {
+    if (valueInput !== "") {
+      setValeInput(valueInput.replace(invalidNameRegex, ""));
+    }
+  }, [valueInput]);
   return (
     <>
       <input
