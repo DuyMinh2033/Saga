@@ -13,9 +13,10 @@ const Demo = () => {
   const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/;
 
   const handleOnChange = (e) => {
+    const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
     let value = e.target.value;
     if (value) {
-      value = value.replace(invalidNameRegex, "");
+      value = value.replace(invalidTest, "");
     }
     setValeInput(value);
   };
