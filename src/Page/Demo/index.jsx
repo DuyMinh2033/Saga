@@ -10,26 +10,25 @@ import ViewMapBottom from "../../common/components/ViewMapBottom";
 
 const Demo = () => {
   const [valueInput, setValeInput] = useState("");
-  const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/;
 
   const handleOnChange = (e) => {
-    const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
+    const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/;
     let value = e.target.value;
     if (value) {
-      value = value.replace(invalidTest, "");
+      value = value.replace(invalidNameRegex, "");
     }
     setValeInput(value);
   };
 
-  const handleKeyDown = (event) => {
-    console.log(">>>", {
-      invalid: invalidNameRegex.test(event.key),
-      test: /[^0-9a-zA-Z.,‘’'-\s]/.test(event.key),
-    });
-    if (invalidNameRegex.test(event.key) && !event.ctrlKey && !event.metaKey) {
-      event.preventDefault();
-    }
-  };
+  // const handleKeyDown = (event) => {
+  //   console.log(">>>", {
+  //     invalid: invalidNameRegex.test(event.key),
+  //     test: /[^0-9a-zA-Z.,‘’'-\s]/.test(event.key),
+  //   });
+  //   if (invalidNameRegex.test(event.key) && !event.ctrlKey && !event.metaKey) {
+  //     event.preventDefault();
+  //   }
+  // };
 
   return (
     <>
@@ -38,8 +37,7 @@ const Demo = () => {
         type="text"
         placeholder="street name"
         onChange={handleOnChange}
-        onKeyDown={handleKeyDown}
-        autoComplete="off"
+        // onKeyDown={handleKeyDown}
       />
       <input type="text" placeholder="city" />
       <p style={{ color: "red" }}>{valueInput}</p>
