@@ -51,12 +51,11 @@ const Demo = () => {
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
         autoComplete="new-password"
-        name={`input-${Math.random()}`} // Sử dụng tên trường ngẫu nhiên
+        name={`input-${Math.random()}`}
         autoCorrect="off"
         spellCheck="false"
-        inputMode="text" // Cung cấp hướng dẫn rõ ràng cho trình duyệt
-        onCompositionStart={() => setValeInput("")} // Reset khi bắt đầu nhập
-        onCompositionEnd={() => setValeInput(valueInput)} // Xử lý khi nhập hoàn tất
+        inputMode="text"
+        onCompositionStart={() => setValeInput(valueInput)}
       />
       <input
         key={key + 2}
@@ -65,12 +64,11 @@ const Demo = () => {
         value={valueInput2}
         onChange={handleOnChange2}
         autoComplete="new-password"
-        name={`input-${Math.random()}`} // Sử dụng tên trường ngẫu nhiên
+        name={`input-${Math.random()}`}
         autoCorrect="off"
         spellCheck="false"
-        inputMode="text" // Cung cấp hướng dẫn rõ ràng cho trình duyệt
-        onCompositionStart={() => setValeInput2("")} // Reset khi bắt đầu nhập
-        onCompositionEnd={() => setValeInput2(valueInput)} // Xử lý khi nhập hoàn tất
+        inputMode="text"
+        onCompositionStart={() => setValeInput(valueInput)}
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
