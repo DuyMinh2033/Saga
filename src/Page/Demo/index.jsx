@@ -52,6 +52,7 @@ const Demo = () => {
         placeholder="city"
         value={valueInput2}
         onChange={handleOnChange2}
+        autoComplete="off"
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
