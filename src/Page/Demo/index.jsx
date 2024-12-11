@@ -16,13 +16,30 @@ const Demo = () => {
     console.log(e.target.value);
   };
 
+  const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/g;
   const handleOnInput = (e) => {
-    const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/g;
     setValueBefor(e.target.value);
     if (invalidNameRegex && e.target.value) {
       e.target.value = e.target.value.replace(invalidNameRegex, "");
     }
     setValeInput(e.target.value);
+  };
+
+  const onCompositionEnd = (e) => {
+    if (invalidNameRegex && e.target.value) {
+      e.target.value = e.target.value.replace(invalidNameRegex, "");
+    }
+  };
+  const onCompositionStart = (e) => {
+    if (invalidNameRegex && e.target.value) {
+      e.target.value = e.target.value.replace(invalidNameRegex, "");
+    }
+  };
+
+  const onCompositionUpdate = (e) => {
+    if (invalidNameRegex && e.target.value) {
+      e.target.value = e.target.value.replace(invalidNameRegex, "");
+    }
   };
 
   return (
@@ -32,9 +49,9 @@ const Demo = () => {
         placeholder="street name"
         onChange={handleOnChange}
         onInput={handleOnInput}
-        onCompositionEnd={handleOnInput}
-        onCompositionStart={handleOnInput}
-        onCompositionUpdate={handleOnInput}
+        onCompositionEnd={onCompositionEnd}
+        onCompositionStart={onCompositionStart}
+        onCompositionUpdate={onCompositionUpdate}
       />
       <input type="text" placeholder="city" />
       <p style={{ color: "InfoText" }}>{valueBefor}</p>
