@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Completed from "./Completed";
 import { contents, options, optionsRadio, value } from "./contanst";
 // import Section from "./Section";
@@ -10,27 +10,27 @@ import ViewMapBottom from "../../common/components/ViewMapBottom";
 
 const Demo = () => {
   const [valueInput, setValeInput] = useState("");
+  const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/;
 
   const handleOnChange = (e) => {
-    setValeInput(e.target.value);
+    const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
+    let value = e.target.value;
+    if (value) {
+      value = value.replace(invalidTest, "");
+    }
+    setValeInput(value);
   };
 
-  const invalidNameRegex = /[^0-9a-zA-Z.,'‘’—\s-]/g;
-  // const handleKeyDown = (event) => {
-  //   console.log(">>>", {
-  //     invalid: invalidNameRegex.test(event.key),
-  //     match: !!event.key.match(invalidNameRegex),
-  //   });
-  //   if (invalidNameRegex.test(event.key) && !event.ctrlKey && !event.metaKey) {
-  //     event.preventDefault();
-  //   }
-  // };
-
-  useEffect(() => {
-    if (valueInput !== "") {
-      setValeInput(valueInput.replace(invalidNameRegex, ""));
+  const handleKeyDown = (event) => {
+    console.log(">>>", {
+      invalid: invalidNameRegex.test(event.key),
+      test: /[^0-9a-zA-Z.,‘’'-\s]/.test(event.key),
+    });
+    if (invalidNameRegex.test(event.key) && !event.ctrlKey && !event.metaKey) {
+      event.preventDefault();
     }
-  }, [valueInput]);
+  };
+
   return (
     <>
       <input
@@ -38,7 +38,8 @@ const Demo = () => {
         type="text"
         placeholder="street name"
         onChange={handleOnChange}
-        // onKeyDown={handleKeyDown}
+        onKeyDown={handleKeyDown}
+        autoComplete="off"
       />
       <input type="text" placeholder="city" />
       <p style={{ color: "red" }}>{valueInput}</p>
