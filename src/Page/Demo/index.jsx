@@ -17,7 +17,7 @@ const Demo = () => {
   };
 
   const invalidNameRegex =
-    /[^0-9a-zA-Z.,‘’'-\s\u1100-\u11FF\u3130-\u318F\uAC00-\uD7AF]/g;
+    /[^0-9a-zA-Z.,‘’'-\s]|[\u1100-\u11FF\u3130-\u318F\uAC00-\uD7AF]/g;
 
   const handleOnInput = (e) => {
     setValueBefor(e.target.value);
