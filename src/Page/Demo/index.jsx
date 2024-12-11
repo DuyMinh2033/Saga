@@ -45,7 +45,7 @@ const Demo = () => {
         placeholder="street name"
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
-        autoComplete="off"
+        autoComplete="new-password"
         autoCorrect="off"
         spellCheck="false"
       />
@@ -54,7 +54,7 @@ const Demo = () => {
         placeholder="city"
         value={valueInput2}
         onChange={handleOnChange2}
-        autoComplete="off"
+        autoComplete="new-password"
         autoCorrect="off"
         spellCheck="false"
       />
