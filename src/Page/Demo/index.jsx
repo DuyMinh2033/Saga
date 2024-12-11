@@ -29,9 +29,6 @@ const Demo = () => {
     setStep("completed");
   };
 
-  const handleOnchange = (e) => {
-    valueOnchange.current = e.target.value;
-  };
   const handleTest = () => {
     const arr = [1, 1, 1, 2, 3, 3, 4];
     const resultData = [];
@@ -58,10 +55,29 @@ const Demo = () => {
       }
     }, 100);
   };
+
+  const handleOnChange = (e) => {
+    console.log(e.target.value);
+  };
+
+  const handleOnInput = (e) => {
+    const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/g;
+    if (invalidNameRegex && e.target.value) {
+      e.target.value = e.target.value.replace(invalidNameRegex, "");
+    }
+  };
+
   return (
     <>
       <button onClick={() => setIsOpen(true)}>click</button>
       <ViewMapBottom isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <input
+        type="text"
+        placeholder="street name"
+        onChange={handleOnChange}
+        onInput={handleOnInput}
+      />
+      <input type="text" placeholder="city" />
     </>
   );
 };
