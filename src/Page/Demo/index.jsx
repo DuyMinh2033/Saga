@@ -10,53 +10,33 @@ import ViewMapBottom from "../../common/components/ViewMapBottom";
 
 const Demo = () => {
   const [valueInput, setValeInput] = useState("");
-  const [valueBefor, setValueBefor] = useState("");
 
   const handleOnChange = (e) => {
-    console.log(e.target.value);
-  };
-
-  const invalidNameRegex =
-    /[^0-9a-zA-Z.,‘’'-\s]|[\u1100-\u11FF\u3130-\u318F\uAC00-\uD7AF]/g;
-
-  const handleOnInput = (e) => {
-    setValueBefor(e.target.value);
-    if (invalidNameRegex && e.target.value) {
-      e.target.value = e.target.value.replace(invalidNameRegex, "");
-    }
     setValeInput(e.target.value);
   };
 
-  const onCompositionEnd = (e) => {
-    if (invalidNameRegex && e.target.value) {
-      e.target.value = e.target.value.replace(invalidNameRegex, "");
-    }
-  };
-  const onCompositionStart = (e) => {
-    if (invalidNameRegex && e.target.value) {
-      e.target.value = e.target.value.replace(invalidNameRegex, "");
-    }
-  };
-
-  const onCompositionUpdate = (e) => {
-    if (invalidNameRegex && e.target.value) {
-      e.target.value = e.target.value.replace(invalidNameRegex, "");
+  
+  const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/;
+  const handleKeyDown = (event) => {
+    console.log(">>>", {
+      invalid: invalidNameRegex.test(event.key),
+      test: /[^0-9a-zA-Z.,‘’'-\s]/.test(event.key),
+    });
+    if (invalidNameRegex.test(event.key) && !event.ctrlKey && !event.metaKey) {
+      event.preventDefault();
     }
   };
 
   return (
     <>
       <input
+        value={valueInput}
         type="text"
         placeholder="street name"
         onChange={handleOnChange}
-        onInput={handleOnInput}
-        onCompositionEnd={onCompositionEnd}
-        onCompositionStart={onCompositionStart}
-        onCompositionUpdate={onCompositionUpdate}
+        onKeyDown={handleKeyDown}
       />
       <input type="text" placeholder="city" />
-      <p style={{ color: "InfoText" }}>{valueBefor}</p>
       <p style={{ color: "red" }}>{valueInput}</p>
     </>
   );
