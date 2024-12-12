@@ -50,16 +50,10 @@ const Demo = () => {
   const [key, setKey] = useState(0);
 
   const inputRef = useRef(null);
-  const handleOnFocus = () => {
-    console.log(">>>", {
-      value: inputRef.current.value !== valueInput,
-      ref: inputRef.current.value,
-      default: valueInput,
-    });
+  const [isReadyOnly, setIsReadyOnly] = useState(true);
 
-    if (inputRef.current.value === "") {
-      setValeInput2("");
-    }
+  const handleOnFocus = () => {
+    setIsReadyOnly(false);
   };
 
   return (
@@ -89,7 +83,7 @@ const Demo = () => {
         spellCheck="false"
         inputMode="text"
         onFocus={handleOnFocus}
-        // onCompositionEnd={(e) => handleOnChange(e)}
+        readOnly={isReadyOnly}
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
