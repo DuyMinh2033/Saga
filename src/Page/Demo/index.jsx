@@ -6,7 +6,7 @@ const Demo = () => {
   const [valueInput, setValeInput] = useState("");
   const [valueInput2, setValeInput2] = useState("");
 
-  const invalidTest = /\s+/g;
+  const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
   const handleOnChange = (e) => {
     let value = e.target.value;
     if (value && invalidTest.test(value)) {
@@ -16,8 +16,30 @@ const Demo = () => {
   };
 
   const handleKeyDown = (event) => {
+    const ignoreKeys = [
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowUp",
+      "ArrowDown",
+      "Backspace",
+      "Delete",
+      "Tab",
+      "Enter",
+      "Escape",
+      "Home",
+      "End",
+      "PageUp",
+      "PageDown",
+    ];
+    if (ignoreKeys.includes(event.key)) {
+      return;
+    }
+    if (event.ctrlKey || event.metaKey) {
+      return;
+    }
+
     let convertRegex = new RegExp(invalidTest);
-    if (convertRegex.test(event.key) && !event.ctrlKey && !event.metaKey) {
+    if (convertRegex.test(event.key)) {
       event.preventDefault();
     }
   };
@@ -30,12 +52,25 @@ const Demo = () => {
   const handleOnFocus = () => {
     setKey((prevKey) => prevKey + 1);
   };
+
+  const onCompositionEnd = (e) => {
+    if (e.target.value !== valueInput) {
+      e.target.value === valueInput;
+    }
+  };
+
+  const onCompositionEnd2 = (e) => {
+    if (e.target.value !== valueInput2) {
+      e.target.value === valueInput2;
+    }
+  };
+
   return (
     <form autoComplete="off">
       <input
         key={key}
         value={valueInput}
-        type="number"
+        type="text"
         placeholder="street name"
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
@@ -43,9 +78,7 @@ const Demo = () => {
         name={`input-${Math.random()}`}
         autoCorrect="off"
         spellCheck="false"
-        inputMode="numeric"
-        // onCompositionStart={() => setValeInput(valueInput)}
-        onCompositionEnd={(e) => handleOnChange(e)}
+        onCompositionEnd={(e) => onCompositionEnd()}
       />
       <input
         key={key + 2}
@@ -58,7 +91,7 @@ const Demo = () => {
         autoCorrect="off"
         spellCheck="false"
         inputMode="text"
-        onCompositionStart={() => setValeInput(valueInput)}
+        onCompositionEnd={(e) => onCompositionEnd2()}
         // onCompositionEnd={(e) => handleOnChange(e)}
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
