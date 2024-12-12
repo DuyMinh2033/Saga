@@ -56,6 +56,7 @@ const Demo = () => {
   const onCompositionEnd = (e) => {
     console.log("onCompositionEnd1", e.target.value);
     if (e.target.value !== valueInput) {
+      debugger;
       e.target.value === valueInput;
     }
   };
@@ -63,6 +64,7 @@ const Demo = () => {
   const onCompositionEnd2 = (e) => {
     console.log("onCompositionEnd2", e.target.value);
     if (e.target.value !== valueInput2) {
+      debugger;
       e.target.value === valueInput2;
     }
   };
