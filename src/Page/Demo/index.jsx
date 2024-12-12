@@ -56,16 +56,15 @@ const Demo = () => {
   const onCompositionEnd = (e) => {
     console.log("onCompositionEnd1", e.target.value);
     if (e.target.value !== valueInput) {
-      debugger;
       e.target.value === valueInput;
     }
   };
 
   const onCompositionEnd2 = (e) => {
     console.log("onCompositionEnd2", e.target.value);
+    console.log(">>>>>", e.target.value !== valueInput2, valueInput2);
     if (e.target.value !== valueInput2) {
-      debugger;
-      e.target.value === valueInput2;
+      setValeInput2(valueInput2);
     }
   };
 
