@@ -73,7 +73,7 @@ const Demo = () => {
       <input
         ref={inputRef}
         key={key + 2}
-        type="text"
+        type="search"
         placeholder="city"
         value={valueInput2}
         onChange={handleOnChange2}
