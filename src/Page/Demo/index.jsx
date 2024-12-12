@@ -57,8 +57,8 @@ const Demo = () => {
       default: valueInput,
     });
 
-    if (inputRef.current.value !== valueInput) {
-      setValeInput2(valueInput2);
+    if (inputRef.current.value === "") {
+      setValeInput2("");
     }
   };
 
