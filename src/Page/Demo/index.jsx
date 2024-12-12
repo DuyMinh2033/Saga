@@ -76,6 +76,10 @@ const Demo = () => {
     console.log("Composition ended", e.target.value);
   };
 
+  const handlePaste = (e) => {
+    e.preventDefault(); // Ngừng hành động dán
+  };
+
   return (
     <form autoComplete="new-password" method="" action="">
       <input
@@ -83,9 +87,9 @@ const Demo = () => {
         type="text"
         placeholder="street name"
         onChange={removeSpecials}
-        onCompositionStart={(e) => handleCompositionStart(e)}
-        onCompositionUpdate={(e) => handleCompositionUpdate(e)}
-        onCompositionEnd={(e) => handleCompositionEnd(e)}
+        // onCompositionStart={(e) => handleCompositionStart(e)}
+        // onCompositionUpdate={(e) => handleCompositionUpdate(e)}
+        // onCompositionEnd={(e) => handleCompositionEnd(e)}
       />
       <input
         value={valueInput2}
@@ -93,6 +97,7 @@ const Demo = () => {
         onCompositionStart={(e) => handleCompositionStart(e)}
         onCompositionUpdate={(e) => handleCompositionUpdate(e)}
         onCompositionEnd={(e) => handleCompositionEnd(e)}
+        onPaste={handlePaste} // Ngừng dán dữ liệu
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
