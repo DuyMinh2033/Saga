@@ -49,21 +49,15 @@ const Demo = () => {
   };
   const [key, setKey] = useState(0);
 
+  const inputRef = useRef(null);
   const handleOnFocus = () => {
-    setKey((prevKey) => prevKey + 1);
-  };
+    console.log(">>>", {
+      value: inputRef.current.value !== valueInput,
+      ref: inputRef.current.value,
+      default: valueInput,
+    });
 
-  const onCompositionEnd = (e) => {
-    console.log("onCompositionEnd1", e.target.value);
-    if (e.target.value !== valueInput) {
-      e.target.value === valueInput;
-    }
-  };
-
-  const onCompositionEnd2 = (e) => {
-    console.log("onCompositionEnd2", e.target.value);
-    console.log(">>>>>", e.target.value !== valueInput2, valueInput2);
-    if (e.target.value !== valueInput2) {
+    if (inputRef.current.value !== valueInput) {
       setValeInput2(valueInput2);
     }
   };
@@ -81,9 +75,9 @@ const Demo = () => {
         name={`input-${Math.random()}`}
         autoCorrect="off"
         spellCheck="false"
-        onCompositionEnd={(e) => onCompositionEnd(e)}
       />
       <input
+        ref={inputRef}
         key={key + 2}
         type="text"
         placeholder="city"
@@ -94,7 +88,7 @@ const Demo = () => {
         autoCorrect="off"
         spellCheck="false"
         inputMode="text"
-        onCompositionEnd={(e) => onCompositionEnd2(e)}
+        onFocus={handleOnFocus}
         // onCompositionEnd={(e) => handleOnChange(e)}
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
