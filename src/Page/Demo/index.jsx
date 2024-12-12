@@ -6,7 +6,7 @@ const Demo = () => {
   const [valueInput, setValeInput] = useState("");
   const [valueInput2, setValeInput2] = useState("");
 
-  // const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
+  const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
   // const handleOnChange = (e) => {
   //   let value = e.target.value;
   //   if (value && invalidTest.test(value)) {
@@ -15,34 +15,33 @@ const Demo = () => {
   //   setValeInput(value);
   // };
 
-  // const handleKeyDown = (event) => {
-  //   const ignoreKeys = [
-  //     "ArrowLeft",
-  //     "ArrowRight",
-  //     "ArrowUp",
-  //     "ArrowDown",
-  //     "Backspace",
-  //     "Delete",
-  //     "Tab",
-  //     "Enter",
-  //     "Escape",
-  //     "Home",
-  //     "End",
-  //     "PageUp",
-  //     "PageDown",
-  //   ];
-  //   if (ignoreKeys.includes(event.key)) {
-  //     return;
-  //   }
-  //   if (event.ctrlKey || event.metaKey) {
-  //     return;
-  //   }
-
-  //   let convertRegex = new RegExp(invalidTest);
-  //   if (convertRegex.test(event.key)) {
-  //     event.preventDefault();
-  //   }
-  // };
+  const handleKeyDown = (event) => {
+    const ignoreKeys = [
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowUp",
+      "ArrowDown",
+      "Backspace",
+      "Delete",
+      "Tab",
+      "Enter",
+      "Escape",
+      "Home",
+      "End",
+      "PageUp",
+      "PageDown",
+    ];
+    if (ignoreKeys.includes(event.key)) {
+      return;
+    }
+    if (event.ctrlKey || event.metaKey) {
+      return;
+    }
+    let convertRegex = new RegExp(/[^\x20-\x7E]+/);
+    if (convertRegex.test(event.key)) {
+      event.preventDefault();
+    }
+  };
 
   // const [key, setKey] = useState(0);
 
@@ -63,27 +62,8 @@ const Demo = () => {
     setValeInput(value.replace(patt, ""));
   };
 
-  const handleCompositionStart = (e) => {
-    console.log("Composition started", e.target.value);
-  };
-
-  const handleCompositionUpdate = (e) => {
-    console.log("handleCompositionUpdate", e.target.value);
-    setValeInput2(e.target.value);
-  };
-
-  const handleCompositionEnd = (evt) => {
-    const value = evt.target.value;
-    const patt = /[^\x20-\x7E]+/;
-    setValeInput(value.replace(patt, ""));
-    console.log("Composition ended", evt.target.value);
-  };
-
-  const handlePaste = (e) => {
-    e.preventDefault(); // Ngừng hành động dán
-  };
-
   const inputs = Array.from({ length: 20 }, (_, index) => index + 1);
+
   return (
     <form
       autoComplete="new-password"
@@ -102,7 +82,9 @@ const Demo = () => {
         type="text"
         placeholder="street name"
         onChange={removeSpecials}
-        onCompositionEnd={(e) => handleCompositionEnd(e)}
+        // onCompositionEnd={(e) => handleCompositionEnd(e)}
+        // onKeyDown={handleKeyDown}
+        onKeyDown={(e) => e.preventDefault()}
         // onCompositionStart={(e) => handleCompositionStart(e)}
         // onCompositionUpdate={(e) => handleCompositionUpdate(e)}
         // onCompositionEnd={(e) => handleCompositionEnd(e)}
@@ -111,10 +93,7 @@ const Demo = () => {
         value={valueInput2}
         onChange={handleOnChange2}
         placeholder="street"
-        onCompositionStart={(e) => handleCompositionStart(e)}
-        onCompositionUpdate={(e) => handleCompositionUpdate(e)}
         // onCompositionEnd={(e) => handleCompositionEnd(e)}
-        onPaste={handlePaste} // Ngừng dán dữ liệu
       />
       {inputs.map((input, index) => (
         <Fragment key={index}>
