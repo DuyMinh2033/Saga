@@ -82,23 +82,34 @@ const Demo = () => {
         type="text"
         placeholder="street name"
         onChange={removeSpecials}
-        // onCompositionEnd={(e) => handleCompositionEnd(e)}
-        // onKeyDown={handleKeyDown}
         onKeyDown={(e) => e.preventDefault()}
         style={{ imeMode: "disabled" }} // Prevents IME on some browsers
-        // onCompositionStart={(e) => handleCompositionStart(e)}
-        // onCompositionUpdate={(e) => handleCompositionUpdate(e)}
-        // onCompositionEnd={(e) => handleCompositionEnd(e)}
+        inputMode="text"
+        autoComplete="off"
+        autoCorrect="off"
+        spellCheck="false"
       />
       <input
         value={valueInput2}
         onChange={handleOnChange2}
         placeholder="street"
+        inputMode="text"
+        autoComplete="off"
+        autoCorrect="off"
+        spellCheck="false"
         // onCompositionEnd={(e) => handleCompositionEnd(e)}
       />
       {inputs.map((input, index) => (
         <Fragment key={index}>
-          <input type="text" id={`input-${index}`} name={`input-${index}`} />
+          <input
+            type="text"
+            id={`input-${index}`}
+            name={`input-${index}`}
+            inputMode="text"
+            autoComplete="off"
+            autoCorrect="off"
+            spellCheck="false"
+          />
         </Fragment>
       ))}
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
