@@ -57,7 +57,7 @@ const Demo = () => {
   };
 
   return (
-    <form autoComplete="off">
+    <form autoComplete="one-time-code">
       <input
         key={key}
         value={valueInput}
