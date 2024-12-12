@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import "./styles.scss";
 
 const Demo = () => {
@@ -83,8 +83,20 @@ const Demo = () => {
     e.preventDefault(); // Ngừng hành động dán
   };
 
+  const inputs = Array.from({ length: 20 }, (_, index) => index + 1);
   return (
-    <form autoComplete="new-password" method="" action="">
+    <form
+      autoComplete="new-password"
+      method=""
+      action=""
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        height: "100vh",
+        overflow: "auto",
+      }}
+    >
       <input
         value={valueInput}
         type="text"
@@ -98,11 +110,17 @@ const Demo = () => {
       <input
         value={valueInput2}
         onChange={handleOnChange2}
+        placeholder="street"
         onCompositionStart={(e) => handleCompositionStart(e)}
         onCompositionUpdate={(e) => handleCompositionUpdate(e)}
         // onCompositionEnd={(e) => handleCompositionEnd(e)}
         onPaste={handlePaste} // Ngừng dán dữ liệu
       />
+      {inputs.map((input, index) => (
+        <Fragment key={index}>
+          <input type="text" id={`input-${index}`} name={`input-${index}`} />
+        </Fragment>
+      ))}
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
     </form>
