@@ -85,6 +85,7 @@ const Demo = () => {
         // onCompositionEnd={(e) => handleCompositionEnd(e)}
         // onKeyDown={handleKeyDown}
         onKeyDown={(e) => e.preventDefault()}
+        style={{ imeMode: "disabled" }} // Prevents IME on some browsers
         // onCompositionStart={(e) => handleCompositionStart(e)}
         // onCompositionUpdate={(e) => handleCompositionUpdate(e)}
         // onCompositionEnd={(e) => handleCompositionEnd(e)}
