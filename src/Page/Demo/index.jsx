@@ -6,7 +6,7 @@ const Demo = () => {
   const [valueInput, setValeInput] = useState("");
   const [valueInput2, setValeInput2] = useState("");
 
-  const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
+  const invalidTest = /\s+/g;
   const handleOnChange = (e) => {
     let value = e.target.value;
     if (value && invalidTest.test(value)) {
@@ -35,7 +35,7 @@ const Demo = () => {
       <input
         key={key}
         value={valueInput}
-        type="text"
+        type="number"
         placeholder="street name"
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
@@ -43,7 +43,7 @@ const Demo = () => {
         name={`input-${Math.random()}`}
         autoCorrect="off"
         spellCheck="false"
-        inputMode="text"
+        inputMode="numeric"
         // onCompositionStart={() => setValeInput(valueInput)}
         onCompositionEnd={(e) => handleOnChange(e)}
       />
