@@ -1,21 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useRef, useState } from "react";
-import Completed from "./Completed";
-import { contents, options, optionsRadio, value } from "./contanst";
-// import Section from "./Section";
-import IMG from "../../assets/test.png";
 import "./styles.scss";
-import Accordion from "../../common/components/Ancordion";
-import ViewMapBottom from "../../common/components/ViewMapBottom";
 
 const Demo = () => {
   const [valueInput, setValeInput] = useState("");
   const [valueInput2, setValeInput2] = useState("");
 
-  const invalidNameRegex = /[^0-9a-zA-Z.,‘’'-\s]/;
-
+  const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
   const handleOnChange = (e) => {
-    const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
     let value = e.target.value;
     if (value && invalidTest.test(value)) {
       value = value.replace(invalidTest, "");
@@ -24,11 +16,8 @@ const Demo = () => {
   };
 
   const handleKeyDown = (event) => {
-    console.log(">>>", {
-      invalid: invalidNameRegex.test(event.key),
-      test: /[^0-9a-zA-Z.,‘’'-\s]/.test(event.key),
-    });
-    if (invalidNameRegex.test(event.key) && !event.ctrlKey && !event.metaKey) {
+    let convertRegex = new RegExp(invalidTest);
+    if (convertRegex.test(event.key) && !event.ctrlKey && !event.metaKey) {
       event.preventDefault();
     }
   };
@@ -36,10 +25,10 @@ const Demo = () => {
   const handleOnChange2 = (e) => {
     setValeInput2(e.target.value);
   };
-  const [key, setKey] = useState(0); // Cấu hình key để ép component render lại
+  const [key, setKey] = useState(0);
 
   const handleOnFocus = () => {
-    setKey((prevKey) => prevKey + 1); // Thay đổi key mỗi khi focus vào input
+    setKey((prevKey) => prevKey + 1);
   };
   return (
     <form autoComplete="off">
@@ -55,8 +44,8 @@ const Demo = () => {
         autoCorrect="off"
         spellCheck="false"
         inputMode="text"
-        onCompositionStart={() => setValeInput(valueInput)}
-        onCompositionEnd={() => setValeInput(valueInput)}
+        // onCompositionStart={() => setValeInput(valueInput)}
+        onCompositionEnd={(e) => handleOnChange(e)}
       />
       <input
         key={key + 2}
@@ -70,7 +59,7 @@ const Demo = () => {
         spellCheck="false"
         inputMode="text"
         onCompositionStart={() => setValeInput(valueInput)}
-        onCompositionEnd={() => setValeInput(valueInput)}
+        // onCompositionEnd={(e) => handleOnChange(e)}
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
