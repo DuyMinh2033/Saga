@@ -44,10 +44,6 @@ const Demo = () => {
   //   }
   // };
 
-  const handleOnChange2 = (e) => {
-    console.log("value2", e.target.value);
-    setValeInput2(e.target.value);
-  };
   // const [key, setKey] = useState(0);
 
   // const inputRef = useRef(null);
@@ -57,39 +53,46 @@ const Demo = () => {
   //   setIsReadyOnly(false);
   // };
 
+  const handleOnChange2 = (e) => {
+    console.log("value2", e.target.value);
+    setValeInput2(e.target.value);
+  };
   const removeSpecials = (evt) => {
     const value = evt.target.value;
     const patt = /[^\x20-\x7E]+/;
     setValeInput(value.replace(patt, ""));
   };
+
+  const handleCompositionStart = (e) => {
+    console.log("Composition started", e.target.value);
+  };
+
+  const handleCompositionUpdate = (e) => {
+    console.log("handleCompositionUpdate", e.target.value);
+    setValeInput2(e.target.value);
+  };
+
+  const handleCompositionEnd = (e) => {
+    console.log("Composition ended", e.target.value);
+  };
+
   return (
     <form autoComplete="new-password" method="" action="">
       <input
-        // key={key}
         value={valueInput}
         type="text"
         placeholder="street name"
         onChange={removeSpecials}
-        // onKeyDown={handleKeyDown}
-        autoComplete="new-password"
-        name={`input-${Math.random()}`}
-        autoCorrect="off"
-        spellCheck="false"
+        onCompositionStart={(e) => handleCompositionStart(e)}
+        onCompositionUpdate={(e) => handleCompositionUpdate(e)}
+        onCompositionEnd={(e) => handleCompositionEnd(e)}
       />
       <input
-        // ref={inputRef}
-        // key={key + 2}
-        // type="number"
-        // placeholder="city"
         value={valueInput2}
         onChange={handleOnChange2}
-        // autoComplete="new-password"
-        // name={`input-${Math.random()}`}
-        // autoCorrect="off"
-        // spellCheck="false"
-        // inputMode="text"
-        // onFocus={handleOnFocus}
-        // readOnly={isReadyOnly}
+        onCompositionStart={(e) => handleCompositionStart(e)}
+        onCompositionUpdate={(e) => handleCompositionUpdate(e)}
+        onCompositionEnd={(e) => handleCompositionEnd(e)}
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
