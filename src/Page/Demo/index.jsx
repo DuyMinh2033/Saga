@@ -54,12 +54,14 @@ const Demo = () => {
   };
 
   const onCompositionEnd = (e) => {
+    console.log("onCompositionEnd1", e.target.value);
     if (e.target.value !== valueInput) {
       e.target.value === valueInput;
     }
   };
 
   const onCompositionEnd2 = (e) => {
+    console.log("onCompositionEnd2", e.target.value);
     if (e.target.value !== valueInput2) {
       e.target.value === valueInput2;
     }
@@ -78,7 +80,7 @@ const Demo = () => {
         name={`input-${Math.random()}`}
         autoCorrect="off"
         spellCheck="false"
-        onCompositionEnd={(e) => onCompositionEnd()}
+        onCompositionEnd={(e) => onCompositionEnd(e)}
       />
       <input
         key={key + 2}
@@ -91,7 +93,7 @@ const Demo = () => {
         autoCorrect="off"
         spellCheck="false"
         inputMode="text"
-        onCompositionEnd={(e) => onCompositionEnd2()}
+        onCompositionEnd={(e) => onCompositionEnd2(e)}
         // onCompositionEnd={(e) => handleOnChange(e)}
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
