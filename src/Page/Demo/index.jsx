@@ -57,7 +57,7 @@ const Demo = () => {
   };
 
   return (
-    <form autoComplete="one-time-code">
+    <form autoComplete="one-time-code" method="post" action="">
       <input
         key={key}
         value={valueInput}
@@ -73,7 +73,7 @@ const Demo = () => {
       <input
         ref={inputRef}
         key={key + 2}
-        type="search"
+        type="number"
         placeholder="city"
         value={valueInput2}
         onChange={handleOnChange2}
