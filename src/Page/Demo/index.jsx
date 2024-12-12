@@ -72,8 +72,11 @@ const Demo = () => {
     setValeInput2(e.target.value);
   };
 
-  const handleCompositionEnd = (e) => {
-    console.log("Composition ended", e.target.value);
+  const handleCompositionEnd = (evt) => {
+    const value = evt.target.value;
+    const patt = /[^\x20-\x7E]+/;
+    setValeInput(value.replace(patt, ""));
+    console.log("Composition ended", evt.target.value);
   };
 
   const handlePaste = (e) => {
@@ -87,6 +90,7 @@ const Demo = () => {
         type="text"
         placeholder="street name"
         onChange={removeSpecials}
+        onCompositionEnd={(e) => handleCompositionEnd(e)}
         // onCompositionStart={(e) => handleCompositionStart(e)}
         // onCompositionUpdate={(e) => handleCompositionUpdate(e)}
         // onCompositionEnd={(e) => handleCompositionEnd(e)}
@@ -96,7 +100,7 @@ const Demo = () => {
         onChange={handleOnChange2}
         onCompositionStart={(e) => handleCompositionStart(e)}
         onCompositionUpdate={(e) => handleCompositionUpdate(e)}
-        onCompositionEnd={(e) => handleCompositionEnd(e)}
+        // onCompositionEnd={(e) => handleCompositionEnd(e)}
         onPaste={handlePaste} // Ngừng dán dữ liệu
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
