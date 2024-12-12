@@ -44,9 +44,10 @@ const Demo = () => {
   //   }
   // };
 
-  // const handleOnChange2 = (e) => {
-  //   setValeInput2(e.target.value);
-  // };
+  const handleOnChange2 = (e) => {
+    console.log("value2", e.target.value);
+    setValeInput2(e.target.value);
+  };
   // const [key, setKey] = useState(0);
 
   // const inputRef = useRef(null);
@@ -76,19 +77,19 @@ const Demo = () => {
         spellCheck="false"
       />
       <input
-      // ref={inputRef}
-      // key={key + 2}
-      // type="number"
-      // placeholder="city"
-      // value={valueInput2}
-      // onChange={handleOnChange2}
-      // autoComplete="new-password"
-      // name={`input-${Math.random()}`}
-      // autoCorrect="off"
-      // spellCheck="false"
-      // inputMode="text"
-      // onFocus={handleOnFocus}
-      // readOnly={isReadyOnly}
+        // ref={inputRef}
+        // key={key + 2}
+        // type="number"
+        // placeholder="city"
+        value={valueInput2}
+        onChange={handleOnChange2}
+        // autoComplete="new-password"
+        // name={`input-${Math.random()}`}
+        // autoCorrect="off"
+        // spellCheck="false"
+        // inputMode="text"
+        // onFocus={handleOnFocus}
+        // readOnly={isReadyOnly}
       />
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
