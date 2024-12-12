@@ -57,7 +57,7 @@ const Demo = () => {
   };
 
   return (
-    <form autoComplete="one-time-code" method="post" action="">
+    <form autoComplete="new-password" method="post" action="">
       <input
         key={key}
         value={valueInput}
