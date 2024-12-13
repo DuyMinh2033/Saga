@@ -6,58 +6,31 @@ const Demo = () => {
   const [valueInput, setValeInput] = useState("");
   const [valueInput2, setValeInput2] = useState("");
 
-  const handleKeyDown = (event) => {
-    const ignoreKeys = [
-      "ArrowLeft",
-      "ArrowRight",
-      "ArrowUp",
-      "ArrowDown",
-      "Backspace",
-      "Delete",
-      "Tab",
-      "Enter",
-      "Escape",
-      "Home",
-      "End",
-      "PageUp",
-      "PageDown",
-    ];
-    if (ignoreKeys.includes(event.key)) {
-      return;
-    }
-    if (event.ctrlKey || event.metaKey) {
-      return;
-    }
-    let convertRegex = new RegExp(/[^\x20-\x7E]+/);
-    if (!convertRegex.test(event.key)) {
-      event.preventDefault();
-    }
-  };
+  const isFirstFocus = useRef(true);
 
   const [isComposition, setIsComposition] = useState(false);
-  const timeOut = useRef(null);
+
   const handleOnChange2 = (e) => {
     if (!isComposition) {
       const value = e.target.value;
       setValeInput2(value);
+      console.log("Value updated:", value);
     }
   };
+
   const handleCompositionEnd = (e) => {
     setIsComposition(false);
+    setValeInput2(e.target.value);
+    console.log("Composition ended, set isComposition false");
   };
 
   const handleCompositionStart = () => {
-    setIsComposition(true);
-    console.log("set false isComposition true");
-  };
-
-  useEffect(() => {
-    if (isComposition) {
-      clearTimeout(timeOut.current);
-      timeOut.current = setTimeout(() => setIsComposition(false), 100);
-      console.log("set false isComposition");
+    if (isFirstFocus.current) {
+      setIsComposition(true);
+      isFirstFocus.current = false;
+      console.log("First focus: set isComposition true");
     }
-  }, [isComposition]);
+  };
 
   return (
     <form
@@ -77,8 +50,7 @@ const Demo = () => {
         type="text"
         placeholder="street name"
         onKeyDown={(e) => e.preventDefault()}
-        // onChange={(e) => setValeInput(e.target.value)}
-        style={{ imeMode: "disabled" }} // Prevents IME on some browsers
+        style={{ imeMode: "disabled" }}
         inputMode="text"
         autoComplete="off"
         autoCorrect="off"
