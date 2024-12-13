@@ -29,23 +29,34 @@ const Demo = () => {
       return;
     }
     let convertRegex = new RegExp(/[^\x20-\x7E]+/);
-    if (convertRegex.test(event.key)) {
+    if (!convertRegex.test(event.key)) {
       event.preventDefault();
     }
   };
 
   const [isComposition, setIsComposition] = useState(false);
+  const RefCount = useRef(0);
 
   const handleOnChange2 = (e) => {
-    if (!isComposition) {
+    console.log("isComposition change", isComposition);
+    if (!isComposition || RefCount.current === true) {
       const value = e.target.value;
       setValeInput2(value);
     }
   };
 
+  useEffect(() => {
+    if (isComposition) {
+      RefCount.current = true;
+    }
+  }, [isComposition]);
+
   const handleCompositionEnd = (e) => {
     setIsComposition(false);
-    setValeInput2(e.target.value);
+  };
+
+  const handleCompositionStart = () => {
+    setIsComposition(true);
   };
 
   return (
@@ -66,6 +77,7 @@ const Demo = () => {
         type="text"
         placeholder="street name"
         onKeyDown={handleKeyDown}
+        onChange={(e) => setValeInput(e.target.value)}
         style={{ imeMode: "disabled" }} // Prevents IME on some browsers
         inputMode="text"
         autoComplete="off"
@@ -80,7 +92,7 @@ const Demo = () => {
         autoComplete="off"
         autoCorrect="off"
         spellCheck="false"
-        onCompositionStart={() => setIsComposition(true)}
+        onCompositionStart={handleCompositionStart}
         onCompositionEnd={handleCompositionEnd}
       />
 
