@@ -61,6 +61,10 @@ const Demo = () => {
     }
   };
 
+  const handleCompositionStart = (e) => {
+    console.log("handleCompositionStart", e.target.value);
+  };
+
   return (
     <form
       autoComplete="new-password"
@@ -93,6 +97,7 @@ const Demo = () => {
         autoComplete="off"
         autoCorrect="off"
         spellCheck="false"
+        onCompositionStart={(e) => handleCompositionStart(e)}
         onCompositionEnd={(e) => handleCompositionEnd(e)}
       />
 
