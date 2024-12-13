@@ -6,7 +6,7 @@ const Demo = () => {
   const [valueInput, setValeInput] = useState("");
   const [valueInput2, setValeInput2] = useState("");
 
-  const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
+  // const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
 
   // const handleOnChange = (e) => {
   //   let value = e.target.value;
@@ -43,26 +43,14 @@ const Demo = () => {
   //     event.preventDefault();
   //   }
   // };
+  const [isComposition, setIsComposition] = useState(false);
 
+  console.log("log >>>>>", isComposition);
   const handleOnChange2 = (e) => {
-    console.log("value2", e.target.value);
-    setValeInput2(e.target.value);
-  };
-
-  const handleCompositionEnd = (e) => {
-    console.log({
-      valuehandleCompositionEnd: e.target.value,
-      default: valueInput2,
-    });
-
-    if (e.target.value !== valueInput2) {
-      e.target.value = valueInput2;
-      setValeInput2(valueInput2);
+    if (!isComposition) {
+      const value = e.target.value;
+      setValeInput2(value);
     }
-  };
-
-  const handleCompositionStart = (e) => {
-    console.log("handleCompositionStart", e.target.value);
   };
 
   return (
@@ -97,8 +85,8 @@ const Demo = () => {
         autoComplete="off"
         autoCorrect="off"
         spellCheck="false"
-        onCompositionStart={(e) => handleCompositionStart(e)}
-        onCompositionEnd={(e) => handleCompositionEnd(e)}
+        onCompositionStart={() => setIsComposition(true)}
+        onCompositionEnd={() => setIsComposition(false)}
       />
 
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
