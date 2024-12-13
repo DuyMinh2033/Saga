@@ -53,17 +53,6 @@ const Demo = () => {
     }
   };
 
-  useEffect(() => {
-    if (isComposition) {
-      console.log("isComposition UseEffect:>>>>", isComposition);
-
-      clearTimeout(timeOut.current);
-
-      // clearTimeout(timeOut.current);
-      timeOut.current = setTimeout(() => setIsComposition(false), 20);
-    }
-  }, [isComposition]);
-
   return (
     <form
       autoComplete="new-password"
@@ -96,7 +85,12 @@ const Demo = () => {
         autoComplete="off"
         autoCorrect="off"
         spellCheck="false"
-        onCompositionStart={() => setIsComposition(true)}
+        onCompositionStart={() => {
+          setIsComposition(true);
+          clearTimeout(timeOut.current);
+          // clearTimeout(timeOut.current);
+          timeOut.current = setTimeout(() => setIsComposition(false), 50);
+        }}
       />
 
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
