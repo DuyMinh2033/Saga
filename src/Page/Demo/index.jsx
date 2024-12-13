@@ -6,16 +6,6 @@ const Demo = () => {
   const [valueInput, setValeInput] = useState("");
   const [valueInput2, setValeInput2] = useState("");
 
-  // const invalidTest = /[^0-9a-zA-Z.,‘’'-\s]/g;
-
-  // const handleOnChange = (e) => {
-  //   let value = e.target.value;
-  //   if (value && invalidTest.test(value)) {
-  //     value = value.replace(invalidTest, "");
-  //   }
-  //   setValeInput(value);
-  // };
-
   const handleKeyDown = (event) => {
     const ignoreKeys = [
       "ArrowLeft",
@@ -52,7 +42,12 @@ const Demo = () => {
       setValeInput2(value);
     }
   };
-  console.log("is", isComposition);
+
+  const handleCompositionEnd = (e) => {
+    setIsComposition(false);
+    setValeInput2(e.target.value);
+  };
+
   return (
     <form
       autoComplete="new-password"
@@ -86,7 +81,7 @@ const Demo = () => {
         autoCorrect="off"
         spellCheck="false"
         onCompositionStart={() => setIsComposition(true)}
-        onCompositionEnd={() => setIsComposition(false)}
+        onCompositionEnd={handleCompositionEnd}
       />
 
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
