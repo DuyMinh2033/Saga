@@ -47,6 +47,7 @@ const Demo = () => {
   const [isComposition, setIsComposition] = useState(false);
 
   const handleOnChange2 = (e) => {
+    console.log("isComposition>> ", isComposition);
     if (!isComposition) {
       const value = e.target.value;
       setValeInput2(value);
