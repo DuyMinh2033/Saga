@@ -51,6 +51,7 @@ const Demo = () => {
       const value = e.target.value;
       setValeInput2(value);
     }
+    setIsComposition(false);
   };
 
   return (
@@ -86,8 +87,6 @@ const Demo = () => {
         autoCorrect="off"
         spellCheck="false"
         onCompositionStart={() => setIsComposition(true)}
-        onCompositionUpdate={() => setIsComposition(false)}
-        onCompositionEnd={() => setIsComposition(false)}
       />
 
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
