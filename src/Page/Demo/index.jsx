@@ -56,8 +56,11 @@ const Demo = () => {
   useEffect(() => {
     if (isComposition) {
       console.log("isComposition UseEffect:>>>>", isComposition);
+
       clearTimeout(timeOut.current);
-      timeOut.current = setTimeout(() => setIsComposition(false), 100);
+
+      // clearTimeout(timeOut.current);
+      timeOut.current = setTimeout(() => setIsComposition(false), 20);
     }
   }, [isComposition]);
 
