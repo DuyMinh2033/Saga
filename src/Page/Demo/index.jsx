@@ -16,36 +16,36 @@ const Demo = () => {
   //   setValeInput(value);
   // };
 
-  // const handleKeyDown = (event) => {
-  //   const ignoreKeys = [
-  //     "ArrowLeft",
-  //     "ArrowRight",
-  //     "ArrowUp",
-  //     "ArrowDown",
-  //     "Backspace",
-  //     "Delete",
-  //     "Tab",
-  //     "Enter",
-  //     "Escape",
-  //     "Home",
-  //     "End",
-  //     "PageUp",
-  //     "PageDown",
-  //   ];
-  //   if (ignoreKeys.includes(event.key)) {
-  //     return;
-  //   }
-  //   if (event.ctrlKey || event.metaKey) {
-  //     return;
-  //   }
-  //   let convertRegex = new RegExp(/[^\x20-\x7E]+/);
-  //   if (convertRegex.test(event.key)) {
-  //     event.preventDefault();
-  //   }
-  // };
+  const handleKeyDown = (event) => {
+    const ignoreKeys = [
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowUp",
+      "ArrowDown",
+      "Backspace",
+      "Delete",
+      "Tab",
+      "Enter",
+      "Escape",
+      "Home",
+      "End",
+      "PageUp",
+      "PageDown",
+    ];
+    if (ignoreKeys.includes(event.key)) {
+      return;
+    }
+    if (event.ctrlKey || event.metaKey) {
+      return;
+    }
+    let convertRegex = new RegExp(/[^\x20-\x7E]+/);
+    if (convertRegex.test(event.key)) {
+      event.preventDefault();
+    }
+  };
+
   const [isComposition, setIsComposition] = useState(false);
 
-  console.log("log >>>>>", isComposition);
   const handleOnChange2 = (e) => {
     if (!isComposition) {
       const value = e.target.value;
@@ -70,7 +70,7 @@ const Demo = () => {
         value={valueInput}
         type="text"
         placeholder="street name"
-        onKeyDown={(e) => e.preventDefault()}
+        onKeyDown={handleKeyDown}
         style={{ imeMode: "disabled" }} // Prevents IME on some browsers
         inputMode="text"
         autoComplete="off"
@@ -86,6 +86,7 @@ const Demo = () => {
         autoCorrect="off"
         spellCheck="false"
         onCompositionStart={() => setIsComposition(true)}
+        onCompositionUpdate={() => setIsComposition(false)}
         onCompositionEnd={() => setIsComposition(false)}
       />
 
