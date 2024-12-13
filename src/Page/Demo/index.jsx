@@ -35,17 +35,11 @@ const Demo = () => {
   };
 
   const [isComposition, setIsComposition] = useState(false);
-  console.log("🚀 ~ Demo ~ isComposition:", isComposition);
-  const [isValueChange, setIsValueChange] = useState("");
   const timeOut = useRef(null);
   const handleOnChange2 = (e) => {
     if (!isComposition) {
       const value = e.target.value;
       setValeInput2(value);
-    } else {
-      clearTimeout(timeOut.current);
-      timeOut.current = setTimeout(() => setIsComposition(false), 50);
-      setIsComposition(false);
     }
   };
   const handleCompositionEnd = (e) => {
@@ -54,7 +48,16 @@ const Demo = () => {
 
   const handleCompositionStart = () => {
     setIsComposition(true);
+    console.log("set false isComposition true");
   };
+
+  useEffect(() => {
+    if (isComposition) {
+      clearTimeout(timeOut.current);
+      timeOut.current = setTimeout(() => setIsComposition(false), 100);
+      console.log("set false isComposition");
+    }
+  }, [isComposition]);
 
   return (
     <form
