@@ -54,6 +54,7 @@ const Demo = () => {
   };
 
   const handleFocus = () => {
+    console.log("isCom", isComposition);
     clearTimeout(timeOut.current);
     // clearTimeout(timeOut.current);
     timeOut.current = setTimeout(() => setIsComposition(false), 50);
