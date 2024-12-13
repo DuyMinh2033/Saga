@@ -56,7 +56,7 @@ const Demo = () => {
   useEffect(() => {
     if (isComposition) {
       clearTimeout(timeOut.current);
-      timeOut.current = setTimeout(() => setIsComposition(false), 100);
+      timeOut.current = setTimeout(() => setIsComposition(false), 500);
     }
   }, [isComposition]);
 
