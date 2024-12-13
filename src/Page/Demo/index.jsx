@@ -45,18 +45,14 @@ const Demo = () => {
   };
 
   const [isComposition, setIsComposition] = useState(false);
-  const timeOut = useRef(null);
+
   const handleOnChange2 = (e) => {
-    console.log("change", isComposition);
     if (!isComposition) {
       const value = e.target.value;
       setValeInput2(value);
     }
-
-    clearTimeout(timeOut.current);
-    // clearTimeout(timeOut.current);
   };
-
+  console.log("is", isComposition);
   return (
     <form
       autoComplete="new-password"
@@ -90,7 +86,7 @@ const Demo = () => {
         autoCorrect="off"
         spellCheck="false"
         onCompositionStart={() => setIsComposition(true)}
-        onCompositionEnd={() => setTimeout(setIsComposition(false), 10)}
+        onCompositionEnd={() => setIsComposition(false)}
       />
 
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
