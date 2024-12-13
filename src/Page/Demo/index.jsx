@@ -70,7 +70,7 @@ const Demo = () => {
         onCompositionStart={handleCompositionStart}
         onCompositionEnd={handleCompositionEnd}
         onBlur={() => {
-          isFirstFocus.current === true;
+          isFirstFocus.current = true;
         }}
       />
 
