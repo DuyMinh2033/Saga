@@ -35,22 +35,21 @@ const Demo = () => {
   };
 
   const [isComposition, setIsComposition] = useState(false);
+  const [isValueChange, setIsValueChange] = useState("");
   const RefCount = useRef(0);
 
   const handleOnChange2 = (e) => {
-    console.log("isComposition change", isComposition);
-    if (!isComposition || RefCount.current === true) {
+    if (!isComposition) {
+      console.log("case !isComposition", !isComposition);
       const value = e.target.value;
       setValeInput2(value);
+    } else {
+      console.log("case isComposition", isComposition);
+      setIsComposition(false);
     }
   };
 
-  useEffect(() => {
-    if (isComposition) {
-      setTimeout(() => (RefCount.current = true), 300);
-    }
-  }, [isComposition]);
-  console.log("RefCount.current", RefCount.current);
+  console.log("RefCount.current", isComposition);
 
   const handleCompositionEnd = (e) => {
     setIsComposition(false);
