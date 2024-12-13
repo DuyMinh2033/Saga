@@ -53,6 +53,12 @@ const Demo = () => {
     }
   };
 
+  const handleFocus = () => {
+    clearTimeout(timeOut.current);
+    // clearTimeout(timeOut.current);
+    timeOut.current = setTimeout(() => setIsComposition(false), 50);
+  };
+
   return (
     <form
       autoComplete="new-password"
@@ -87,10 +93,8 @@ const Demo = () => {
         spellCheck="false"
         onCompositionStart={() => {
           setIsComposition(true);
-          clearTimeout(timeOut.current);
-          // clearTimeout(timeOut.current);
-          timeOut.current = setTimeout(() => setIsComposition(false), 50);
         }}
+        onFocus={handleFocus}
       />
 
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
