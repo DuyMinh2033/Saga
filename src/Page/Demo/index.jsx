@@ -36,21 +36,17 @@ const Demo = () => {
 
   const [isComposition, setIsComposition] = useState(false);
   const [isValueChange, setIsValueChange] = useState("");
-  const RefCount = useRef(0);
-
+  const timeOut = useRef(null);
   const handleOnChange2 = (e) => {
     if (!isComposition) {
-      console.log("case !isComposition", !isComposition);
       const value = e.target.value;
       setValeInput2(value);
     } else {
-      console.log("case isComposition", isComposition);
+      clearTimeout(timeOut.current);
+      timeOut.current = setTimeout(() => setIsComposition(false), 50);
       setIsComposition(false);
     }
   };
-
-  console.log("RefCount.current", isComposition);
-
   const handleCompositionEnd = (e) => {
     setIsComposition(false);
   };
