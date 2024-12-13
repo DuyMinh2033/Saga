@@ -76,8 +76,8 @@ const Demo = () => {
         value={valueInput}
         type="text"
         placeholder="street name"
-        onKeyDown={handleKeyDown}
-        onChange={(e) => setValeInput(e.target.value)}
+        onKeyDown={(e) => e.preventDefault()}
+        // onChange={(e) => setValeInput(e.target.value)}
         style={{ imeMode: "disabled" }} // Prevents IME on some browsers
         inputMode="text"
         autoComplete="off"
