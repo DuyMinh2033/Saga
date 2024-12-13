@@ -51,13 +51,13 @@ const Demo = () => {
       const value = e.target.value;
       setValeInput2(value);
     }
-  };
 
-  const handleFocus = () => {
-    console.log("isCom", isComposition);
     clearTimeout(timeOut.current);
     // clearTimeout(timeOut.current);
-    timeOut.current = setTimeout(() => setIsComposition(false), 50);
+    timeOut.current = setTimeout(() => {
+      console.log("is comming", isComposition);
+      setIsComposition(false);
+    }, 100);
   };
 
   return (
@@ -95,7 +95,6 @@ const Demo = () => {
         onCompositionStart={() => {
           setIsComposition(true);
         }}
-        onFocus={handleFocus}
       />
 
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
