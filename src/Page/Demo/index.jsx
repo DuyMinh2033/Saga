@@ -12,16 +12,15 @@ const Demo = () => {
 
   const handleOnChange2 = (e) => {
     const value = e.target.value;
-    console.log("Value old:", value);
     if (!isComposition) {
       setValeInput2(value);
-      console.log("Value updated:", value);
     } else {
       setIsComposition(false);
     }
   };
 
   const handleCompositionEnd = (e) => {
+    console.log("e :>>");
     setIsComposition(false);
     setValeInput2(e.target.value);
     e.target.blur();
@@ -34,7 +33,7 @@ const Demo = () => {
       console.log("First focus: set isComposition true");
     }
   };
-  console.log("isFirstFocus.current", isFirstFocus.current);
+
   return (
     <form
       autoComplete="new-password"
