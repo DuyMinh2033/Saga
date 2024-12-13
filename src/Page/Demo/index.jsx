@@ -47,6 +47,7 @@ const Demo = () => {
   const [isComposition, setIsComposition] = useState(false);
   const timeOut = useRef(null);
   const handleOnChange2 = (e) => {
+    console.log("change", isComposition);
     if (!isComposition) {
       const value = e.target.value;
       setValeInput2(value);
@@ -54,10 +55,6 @@ const Demo = () => {
 
     clearTimeout(timeOut.current);
     // clearTimeout(timeOut.current);
-    timeOut.current = setTimeout(() => {
-      console.log("is comming", isComposition);
-      setIsComposition(false);
-    }, 100);
   };
 
   return (
@@ -92,9 +89,8 @@ const Demo = () => {
         autoComplete="off"
         autoCorrect="off"
         spellCheck="false"
-        onCompositionStart={() => {
-          setIsComposition(true);
-        }}
+        onCompositionStart={() => setIsComposition(true)}
+        onCompositionEnd={() => setTimeout(setIsComposition(false), 10)}
       />
 
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
