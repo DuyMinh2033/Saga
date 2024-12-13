@@ -21,10 +21,11 @@ const Demo = () => {
     }
   };
 
-  // const handleCompositionEnd = (e) => {
-  //   setIsComposition(false);
-  //   setValeInput2(e.target.value);
-  // };
+  const handleCompositionEnd = (e) => {
+    setIsComposition(false);
+    setValeInput2(e.target.value);
+    e.target.blur();
+  };
 
   const handleCompositionStart = () => {
     if (isFirstFocus.current) {
@@ -33,7 +34,7 @@ const Demo = () => {
       console.log("First focus: set isComposition true");
     }
   };
-
+  console.log("isFirstFocus.current", isFirstFocus.current);
   return (
     <form
       autoComplete="new-password"
@@ -67,8 +68,10 @@ const Demo = () => {
         autoCorrect="off"
         spellCheck="false"
         onCompositionStart={handleCompositionStart}
-        onCompositionEnd={(e) => e.target.blur()}
-        onBlur={() => isFirstFocus.current === true}
+        onCompositionEnd={handleCompositionEnd}
+        onBlur={() => {
+          isFirstFocus.current === true;
+        }}
       />
 
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
