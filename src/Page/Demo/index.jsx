@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import "./styles.scss";
 
 const Demo = () => {
@@ -45,15 +45,20 @@ const Demo = () => {
   };
 
   const [isComposition, setIsComposition] = useState(false);
-
+  const timeOut = useRef(null);
   const handleOnChange2 = (e) => {
-    console.log("isComposition>> ", isComposition);
     if (!isComposition) {
       const value = e.target.value;
       setValeInput2(value);
     }
-    setIsComposition(false);
   };
+
+  useEffect(() => {
+    if (isComposition) {
+      clearTimeout(timeOut.current);
+      timeOut.current = setTimeout(() => setIsComposition(false), 100);
+    }
+  }, [isComposition]);
 
   return (
     <form
