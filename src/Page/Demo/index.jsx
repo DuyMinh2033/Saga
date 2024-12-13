@@ -35,6 +35,7 @@ const Demo = () => {
   };
 
   const [isComposition, setIsComposition] = useState(false);
+  console.log("🚀 ~ Demo ~ isComposition:", isComposition);
   const [isValueChange, setIsValueChange] = useState("");
   const timeOut = useRef(null);
   const handleOnChange2 = (e) => {
