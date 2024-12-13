@@ -21,12 +21,10 @@ const Demo = () => {
     }
   };
 
-  const handleCompositionEnd = (e) => {
-    setIsComposition(false);
-    setValeInput2(e.target.value);
-    console.log("Composition ended, set isComposition false");
-  };
-  console.log("isFirstFocus.current", isFirstFocus.current);
+  // const handleCompositionEnd = (e) => {
+  //   setIsComposition(false);
+  //   setValeInput2(e.target.value);
+  // };
 
   const handleCompositionStart = () => {
     if (isFirstFocus.current) {
@@ -69,7 +67,8 @@ const Demo = () => {
         autoCorrect="off"
         spellCheck="false"
         onCompositionStart={handleCompositionStart}
-        onCompositionEnd={handleCompositionEnd}
+        onCompositionEnd={(e) => e.target.blur()}
+        onBlur={() => isFirstFocus.current === true}
       />
 
       <p style={{ color: "red" }}>input 1 : {valueInput}</p>
