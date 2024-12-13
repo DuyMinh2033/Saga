@@ -47,9 +47,10 @@ const Demo = () => {
 
   useEffect(() => {
     if (isComposition) {
-      RefCount.current = true;
+      setTimeout(() => (RefCount.current = true), 300);
     }
   }, [isComposition]);
+  console.log("RefCount.current", RefCount.current);
 
   const handleCompositionEnd = (e) => {
     setIsComposition(false);
