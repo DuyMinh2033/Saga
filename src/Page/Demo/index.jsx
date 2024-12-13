@@ -11,10 +11,13 @@ const Demo = () => {
   const [isComposition, setIsComposition] = useState(false);
 
   const handleOnChange2 = (e) => {
+    const value = e.target.value;
+    console.log("Value old:", value);
     if (!isComposition) {
-      const value = e.target.value;
       setValeInput2(value);
       console.log("Value updated:", value);
+    } else {
+      setIsComposition(false);
     }
   };
 
@@ -23,6 +26,7 @@ const Demo = () => {
     setValeInput2(e.target.value);
     console.log("Composition ended, set isComposition false");
   };
+  console.log("isFirstFocus.current", isFirstFocus.current);
 
   const handleCompositionStart = () => {
     if (isFirstFocus.current) {
