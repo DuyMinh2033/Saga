@@ -75,6 +75,7 @@ const Input = (props) => {
         onBlur={handleOnBlur}
         {...other}
       />
+      <p>isEnter:{`${isEnter}`}</p>
     </>
   );
 };

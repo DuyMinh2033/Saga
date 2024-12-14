@@ -30,7 +30,6 @@ const Demo = () => {
           overflow: "auto",
         }}
       >
-        <Input regex={regexInputNumber} />
         <Controller
           name="email"
           control={control}
@@ -39,7 +38,7 @@ const Demo = () => {
         <Controller
           name="streetName"
           control={control}
-          render={({ field }) => <Input regex={regexInput} {...field} />}
+          render={({ field }) => <Input {...field} />}
         />
         <button onClick={handleSubmit(submitForm)}>Submit</button>
       </div>
