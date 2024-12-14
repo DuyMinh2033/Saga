@@ -10,25 +10,44 @@ const Input = (props) => {
     regex,
     type = "text",
     value,
-    ...field
+    ...other
   } = props;
+
   const isFirstFocus = useRef(true);
   const [isComposition, setIsComposition] = useState(false);
   const [isEnter, setIsEnter] = useState(false);
+  const [valueDeFault, setValueDeFault] = useState("");
 
+  // const [isKeyValid, setKeyIsValid] = useState(true);
   const handleOnChange = (e) => {
-    let value = e.target.value;
-    if (!isComposition || isEnter) {
-      if (regex) value = value.replace(regex, "");
+    // debugger;
+    // if (!isKeyValid) {
+    //   setKeyIsValid(true);
+    //   return;
+    // }
+
+    if (isEnter) {
+      let value = e.target.value;
+      if (regex) {
+        if (isComposition) {
+          console.log("isComposition", { value, valueDeFault });
+          if (value !== valueDeFault) setIsComposition(false);
+          return;
+        } else {
+          value = value.replace(regex, "");
+        }
+      }
+      setValueDeFault(value);
       onChange(value);
     }
   };
 
-  const handleCompositionStart = () => {
-    if (isFirstFocus.current) {
-      setIsComposition(true);
-      isFirstFocus.current = false;
-    }
+  const handleCompositionStart = (e) => {
+    e.target.value = e.target.value.replace(regex, "");
+    setIsComposition(true);
+    // if (isFirstFocus.current) {
+    //   isFirstFocus.current = false;
+    // }
   };
 
   const handleOnBlur = (e) => {
@@ -39,8 +58,36 @@ const Input = (props) => {
 
   const handleKeyDown = () => {
     setIsEnter(true);
+    // if (!regex) return;
+
+    // const { key, metaKey, ctrlKey, altKey, shiftKey } = event;
+    // const ignoredKeys = [
+    //   "Backspace",
+    //   "Tab",
+    //   "ArrowLeft",
+    //   "ArrowRight",
+    //   "ArrowUp",
+    //   "ArrowDown",
+    //   "Enter",
+    //   "Delete",
+    // ];
+    // if (ignoredKeys.includes(key) || metaKey || ctrlKey || altKey) {
+    //   return;
+    // }
+    // if (key === "Process") {
+    //   setKeyIsValid(false);
+    //   return;
+    // }
+    // // debugger;
+    // console.log(key);
+    // const newRegex = new RegExp(regex);
+    // const isCheckValid = !newRegex.test(key);
+    // setKeyIsValid(isCheckValid);
   };
 
+  const handleOnInput = (e) => {
+    e.target.value = e.target.value.replace(regex, "");
+  };
   return (
     <>
       <input
@@ -50,9 +97,10 @@ const Input = (props) => {
         value={value}
         onChange={handleOnChange}
         onCompositionStart={handleCompositionStart}
+        onInput={handleOnInput}
         onKeyDown={handleKeyDown}
         onBlur={handleOnBlur}
-        {...field}
+        {...other}
       />
     </>
   );

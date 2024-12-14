@@ -1,39 +1,28 @@
-import { useState } from "react";
 import "./styles.scss";
 import Input from "../../components/Input";
+import { Controller, useForm } from "react-hook-form";
 
+const regexInputNumber = /[^0-9]/g;
 const regexInput = /[^0-9a-zA-Z.,‘’'-\s]/g;
 
 const Demo = () => {
-  const [valueInput1, setValueInput1] = useState("");
-  const [valueInput2, setValeInput2] = useState("");
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      email: "",
+      streetName: "",
+    },
+  });
 
-  // const isFirstFocus = useRef(true);
-
-  // const [isComposition, setIsComposition] = useState(false);
-  // const [isEnter, setIsEnter] = useState(false);
-
-  // const handleOnChange2 = (e) => {
-  //   const value = e.target.value;
-  //   if (!isComposition || isEnter) {
-  //     setValeInput2(value);
-  //   }
-  // };
-
-  // const handleCompositionStart = () => {
-  //   if (isFirstFocus.current) {
-  //     setIsComposition(true);
-  //     isFirstFocus.current = false;
-  //   }
-  // };
+  const submitForm = (value) => {
+    alert(JSON.stringify(value, null, 2));
+  };
 
   return (
     <>
-      <form
+      <div
         style={{
           display: "flex",
           flexDirection: "column",
-          width: "500px",
           justifyContent: "center",
           alignItems: "center",
           gap: "20px",
@@ -41,14 +30,19 @@ const Demo = () => {
           overflow: "auto",
         }}
       >
-        <Input
-          value={valueInput1}
-          regex={regexInput}
-          onChange={(value) => setValueInput1(value)}
+        <Input regex={regexInputNumber} />
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => <Input regex={regexInputNumber} {...field} />}
         />
-        <Input value={valueInput2} onChange={(value) => setValeInput2(value)} />
-      </form>
-      <p style={{ color: "red" }}>input 2: {valueInput2}</p>
+        <Controller
+          name="streetName"
+          control={control}
+          render={({ field }) => <Input regex={regexInput} {...field} />}
+        />
+        <button onClick={handleSubmit(submitForm)}>Submit</button>
+      </div>
     </>
   );
 };
