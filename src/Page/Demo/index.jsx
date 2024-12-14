@@ -1,44 +1,28 @@
-/* eslint-disable no-unused-vars */
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import "./styles.scss";
 
 const Demo = () => {
-  const [valueInput, setValeInput] = useState("");
-  const [valueInput2, setValeInput2] = useState("");
-
-  const isFirstFocus = useRef(true);
-
+  const [valueInput2, setValueInput2] = useState("");
   const [isComposition, setIsComposition] = useState(false);
 
   const handleOnChange2 = (e) => {
     const value = e.target.value;
     if (!isComposition) {
-      setValeInput2(value);
-    } else {
-      setIsComposition(false);
+      setValueInput2(value);
     }
-  };
-
-  const handleCompositionEnd = (e) => {
-    console.log("e :>>");
-    setIsComposition(false);
-    setValeInput2(e.target.value);
-    e.target.blur();
   };
 
   const handleCompositionStart = () => {
-    if (isFirstFocus.current) {
-      setIsComposition(true);
-      isFirstFocus.current = false;
-      console.log("First focus: set isComposition true");
-    }
+    setIsComposition(true);
+  };
+
+  const handleCompositionEnd = (e) => {
+    setIsComposition(false);
+    setValueInput2(e.target.value);
   };
 
   return (
     <form
-      autoComplete="new-password"
-      method=""
-      action=""
       style={{
         display: "flex",
         flexDirection: "column",
@@ -48,32 +32,19 @@ const Demo = () => {
       }}
     >
       <input
-        value={valueInput}
         type="text"
         placeholder="street name"
         onKeyDown={(e) => e.preventDefault()}
-        style={{ imeMode: "disabled" }}
-        inputMode="text"
-        autoComplete="off"
-        autoCorrect="off"
-        spellCheck="false"
       />
+
       <input
         value={valueInput2}
         onChange={handleOnChange2}
         placeholder="street"
-        inputMode="text"
-        autoComplete="off"
-        autoCorrect="off"
-        spellCheck="false"
         onCompositionStart={handleCompositionStart}
         onCompositionEnd={handleCompositionEnd}
-        onBlur={() => {
-          isFirstFocus.current = true;
-        }}
       />
 
-      <p style={{ color: "red" }}>input 1 : {valueInput}</p>
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
     </form>
   );
