@@ -41,6 +41,7 @@ const Demo = () => {
       }}
     >
       <input
+        value={""}
         type="text"
         placeholder="street name"
         onKeyDown={(e) => e.preventDefault()}
