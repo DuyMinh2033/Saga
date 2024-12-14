@@ -2,7 +2,6 @@ import "./styles.scss";
 import Input from "../../components/Input";
 import { Controller, useForm } from "react-hook-form";
 
-const regexInputNumber = /[^0-9]/g;
 const regexInput = /[^0-9a-zA-Z.,‘’'-\s]/g;
 
 const Demo = () => {
@@ -33,8 +32,9 @@ const Demo = () => {
         <Controller
           name="email"
           control={control}
-          render={({ field }) => <Input regex={regexInputNumber} {...field} />}
+          render={({ field }) => <Input regex={regexInput} {...field} />}
         />
+
         <Controller
           name="streetName"
           control={control}
