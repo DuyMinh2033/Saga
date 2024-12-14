@@ -52,14 +52,13 @@ const Demo = () => {
         onChange={handleOnChange2}
         placeholder="street"
         onCompositionStart={handleCompositionStart}
-        onCompositionEnd={handleCompositionEnd}
+        // onCompositionEnd={handleCompositionEnd}
         onKeyDown={() => setIsEnter(true)}
         onBlur={() => {
           isFirstFocus.current = true;
           setIsEnter(false);
         }}
       />
-      {/* <p style={{ color: "red" }}>input 1 : {valueInput}</p> */}
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
     </form>
   );
