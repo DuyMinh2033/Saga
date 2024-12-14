@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import "./style.scss";
 const Input = (props) => {
   const {
@@ -13,11 +13,11 @@ const Input = (props) => {
     ...other
   } = props;
 
-  const isFirstFocus = useRef(true);
-  const [isEnter, setIsEnter] = useState(false);
+  // const isFirstFocus = useRef(true);
+  const isEnterKeyBoard = useRef(false);
 
   const handleOnChange = (e) => {
-    if (isEnter) {
+    if (isEnterKeyBoard.current) {
       let value = e.target.value;
       if (regex) {
         value = value.replace(regex, "");
@@ -31,13 +31,13 @@ const Input = (props) => {
   // };
 
   const handleOnBlur = (e) => {
-    isFirstFocus.current = true;
-    setIsEnter(false);
+    // isFirstFocus.current = true;
+    isEnterKeyBoard.current = false;
     onBlur(e);
   };
 
   const handleKeyDown = (e) => {
-    setIsEnter(true);
+    isEnterKeyBoard.current = true;
     if (!regex) return;
 
     const { key, metaKey, ctrlKey, altKey } = event;
