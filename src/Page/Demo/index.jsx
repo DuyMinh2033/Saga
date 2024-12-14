@@ -1,66 +1,55 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import "./styles.scss";
+import Input from "../../components/Input";
+
+const regexInput = /[^0-9a-zA-Z.,‘’'-\s]/g;
 
 const Demo = () => {
+  const [valueInput1, setValueInput1] = useState("");
   const [valueInput2, setValeInput2] = useState("");
 
-  const isFirstFocus = useRef(true);
+  // const isFirstFocus = useRef(true);
 
-  const [isComposition, setIsComposition] = useState(false);
-  const [isEnter, setIsEnter] = useState(false);
+  // const [isComposition, setIsComposition] = useState(false);
+  // const [isEnter, setIsEnter] = useState(false);
 
-  const handleOnChange2 = (e) => {
-    const value = e.target.value;
-    if (!isComposition || isEnter) {
-      setValeInput2(value);
-    }
-  };
+  // const handleOnChange2 = (e) => {
+  //   const value = e.target.value;
+  //   if (!isComposition || isEnter) {
+  //     setValeInput2(value);
+  //   }
+  // };
 
-  const handleCompositionEnd = (e) => {
-    console.log("e :>>");
-    setIsComposition(false);
-    setValeInput2(e.target.value);
-    e.target.blur();
-  };
-
-  const handleCompositionStart = () => {
-    if (isFirstFocus.current) {
-      setIsComposition(true);
-      isFirstFocus.current = false;
-      console.log("First focus: set isComposition true");
-    }
-  };
+  // const handleCompositionStart = () => {
+  //   if (isFirstFocus.current) {
+  //     setIsComposition(true);
+  //     isFirstFocus.current = false;
+  //   }
+  // };
 
   return (
-    <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-        height: "100vh",
-        overflow: "auto",
-      }}
-    >
-      <input
-        value={""}
-        type="text"
-        placeholder="street name"
-        onKeyDown={(e) => e.preventDefault()}
-      />
-      <input
-        value={valueInput2}
-        onChange={handleOnChange2}
-        placeholder="street"
-        onCompositionStart={handleCompositionStart}
-        // onCompositionEnd={handleCompositionEnd}
-        onKeyDown={() => setIsEnter(true)}
-        onBlur={() => {
-          isFirstFocus.current = true;
-          setIsEnter(false);
+    <>
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "500px",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "20px",
+          height: "80vh",
+          overflow: "auto",
         }}
-      />
+      >
+        <Input
+          value={valueInput1}
+          regex={regexInput}
+          onChange={(value) => setValueInput1(value)}
+        />
+        <Input value={valueInput2} onChange={(value) => setValeInput2(value)} />
+      </form>
       <p style={{ color: "red" }}>input 2: {valueInput2}</p>
-    </form>
+    </>
   );
 };
 

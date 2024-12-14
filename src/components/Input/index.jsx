@@ -1,40 +1,60 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import "./style.scss";
 const Input = (props) => {
   const {
     placeholder,
     onBlur = () => {},
     className,
-    onChange,
+    onChange = () => {},
+    regex,
+    type = "text",
+    value,
     ...field
   } = props;
+  const isFirstFocus = useRef(true);
+  const [isComposition, setIsComposition] = useState(false);
+  const [isEnter, setIsEnter] = useState(false);
 
-  const [valueDefault, setValueDefault] = useState("");
-  const handleBlur = () => {
-    onBlur();
-  };
-  const hanleOnChange = (e) => {
-    setValueDefault(e.target.value);
-    onChange(e.target.value);
+  const handleOnChange = (e) => {
+    let value = e.target.value;
+    if (!isComposition || isEnter) {
+      if (regex) value = value.replace(regex, "");
+      onChange(value);
+    }
   };
 
-  useEffect(() => {
-    console.log("cc");
-  }, []);
+  const handleCompositionStart = () => {
+    if (isFirstFocus.current) {
+      setIsComposition(true);
+      isFirstFocus.current = false;
+    }
+  };
+
+  const handleOnBlur = (e) => {
+    isFirstFocus.current = true;
+    setIsEnter(false);
+    onBlur(e);
+  };
+
+  const handleKeyDown = () => {
+    setIsEnter(true);
+  };
 
   return (
-    <div>
+    <>
       <input
-        placeholder={placeholder}
-        type="number"
-        onBlur={handleBlur}
         className={className}
-        onChange={hanleOnChange}
+        placeholder={placeholder}
+        type={type}
+        value={value}
+        onChange={handleOnChange}
+        onCompositionStart={handleCompositionStart}
+        onKeyDown={handleKeyDown}
+        onBlur={handleOnBlur}
         {...field}
       />
-    </div>
+    </>
   );
 };
 
