@@ -8,6 +8,7 @@ const Demo = () => {
 
   const [isComposition, setIsComposition] = useState(false);
   const [isEnter, setIsEnter] = useState(false);
+
   const handleOnChange2 = (e) => {
     const value = e.target.value;
     if (!isComposition || isEnter) {
@@ -55,6 +56,7 @@ const Demo = () => {
         onKeyDown={() => setIsEnter(true)}
         onBlur={() => {
           isFirstFocus.current = true;
+          setIsEnter(false);
         }}
       />
       {/* <p style={{ color: "red" }}>input 1 : {valueInput}</p> */}
