@@ -33,7 +33,7 @@ const Input = (props) => {
   };
 
   const handleKeyDown = (event) => {
-    isEnterKeyBoard.current = true;
+    if (!isEnterKeyBoard.current) isEnterKeyBoard.current = true;
     if (!regex) return;
     const { key } = event;
     const newRegex = new RegExp(regex);
