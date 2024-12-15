@@ -13,52 +13,33 @@ const Input = (props) => {
     ...other
   } = props;
 
-  // const isFirstFocus = useRef(true);
   const isEnterKeyBoard = useRef(false);
+  const isProcessKey = useRef(false);
 
   const handleOnChange = (e) => {
     if (isEnterKeyBoard.current) {
       let value = e.target.value;
       if (regex) {
+        if (isProcessKey.current) return;
         value = value.replace(regex, "");
       }
       onChange(value);
     }
   };
 
-  // const handleCompositionStart = (e) => {
-  //   e.target.value = e.target.value.replace(regex, "");
-  // };
-
   const handleOnBlur = (e) => {
-    // isFirstFocus.current = true;
     isEnterKeyBoard.current = false;
     onBlur(e);
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (event) => {
     isEnterKeyBoard.current = true;
     if (!regex) return;
-
-    const { key, metaKey, ctrlKey, altKey } = event;
-    const ignoredKeys = [
-      "Backspace",
-      "Tab",
-      "ArrowLeft",
-      "ArrowRight",
-      "ArrowUp",
-      "ArrowDown",
-      "Enter",
-      "Delete",
-    ];
-
-    if (ignoredKeys.includes(key) || metaKey || ctrlKey || altKey) {
-      return;
-    }
-    const newRegex = new RegExp(regex);
-    const isCheckValid = !newRegex.test(key);
-    if (!isCheckValid) {
-      e.preventDefault();
+    const { key } = event;
+    if (key === "Process") {
+      isProcessKey.current = true;
+    } else {
+      isProcessKey.current = false;
     }
   };
 
@@ -70,7 +51,6 @@ const Input = (props) => {
         type={type}
         value={value}
         onChange={handleOnChange}
-        // onCompositionStart={handleCompositionStart}
         onKeyDown={handleKeyDown}
         onBlur={handleOnBlur}
         {...other}
