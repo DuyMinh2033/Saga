@@ -36,25 +36,11 @@ const Input = (props) => {
     isEnterKeyBoard.current = true;
     if (!regex) return;
     const { key } = event;
-    if (key === "Process") {
+    const newRegex = new RegExp(regex);
+    if (key === "Process" || newRegex.test(key)) {
       isProcessKey.current = true;
     } else {
       isProcessKey.current = false;
-    }
-  };
-
-  const handleCompositionStart = () => {
-    isProcessKey.current = true;
-  };
-
-  const handleCompositionEnd = (e) => {
-    isProcessKey.current = false;
-    const value = e.target.value;
-    if (regex) {
-      const sanitizedValue = value.replace(regex, "");
-      onChange(sanitizedValue);
-    } else {
-      onChange(value);
     }
   };
 
@@ -67,8 +53,6 @@ const Input = (props) => {
         value={value}
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
-        onCompositionStart={handleCompositionStart}
-        onCompositionEnd={handleCompositionEnd}
         onBlur={handleOnBlur}
         {...other}
       />
