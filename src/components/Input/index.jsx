@@ -39,6 +39,7 @@ const Input = (props) => {
     const newRegex = new RegExp(regex);
     if (key === "Process" || newRegex.test(key)) {
       isProcessKey.current = true;
+      event.preventDefault();
     } else {
       isProcessKey.current = false;
     }
