@@ -46,7 +46,11 @@ const Input = (props) => {
     }
   };
   const [isFocus, setIsFocus] = useState(false);
-  const handleFocus = () => {
+  const handleFocus = (e) => {
+    if (isFocus) {
+      e.preventDefault();
+      return;
+    }
     setIsFocus(true);
   };
 
