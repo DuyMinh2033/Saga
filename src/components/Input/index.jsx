@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 import { useRef } from "react";
 import "./style.scss";
@@ -44,6 +45,9 @@ const Input = (props) => {
       isProcessKey.current = false;
     }
   };
+  const handleFocus = (e) => {
+    console.log("value focus", e.target.value);
+  };
 
   return (
     <>
@@ -54,6 +58,10 @@ const Input = (props) => {
         value={value}
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
+        onCompositionEnd={() => {
+          console.log("hello");
+        }}
         onBlur={handleOnBlur}
         {...other}
       />
