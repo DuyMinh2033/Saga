@@ -6,41 +6,15 @@ const InputIOS = () => {
   const containerRef = useRef(null);
   const buttonRef = useRef(null);
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     const activeInput = inputRefs.current.find(
-  //       (input) => document.activeElement === input
-  //     );
-  //     if (activeInput) {
-  //       activeInput.scrollIntoView({
-  //         behavior: "smooth",
-  //         block: "center",
-  //       });
-  //     }
-  //   };
-  //   const viewPort = window.visualViewport ? window.visualViewport : window;
-  //   viewPort.addEventListener("resize", handleResize);
-
-  //   return () => {
-  //     viewPort.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   const setViewportHeight = () => {
-  //     let vh = window.innerHeight * 0.01;
-  //     document.documentElement.style.setProperty("--vh", `${vh}px`);
-  //   };
-  //   const viewPort = window.visualViewport ? window.visualViewport : window;
-
-  //   viewPort.addEventListener("resize", setViewportHeight);
-  //   setViewportHeight(); // Gọi lần đầu khi component được render
-  //   return () => viewPort.removeEventListener("resize", setViewportHeight);
-  // }, []);
-
   useEffect(() => {
     const handleResize = () => {
-      window.scrollTo(0, document.body.scrollHeight); // Cuộn xuống cuối màn hình
+      const newHeight = window.innerHeight;
+      const heightDiff = window.outerHeight - newHeight;
+      console.log("🚀 ~ handleResize ~ newHeight:", { newHeight, heightDiff });
+      document.documentElement.style.setProperty(
+        "--heightKeyBoard",
+        heightDiff
+      );
     };
     const viewPort = window.visualViewport ? window.visualViewport : window;
 

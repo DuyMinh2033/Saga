@@ -8,11 +8,12 @@
   height: calc(100vh - 166px);
   overflow: auto;
 }
+
 .fixed__btn {
   position: fixed;
   right: 0;
   left: 0;
-  bottom: env(safe-area-inset-bottom, 0); /* Sử dụng khoảng cách an toàn */
+  bottom: var(--heightKeyBoard, 0);
   display: flex;
   justify-content: center;
   align-items: center;
