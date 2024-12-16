@@ -1,6 +1,5 @@
-/* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "./style.scss";
 const Input = (props) => {
   const {
@@ -31,6 +30,7 @@ const Input = (props) => {
   const handleOnBlur = (e) => {
     isEnterKeyBoard.current = false;
     onBlur(e);
+    setIsFocus(false);
   };
 
   const handleKeyDown = (event) => {
@@ -45,8 +45,9 @@ const Input = (props) => {
       isProcessKey.current = false;
     }
   };
-  const handleFocus = (e) => {
-    console.log("value focus", e.target.value);
+  const [isFocus, setIsFocus] = useState(false);
+  const handleFocus = () => {
+    setIsFocus(true);
   };
 
   return (
@@ -65,6 +66,7 @@ const Input = (props) => {
         onBlur={handleOnBlur}
         {...other}
       />
+      {isFocus && <p>Input focused</p>}
     </>
   );
 };
