@@ -50,10 +50,10 @@ const Input = (props) => {
     setIsFocus(true);
   };
 
-  const handleCompositionEvent = (e) => {
-    e.stopPropagation(); // Ngăn việc xử lý không mong muốn
-    e.preventDefault(); // Disable mặc định (nếu cần)
-  };
+  // const handleCompositionEvent = (e) => {
+  //   e.stopPropagation(); // Ngăn việc xử lý không mong muốn
+  //   e.preventDefault(); // Disable mặc định (nếu cần)
+  // };
 
   return (
     <>
@@ -65,10 +65,8 @@ const Input = (props) => {
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
+        inputMode="none"
         onBlur={handleOnBlur}
-        onCompositionEnd={handleCompositionEvent}
-        onCompositionStart={handleCompositionEvent}
-        onCompositionUpdate={handleCompositionEvent}
         {...other}
       />
       {isFocus && <p>Input focused</p>}
