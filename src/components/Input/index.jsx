@@ -48,10 +48,11 @@ const Input = (props) => {
   const [isFocus, setIsFocus] = useState(false);
   const handleFocus = (e) => {
     if (isFocus) {
-      e.preventDefault();
-      return;
+      e.blur();
+      setIsFocus(false);
+    } else {
+      setIsFocus(true);
     }
-    setIsFocus(true);
   };
 
   return (
