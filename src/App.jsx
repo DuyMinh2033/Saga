@@ -21,8 +21,6 @@ import KeyBoard from "./Page/TestOpenKeyboard";
 
 // import LoginPage from "./Page/Login";
 
-import PinchZoomPDF from "./Page/ZoomMobile";
-
 const route = [
   {
     path: "/open-account",
@@ -97,10 +95,10 @@ const route = [
     element: <KeyBoard />,
   },
 
-  {
-    path: "/zoom",
-    element: <PinchZoomPDF />,
-  },
+  // {
+  //   path: "/zoom",
+  //   element: <PinchZoomPDF />,
+  // },
   // {
   //   path: "/login",
   //   element: <LoginPage />,
