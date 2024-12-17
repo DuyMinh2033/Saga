@@ -38,7 +38,7 @@ const Demo = () => {
         <Controller
           name="streetName"
           control={control}
-          render={({ field }) => <Input {...field} />}
+          render={({ field }) => <Input regex={regexInput} {...field} />}
         />
         <button onClick={handleSubmit(submitForm)}>Submit</button>
       </div>

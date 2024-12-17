@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import "./style.scss";
 const Input = (props) => {
   const {
@@ -28,12 +28,13 @@ const Input = (props) => {
   };
 
   const handleOnBlur = (e) => {
+    console.log("isEnter blur", isEnterKeyBoard.current);
     isEnterKeyBoard.current = false;
     onBlur(e);
-    setIsFocus(false);
   };
 
   const handleKeyDown = (event) => {
+    console.log("isEnter keyDown", isEnterKeyBoard.current);
     if (!isEnterKeyBoard.current) isEnterKeyBoard.current = true;
     if (!regex) return;
     const { key } = event;
@@ -45,32 +46,30 @@ const Input = (props) => {
       isProcessKey.current = false;
     }
   };
-  const [isFocus, setIsFocus] = useState(false);
-  const handleFocus = () => {
-    setIsFocus(true);
+  const ref = useRef(null);
+  const handleClear = () => {
+    onChange("");
+    if (ref.current) {
+      ref.current.focus();
+    }
   };
-
-  // const handleCompositionEvent = (e) => {
-  //   e.stopPropagation(); // Ngăn việc xử lý không mong muốn
-  //   e.preventDefault(); // Disable mặc định (nếu cần)
-  // };
+  console.log("isEnter", isEnterKeyBoard.current);
 
   return (
-    <>
+    <div className="input__wrapper">
       <input
+        ref={ref}
         className={className}
         placeholder={placeholder}
         type={type}
         value={value}
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
-        onFocus={handleFocus}
-        inputMode="none"
         onBlur={handleOnBlur}
         {...other}
       />
-      {isFocus && <p>Input focused</p>}
-    </>
+      <p className="icon__clear" onClick={handleClear} />
+    </div>
   );
 };
 

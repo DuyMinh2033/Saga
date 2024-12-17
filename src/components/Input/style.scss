@@ -1,3 +1,16 @@
 .input-error {
-    border: 2px solid red
+  border: 2px solid red;
+}
+
+.input__wrapper {
+  position: relative;
+  .icon__clear {
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    background-color: blue;
+    height: 10px;
+    width: 10px;
+    border-radius: 100%;
+  }
 }
