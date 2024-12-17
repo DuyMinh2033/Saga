@@ -5,7 +5,12 @@ import { Controller, useForm } from "react-hook-form";
 const regexInput = /[^0-9a-zA-Z.,‘’'-\s]/g;
 
 const Demo = () => {
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      email: "",
+      streetName: "",
+    },
+  });
 
   const submitForm = (value) => {
     alert(JSON.stringify(value, null, 2));

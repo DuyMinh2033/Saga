@@ -57,7 +57,6 @@ const Input = (props) => {
   return (
     <div className="input__wrapper">
       <input
-        autoComplete="new-password"
         ref={ref}
         className={className}
         placeholder={placeholder}
