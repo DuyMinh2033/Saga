@@ -15,7 +15,6 @@ const Input = (props) => {
 
   const isEnterKeyBoard = useRef(false);
   const isProcessKey = useRef(false);
-
   const handleOnChange = (e) => {
     if (isEnterKeyBoard.current) {
       let value = e.target.value;

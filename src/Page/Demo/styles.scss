@@ -2,3 +2,23 @@
   width: 192px;
   height: 165px;
 }
+.over {
+  overflow: auto;
+  height: 100vh;
+}
+.test_ui {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+.test_container {
+  background-color: red;
+  height: 200px;
+  width: 200px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
