@@ -10,6 +10,7 @@ const Input = (props) => {
     regex,
     type = "text",
     value,
+    maxLength,
     ...other
   } = props;
 
@@ -27,13 +28,11 @@ const Input = (props) => {
   };
 
   const handleOnBlur = (e) => {
-    console.log("isEnter blur", isEnterKeyBoard.current);
     isEnterKeyBoard.current = false;
     onBlur(e);
   };
 
   const handleKeyDown = (event) => {
-    console.log("isEnter keyDown", isEnterKeyBoard.current);
     if (!isEnterKeyBoard.current) isEnterKeyBoard.current = true;
     if (!regex) return;
     const { key } = event;
@@ -52,7 +51,16 @@ const Input = (props) => {
       ref.current.focus();
     }
   };
-  console.log("isEnter", isEnterKeyBoard.current);
+  const handleOnInput = (e) => {
+    if (maxLength) {
+      let value = e.target.value;
+      let enc = new TextEncoder();
+      let uint8 = enc.encode(value);
+      if (uint8.length > maxLength) {
+        e.target.value = value.replace(/.$/, "");
+      }
+    }
+  };
 
   return (
     <div className="input__wrapper">
@@ -64,6 +72,7 @@ const Input = (props) => {
         value={value}
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
+        onInput={handleOnInput}
         onBlur={handleOnBlur}
         {...other}
       />
