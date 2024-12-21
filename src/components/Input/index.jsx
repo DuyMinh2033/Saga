@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useRef } from "react";
 import "./style.scss";
+
 const Input = (props) => {
   const {
     placeholder,
@@ -16,12 +17,21 @@ const Input = (props) => {
 
   const isEnterKeyBoard = useRef(false);
   const isProcessKey = useRef(false);
+
   const handleOnChange = (e) => {
     if (isEnterKeyBoard.current) {
       let value = e.target.value;
       if (regex) {
         if (isProcessKey.current) return;
         value = value.replace(regex, "");
+      }
+      if (maxLength) {
+        let value = e.target.value;
+        let enc = new TextEncoder();
+        let uint8 = enc.encode(value);
+        if (uint8.length > maxLength) {
+          return;
+        }
       }
       onChange(value);
     }
@@ -44,21 +54,12 @@ const Input = (props) => {
       isProcessKey.current = false;
     }
   };
+
   const ref = useRef(null);
   const handleClear = () => {
     onChange("");
     if (ref.current) {
       ref.current.focus();
-    }
-  };
-  const handleOnInput = (e) => {
-    if (maxLength) {
-      let value = e.target.value;
-      let enc = new TextEncoder();
-      let uint8 = enc.encode(value);
-      if (uint8.length > maxLength) {
-        e.target.value = value.replace(/.$/, "");
-      }
     }
   };
 
@@ -72,7 +73,6 @@ const Input = (props) => {
         value={value}
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
-        onInput={handleOnInput}
         onBlur={handleOnBlur}
         {...other}
       />
