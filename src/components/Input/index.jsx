@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "./style.scss";
 
 const Input = (props) => {
@@ -17,24 +17,29 @@ const Input = (props) => {
 
   const isEnterKeyBoard = useRef(false);
   const isProcessKey = useRef(false);
+  const [isTrick, setIsTrick] = useState(true);
+  const validateInput = (value) => {
+    let checkMaxLength;
+    if (regex) {
+      if (isProcessKey.current) return;
+      value = value.replace(regex, "");
+    }
+    if (maxLength) {
+      let enc = new TextEncoder();
+      let uint8 = enc.encode(value);
+      checkMaxLength = uint8.length > maxLength;
+    }
+    if (!checkMaxLength) {
+      onChange(value);
+    } else {
+      setIsTrick(false);
+    }
+  };
 
   const handleOnChange = (e) => {
-    if (isEnterKeyBoard.current) {
-      let value = e.target.value;
-      if (regex) {
-        if (isProcessKey.current) return;
-        value = value.replace(regex, "");
-      }
-      if (maxLength) {
-        let value = e.target.value;
-        let enc = new TextEncoder();
-        let uint8 = enc.encode(value);
-        if (uint8.length > maxLength) {
-          return;
-        }
-      }
-      onChange(value);
-    }
+    let value = e.target.value;
+    console.log("🚀 ~ handleOnChange ~ value:", value);
+    validateInput(value);
   };
 
   const handleOnBlur = (e) => {
@@ -44,18 +49,26 @@ const Input = (props) => {
 
   const handleKeyDown = (event) => {
     if (!isEnterKeyBoard.current) isEnterKeyBoard.current = true;
-    if (!regex) return;
+    // if (!regex) return;
     const { key } = event;
-    const newRegex = new RegExp(regex);
-    if (key === "Process" || newRegex.test(key)) {
-      isProcessKey.current = true;
-      event.preventDefault();
-    } else {
-      isProcessKey.current = false;
+    if (key === "Backspace") {
+      setIsTrick(true);
     }
+    // const newRegex = new RegExp(regex);
+    // if (key === "Process" || newRegex.test(key)) {
+    //   isProcessKey.current = true;
+    //   event.preventDefault();
+    // } else {
+    //   isProcessKey.current = false;
+    // }
   };
-
+  // useEffect(() => {
+  //   if (!value) {
+  //     setIsTrick(true);
+  //   }
+  // }, [value]);
   const ref = useRef(null);
+
   const handleClear = () => {
     onChange("");
     if (ref.current) {
@@ -71,8 +84,13 @@ const Input = (props) => {
         placeholder={placeholder}
         type={type}
         value={value}
-        onChange={handleOnChange}
+        onChange={(e) => {
+          if (isTrick) {
+            handleOnChange(e);
+          }
+        }}
         onKeyDown={handleKeyDown}
+        autoComplete="new-password"
         onBlur={handleOnBlur}
         {...other}
       />

@@ -18,7 +18,7 @@ const Demo = () => {
 
   return (
     <>
-      <div
+      <form
         style={{
           display: "flex",
           flexDirection: "column",
@@ -28,11 +28,12 @@ const Demo = () => {
           height: "80vh",
           overflow: "auto",
         }}
+        autoComplete="news-password"
       >
         <Controller
           name="email"
           control={control}
-          render={({ field }) => <Input maxLength={6} {...field} />}
+          render={({ field }) => <Input maxLength={6} type="text" {...field} />}
         />
 
         <Controller
@@ -41,7 +42,7 @@ const Demo = () => {
           render={({ field }) => <Input regex={regexInput} {...field} />}
         />
         <button onClick={handleSubmit(submitForm)}>Submit</button>
-      </div>
+      </form>
     </>
   );
 };
