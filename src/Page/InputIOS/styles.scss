@@ -13,14 +13,14 @@
   position: absolute;
   right: 0;
   left: 0;
-  bottom: 0;
+  bottom: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 110px;
   padding: 0 24px;
   background-color: white;
-  z-index: 10000;
+  // z-index: 10000;
   transform: translate(0, 0);
 }
 
