@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import "./styles.scss";
 
 const InputIOS = () => {
@@ -6,29 +6,30 @@ const InputIOS = () => {
   const containerRef = useRef(null);
   const buttonRef = useRef(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const newHeight = window.innerHeight;
-      const heightDiff = window.outerHeight - newHeight;
-      console.log("🚀 ~ handleResize ~ newHeight:", { newHeight, heightDiff });
-      document.documentElement.style.setProperty(
-        "--heightKeyBoard",
-        heightDiff
-      );
-    };
-    const viewPort = window.visualViewport ? window.visualViewport : window;
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     const newHeight = window.innerHeight;
+  //     const heightDiff = window.outerHeight - newHeight;
+  //     console.log("🚀 ~ handleResize ~ newHeight:", { newHeight, heightDiff });
+  //     document.documentElement.style.setProperty(
+  //       "--heightKeyBoard",
+  //       heightDiff
+  //     );
+  //   };
+  //   const viewPort = window.visualViewport ? window.visualViewport : window;
 
-    viewPort.addEventListener("resize", handleResize);
-    return () => {
-      viewPort.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   viewPort.addEventListener("resize", handleResize);
+  //   return () => {
+  //     viewPort.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
   return (
     <div
       className="scroll-header"
       style={{
         height: "100vh",
+        position: "relative",
       }}
     >
       <div
