@@ -13,7 +13,13 @@ const Demo = () => {
   });
 
   const submitForm = (value) => {
-    alert(JSON.stringify(value, null, 2));
+    console.log("🚀 ~ submitForm ~ value:", value);
+    // alert(JSON.stringify(value, null, 2));
+    document.dispatchEvent(
+      new CustomEvent("redirect", {
+        detail: { src: "/productList" },
+      })
+    );
   };
 
   return (

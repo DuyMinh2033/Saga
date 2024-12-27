@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import OpenAccount from "./Page/OpenAccount";
 import SchemaForm from "./Page/ShemaForm";
 import AddressForm from "./Page/AdressCustomer";
@@ -18,6 +19,7 @@ import Demo from "./Page/Demo";
 
 import InputIOS from "./Page/InputIOS";
 import KeyBoard from "./Page/TestOpenKeyboard";
+import { useEffect } from "react";
 
 // import LoginPage from "./Page/Login";
 
@@ -104,41 +106,26 @@ const route = [
   //   element: <LoginPage />,
   // },
 ];
-// const url = "http://localhost:8800/api/user/get-user";
-// const pathUrl = "http://localhost:5173/login";
+
 function App() {
-  // useSagas([{ key: "customer", saga: customerSaga }]);
-  // useReducers([{ key: "customer", reducer: customerReducer }]);
-  // const infoUser = useSelector(customerInfo);
-  // const { id: idUserInfo } = infoUser || {};
-  // const navigate = useNavigate();
-  // const [open, setOpen] = useState(false);
-  // const currentUrl = window.location.href;
-  // const getUserInfo = async () => {
-  //   await getCustomerInfo();
-  // };
-  // const refTimeOut = useRef(null);
-  // useEffect(() => {
-  //   if (!(pathUrl === currentUrl)) {
-  //     refTimeOut.current = setTimeout(() => {
-  //       if (!idUserInfo) {
-  //         setOpen(true);
-  //       }
-  //     }, 1000);
-  //   }
-  //   return () => clearTimeout(refTimeOut?.current);
-  // }, [infoUser]);
-
-  // useEffect(() => {
-  //   !(pathUrl === currentUrl) && getUserInfo();
-  // }, []);
-
-  // const handleConfirm = () => {
-  //   if (!(pathUrl === currentUrl)) {
-  //     navigate("/login");
-  //   }
-  //   setOpen(false);
-  // };
+  const navigate = useNavigate();
+  useEffect(() => {
+    document.addEventListener(
+      "redirect",
+      (e) => {
+        try {
+          if (typeof e.detail === "object") {
+            const data = e.detail;
+            const path = String(data.src);
+            navigate(path);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      false
+    );
+  }, []);
 
   return (
     <div>
