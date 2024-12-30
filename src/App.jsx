@@ -20,6 +20,7 @@ import Demo from "./Page/Demo";
 import InputIOS from "./Page/InputIOS";
 import KeyBoard from "./Page/TestOpenKeyboard";
 import { useEffect } from "react";
+import RandomOptions from "./Page/RandomOptions";
 
 // import LoginPage from "./Page/Login";
 
@@ -96,7 +97,10 @@ const route = [
     path: "/KeyBoard",
     element: <KeyBoard />,
   },
-
+  {
+    path: "/random",
+    element: <RandomOptions />,
+  },
   // {
   //   path: "/zoom",
   //   element: <PinchZoomPDF />,

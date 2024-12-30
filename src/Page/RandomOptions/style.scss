@@ -1,0 +1,65 @@
+/* File: src/App.css */
+.input-container {
+  margin: 20px;
+}
+.App {
+  padding: 20px;
+}
+
+.text__desc {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.spinner-container {
+  margin: 40px auto;
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 5px solid #ddd;
+  overflow: hidden;
+}
+
+.spinner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 3s ease-out;
+}
+
+.spinner-segment {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  background: lightblue;
+  text-align: center;
+  line-height: 150px;
+  border: 1px solid #fff;
+}
+
+.spinning {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.result {
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+.input_selection {
+  height: 300px;
+  width: 300px;
+  line-height: 20px;
+  padding: 5px;
+}
