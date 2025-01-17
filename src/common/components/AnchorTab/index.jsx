@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "./styles.scss";
 // eslint-disable-next-line react/prop-types
 const AnchorTabPractice = ({ data = [], children }) => {
@@ -24,34 +23,24 @@ const AnchorTabPractice = ({ data = [], children }) => {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (hasScroll) return;
-      const containerRect = containerRef?.current.getBoundingClientRect();
-      const offset = containerRect.top + 20;
-      data.forEach(({ ref }, idx) => {
-        const sentinelRect = ref.current.getBoundingClientRect();
-        if (idx === 1) {
-          console.log("🚀 ~ handleScroll ~ offset:", {
-            offset,
-            TopRef: sentinelRect.top,
-            BottomRef: sentinelRect.bottom,
-          });
-        }
-        if (sentinelRect.top < offset && sentinelRect.bottom > offset) {
-          setSelectedAnchor(idx);
-        }
-      });
-    };
-
-    if (containerRef.current) {
-      containerRef.current.addEventListener("scroll", handleScroll);
-    }
-
-    return () => {
-      containerRef?.current.removeEventListener("scroll", handleScroll);
-    };
-  }, [hasScroll]);
+  const handleScroll = () => {
+    if (hasScroll) return;
+    const containerRect = containerRef?.current.getBoundingClientRect();
+    const offset = containerRect.top + 10;
+    data.forEach(({ ref }, idx) => {
+      const sentinelRect = ref.current.getBoundingClientRect();
+      // if (idx === 1) {
+      //   console.log("🚀 ~ handleScroll ~ offset:", {
+      //     offset,
+      //     TopRef: sentinelRect.top,
+      //     BottomRef: sentinelRect.bottom,
+      //   });
+      // }
+      if (sentinelRect.top < offset && sentinelRect.bottom > offset) {
+        setSelectedAnchor(idx);
+      }
+    });
+  };
 
   return (
     <div className="anchor__tab-wrapper">
@@ -68,7 +57,11 @@ const AnchorTabPractice = ({ data = [], children }) => {
           </div>
         ))}
       </div>
-      <div ref={containerRef} className="anchor__scroll">
+      <div
+        ref={containerRef}
+        className="anchor__scroll"
+        onScroll={handleScroll}
+      >
         {children}
       </div>
     </div>
