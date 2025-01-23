@@ -25,9 +25,9 @@ const Demo = () => {
   };
 
   useEffect(() => {
-    if (import.meta.env.VITE_REACT_APP_NODE_ENV === "development") {
+    if (import.meta.env.MODE === "development") {
       alert("This is the development environment");
-    } else if (import.meta.env.VITE_REACT_APP_NODE_ENV === "production") {
+    } else if (import.meta.env.MODE === "production") {
       alert("This is the production environment");
     } else {
       alert("This is the test environment");
