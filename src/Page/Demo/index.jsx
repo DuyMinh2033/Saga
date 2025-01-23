@@ -1,6 +1,8 @@
+/* eslint-disable no-undef */
 import "./styles.scss";
 import Input from "../../components/Input";
 import { Controller, useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 const regexInput = /[^0-9a-zA-Z.,‘’'-\s]/g;
 
@@ -21,6 +23,16 @@ const Demo = () => {
       })
     );
   };
+
+  useEffect(() => {
+    if (import.meta.env.VITE_REACT_APP_NODE_ENV === "development") {
+      alert("This is the development environment");
+    } else if (import.meta.env.VITE_REACT_APP_NODE_ENV === "production") {
+      alert("This is the production environment");
+    } else {
+      alert("This is the test environment");
+    }
+  }, []);
 
   return (
     <>
