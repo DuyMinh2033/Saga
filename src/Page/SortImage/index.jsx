@@ -4,6 +4,7 @@ import "./styles.scss";
 const SortImage = () => {
   const [files, setFiles] = useState([]);
   const [draggedIndex, setDraggedIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const handleFileChange = (e, index) => {
     const selectedFile = e.target.files[0];
@@ -30,10 +31,12 @@ const SortImage = () => {
   };
 
   const handleDragStart = (index) => {
-    setDraggedIndex(index);
+    if (index >= 0) {
+      setDraggedIndex(index);
+    }
   };
-
   const handleDrop = (index) => {
+    console.log("s >>>", { draggedIndex, index });
     if (draggedIndex !== null && draggedIndex !== index) {
       const newFiles = [...files];
       [newFiles[draggedIndex], newFiles[index]] = [
@@ -42,29 +45,39 @@ const SortImage = () => {
       ];
       setFiles(newFiles);
     }
-    setDraggedIndex(null);
+    setHoveredIndex(null);
   };
 
-  const handleTouchStart = (index) => {
-    console.log("run");
-    setDraggedIndex(index);
+  const handleDragOver = (e, index) => {
+    e.preventDefault();
+    setHoveredIndex(index);
   };
 
-  const handleTouchEnd = (index) => {
-    handleDrop(index);
+  const handleTouchMove = (e) => {
+    const touchLocation = e.touches[0];
+    const targetElement = document.elementFromPoint(
+      touchLocation.clientX,
+      touchLocation.clientY
+    );
+
+    if (targetElement && targetElement.tagName === "IMG") {
+      const src = targetElement.getAttribute("src");
+      const indexTarget = files.indexOf(src);
+      if (indexTarget !== draggedIndex) handleDrop(indexTarget);
+    }
   };
 
   const renderItemImg = (file, index) => {
     return (
       <div
-        className="item"
+        className={`item  ${hoveredIndex === index ? "hovering" : ""}`}
         key={index}
         draggable
         onDragStart={() => handleDragStart(index)}
-        onDragOver={(e) => e.preventDefault()}
+        onDragOver={(e) => handleDragOver(e, index)}
         onDrop={() => handleDrop(index)}
-        onTouchStart={() => handleTouchStart(index)}
-        onTouchEnd={() => handleTouchEnd(index)}
+        onTouchStart={() => handleDragStart(index)}
+        onTouchMove={handleTouchMove}
       >
         {file ? (
           <div className="img">

@@ -4,9 +4,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
   .section {
-    width: 500px;
     display: flex;
+    gap: 10px;
     flex-wrap: wrap;
     .item {
       height: 100px;
@@ -15,6 +16,8 @@
       background-color: red;
       display: grid;
       place-items: center;
+      animation: opacity 0.3s linear;
+      transition: all 0.4s linear;
       .hidden {
         display: none;
       }
@@ -29,6 +32,8 @@
         position: relative;
         height: 100%;
         width: 100%;
+        touch-action: none;
+        transition: transform 0.2s ease-in-out;
       }
       .preview__img {
         height: 100%;
@@ -40,5 +45,18 @@
         right: 5px;
       }
     }
+    .item.hovering {
+      transform: scale(1.1);
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
