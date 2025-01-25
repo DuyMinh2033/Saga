@@ -2,9 +2,8 @@ import "./styles.scss";
 import EnterEmail from "./Components/EnterEmail";
 import EnterPersonalDetail from "./Components/EnterPersonalDetail";
 import ThankYou from "./Components/ThankYou";
-import { useRef, useState } from "react";
-
-const regexInput = /[^0-9a-zA-Z.,‘’'-\s]/g;
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Demo = () => {
   const stepValue = {
