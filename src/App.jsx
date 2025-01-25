@@ -21,10 +21,15 @@ import InputIOS from "./Page/InputIOS";
 import KeyBoard from "./Page/TestOpenKeyboard";
 import { useEffect } from "react";
 import RandomOptions from "./Page/RandomOptions";
+import Home from "./Home";
 
 // import LoginPage from "./Page/Login";
 
 const route = [
+  {
+    path: "/",
+    element: <Home />,
+  },
   {
     path: "/open-account",
     element: <OpenAccount />,

@@ -1,27 +1,53 @@
-/* eslint-disable no-undef */
 import "./styles.scss";
-import Input from "../../components/Input";
-import { Controller, useForm } from "react-hook-form";
-import { useEffect } from "react";
+import EnterEmail from "./Components/EnterEmail";
+import EnterPersonalDetail from "./Components/EnterPersonalDetail";
+import ThankYou from "./Components/ThankYou";
+import { useRef, useState } from "react";
 
 const regexInput = /[^0-9a-zA-Z.,‘’'-\s]/g;
 
 const Demo = () => {
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
-      email: "",
-      streetName: "",
-    },
-  });
+  const stepValue = {
+    enterEmail: "enterEmail",
+    personalDetail: "personalDetail",
+    thankYou: "thankYou",
+  };
 
-  const submitForm = (value) => {
-    console.log("🚀 ~ submitForm ~ value:", value);
-    // alert(JSON.stringify(value, null, 2));
-    document.dispatchEvent(
-      new CustomEvent("redirect", {
-        detail: { src: "/productList" },
-      })
-    );
+  const [step, setStep] = useState(stepValue.enterEmail);
+  const historyStep = useRef([]);
+
+  const navigateEnterPersonal = () => {
+    setStep(stepValue.personalDetail);
+  };
+  const navigateThankYou = () => {
+    setStep(stepValue.thankYou);
+  };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!historyStep.current.includes(step)) {
+      historyStep.current.push(step);
+    }
+  }, [step]);
+
+  const handleMoveBack = () => {
+    console.log("current", historyStep);
+
+    // const length = historyStep.current.length;
+    // if (length <= 0) return;
+    // const before = historyStep.current[length - 2] || stepValue.enterEmail;
+    // // if (before === stepValue.enterEmail && stepValue.thankYou === step) {
+    // //   navigate("/");
+    // // }
+    // setStep(before);
+    // historyStep.current = historyStep.current.filter((item) => item !== step);
+  };
+
+  const page = {
+    [stepValue.enterEmail]: 1,
+    [stepValue.personalDetail]: 2,
+    [stepValue.thankYou]: 3,
   };
 
   useEffect(() => {
@@ -36,31 +62,32 @@ const Demo = () => {
 
   return (
     <>
-      <form
+      <div
         style={{
+          height: "100vh",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
           alignItems: "center",
-          gap: "20px",
-          height: "80vh",
-          overflow: "auto",
+          justifyContent: "center",
         }}
-        autoComplete="news-password"
       >
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => <Input maxLength={6} type="text" {...field} />}
-        />
-
-        <Controller
-          name="streetName"
-          control={control}
-          render={({ field }) => <Input regex={regexInput} {...field} />}
-        />
-        <button onClick={handleSubmit(submitForm)}>Submit</button>
-      </form>
+        <p>{`step >>>>:${page[step]}`}</p>
+        {stepValue.enterEmail === step && (
+          <EnterEmail
+            navigatePersonal={navigateEnterPersonal}
+            navigateThankYou={navigateThankYou}
+          />
+        )}
+        {stepValue.personalDetail === step && (
+          <EnterPersonalDetail
+            navigateThankYou={navigateThankYou}
+            onMoveBack={handleMoveBack}
+          />
+        )}
+        {stepValue.thankYou === step && (
+          <ThankYou onMoveBack={handleMoveBack} />
+        )}
+      </div>
     </>
   );
 };
