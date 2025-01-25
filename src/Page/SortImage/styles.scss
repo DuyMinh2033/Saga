@@ -1,0 +1,44 @@
+.container__image {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .section {
+    width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    .item {
+      height: 100px;
+      width: 100px;
+      overflow: hidden;
+      background-color: red;
+      display: grid;
+      place-items: center;
+      .hidden {
+        display: none;
+      }
+      .btn__upload {
+        background-color: aqua;
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        color: gray;
+      }
+      .img {
+        position: relative;
+        height: 100%;
+        width: 100%;
+      }
+      .preview__img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      .icon__remove {
+        position: absolute;
+        right: 5px;
+      }
+    }
+  }
+}

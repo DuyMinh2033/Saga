@@ -22,6 +22,7 @@ import KeyBoard from "./Page/TestOpenKeyboard";
 import { useEffect } from "react";
 import RandomOptions from "./Page/RandomOptions";
 import Home from "./Home";
+import SortImage from "./Page/SortImage";
 
 // import LoginPage from "./Page/Login";
 
@@ -106,6 +107,11 @@ const route = [
     path: "/random",
     element: <RandomOptions />,
   },
+  {
+    path: "/sort-image",
+    element: <SortImage />,
+  },
+
   // {
   //   path: "/zoom",
   //   element: <PinchZoomPDF />,
