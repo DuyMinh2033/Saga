@@ -1,12 +1,14 @@
-import { ReactNode } from "react";
-import "./styles.scss";
+import { ReactNode } from 'react';
+import './styles.scss';
+
 interface propsType {
-  children?: ReactNode
+  children?: ReactNode;
 }
+
 const Demo: React.FC<propsType> = () => {
   const handle = (isReact: boolean) => {
-    alert(`${isReact}`)
-  }
+    alert(`${isReact}`);
+  };
 
   return (
     <div className="w-full h-[100vh] flex justify-center items-center">
