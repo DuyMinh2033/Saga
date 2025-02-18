@@ -15,7 +15,7 @@ import SelectDate from "./common/components/ScrollSelectDate";
 import Notification from "./Page/Notification";
 import ProductCenter from "./Page/ProductCenter";
 import TestAnchorTab from "./Page/TestAnchorTab";
-import Demo from "./Page/Demo";
+
 
 import InputIOS from "./Page/InputIOS";
 import KeyBoard from "./Page/TestOpenKeyboard";
@@ -23,6 +23,8 @@ import { useEffect } from "react";
 import RandomOptions from "./Page/RandomOptions";
 import Home from "./Home";
 import SortImage from "./Page/SortImage";
+import React from "react";
+import Demo from "./Page/Demo";
 
 // import LoginPage from "./Page/Login";
 
@@ -127,7 +129,7 @@ function App() {
   useEffect(() => {
     document.addEventListener(
       "redirect",
-      (e) => {
+      (e: any) => {
         try {
           if (typeof e.detail === "object") {
             const data = e.detail;

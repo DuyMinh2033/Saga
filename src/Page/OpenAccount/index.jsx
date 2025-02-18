@@ -18,7 +18,7 @@ const OpenAccount = () => {
   useSagas([{ key: "customerPost", saga: customerSagaPost }]);
   useReducer([{ key: "customerPost", reducer: customerReducerPost }]);
   const dataUserInfo = useSelector(customerInfo);
-
+  
   const [step, setStep] = useState("");
   const [openBS, setOpenBs] = useState(false);
   const handleSubmit = () => {
