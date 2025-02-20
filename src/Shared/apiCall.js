@@ -1,10 +1,10 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const Method = {
-  GET: "get",
-  POST: "post",
-  PUT: "put",
-  DELETE: "delete",
+  GET: 'get',
+  POST: 'post',
+  PUT: 'put',
+  DELETE: 'delete',
 };
 
 export async function apiCall(url, method, payload = null) {
@@ -14,8 +14,8 @@ export async function apiCall(url, method, payload = null) {
       url,
       withCredentials: true, // when get cookie from server
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
       data: payload,
     });

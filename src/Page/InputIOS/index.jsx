@@ -1,11 +1,13 @@
-import { useRef } from "react";
-import "./styles.scss";
-
+import { useRef } from 'react';
+import './styles.scss';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 const InputIOS = () => {
   const inputRefs = useRef([]);
   const containerRef = useRef(null);
   const buttonRef = useRef(null);
-
+  const queryClient = useQueryClient();
+  const cachedData = queryClient.getQueryData(['test']); // Lấy từ cache
+  console.log('🚀 ~ InputIOS ~ cachedData:', cachedData);
   // useEffect(() => {
   //   const handleResize = () => {
   //     const newHeight = window.innerHeight;
@@ -28,21 +30,21 @@ const InputIOS = () => {
     <div
       className="scroll-header"
       style={{
-        height: "100vh",
-        position: "relative",
+        height: '100vh',
+        position: 'relative',
       }}
     >
       <div
         style={{
-          position: "sticky",
-          height: "56px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          right: "0",
-          left: "0",
-          top: "0",
-          background: "green",
+          position: 'sticky',
+          height: '56px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          right: '0',
+          left: '0',
+          top: '0',
+          background: 'green',
         }}
       >
         Header
@@ -52,15 +54,15 @@ const InputIOS = () => {
         className="content__container"
         ref={containerRef}
         style={{
-          padding: "0 24px",
-          paddingBottom: "200px",
+          padding: '0 24px',
+          paddingBottom: '200px',
         }}
       >
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "18px",
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '18px',
           }}
         >
           {Array(20)
