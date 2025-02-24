@@ -1,33 +1,55 @@
-import { ReactNode, useState } from 'react';
+import { ComponentProps } from 'react';
 import './styles.scss';
-import { useApiMutation, useApiQuery } from './reuqestApi';
-import { useNavigate } from 'react-router-dom';
+import { tv, VariantProps } from 'tailwind-variants';
 
-interface propsType {
-  children?: ReactNode;
-}
+const button = tv({
+  base: [
+    'px-4 py-2 rounded-md',
+    'font-medium',
+    'transition-colors',
+    'focus:outline-none focus:ring-2',
+    'disabled:opacity-50 disabled:cursor-not-allowed',
+  ],
 
-const Demo: React.FC<propsType> = () => {
-  const url = 'https://jsonplaceholder.typicode.com/todos';
-  const [value, setValue] = useState('');
-  const mutation = useApiMutation('POST');
-  const { data, isLoading } = mutation;
-  const payload = { value: 'Minh' };
-  const { data: useQuery } = useApiQuery('test', url, 'POST', payload);
-  console.log('🚀 ~ useQuery:', useQuery);
-  const navigate = useNavigate();
-  const handleAddTodo = async () => {
-    navigate('/ios');
-    // mutation.mutate({
-    //   url: 'https://jsonplaceholder.typicode.com/todos',
-    //   payload: { value },
-    // });
-  };
+  variants: {
+    variant: {
+      primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-300',
+      secondary: 'bg-gray-200 text-gray-700 hover:bg-gray-300 focus:ring-gray-400',
+      success: 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-300',
+      danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-300',
+      ghost: 'hover:bg-gray-100 focus:ring-gray-200',
+      link: 'text-blue-600 underline hover:text-blue-700',
+    },
+    size: {
+      sm: 'px-3 py-1.5 text-sm',
+      md: 'px-4 py-2 text-base',
+      lg: 'px-6 py-3 text-lg',
+    },
+  },
 
+  defaultVariants: {
+    variant: 'primary',
+    size: 'md',
+  },
+});
+
+type ButtonProps = ComponentProps<'button'> & VariantProps<typeof button>;
+
+export const Button = ({ variant, size, className, children, ...props }: ButtonProps) => {
   return (
-    <div className="w-full h-[100vh] flex justify-center items-center">
-      <input onChange={(e) => setValue(e.target.value)} />
-      <button onClick={handleAddTodo}>Add ToDo</button>
+    <button className={button({ variant, size, className })} disabled {...props}>
+      {children}
+    </button>
+  );
+};
+
+const Demo: React.FC = () => {
+  return (
+    <div>
+      <Button variant="danger"> hello</Button>
+      <div aria-disabled onClick={() => console.log('run')}>
+        kaka
+      </div>
     </div>
   );
 };

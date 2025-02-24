@@ -1,13 +1,15 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { apiCall } from '../../Shared/apiCall.js';
-
+type TypeData = {
+  data?: any;
+  error?: [];
+};
 export function useApiQuery(key = '', url = '', method = 'GET', payload = null, options = {}) {
   return useQuery({
     queryKey: [key],
-    queryFn: () => apiCall(url, method, payload),
+    queryFn: () => apiCall(url, method, payload)<TypeData>,
     enabled: !!url,
-    staleTime: 1000 * 60 * 30, // Cache dữ liệu trong 30 phút
-    cacheTime: 1000 * 60 * 60, // Giữ cache ngay cả khi query không còn dùng nữa (1 tiếng)
+    staleTime: 1000 * 60 * 30,
     ...options,
   });
 }
