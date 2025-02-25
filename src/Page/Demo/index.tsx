@@ -1,6 +1,7 @@
 import { ComponentProps } from 'react';
 import './styles.scss';
 import { tv, VariantProps } from 'tailwind-variants';
+import { Button } from '@/components/ui/button';
 
 const button = tv({
   base: [
@@ -35,21 +36,23 @@ const button = tv({
 
 type ButtonProps = ComponentProps<'button'> & VariantProps<typeof button>;
 
-export const Button = ({ variant, size, className, children, ...props }: ButtonProps) => {
-  return (
-    <button className={button({ variant, size, className })} disabled {...props}>
-      {children}
-    </button>
-  );
-};
+// export const Button = ({ variant, size, className, children, ...props }: ButtonProps) => {
+//   return (
+//     <button className={button({ variant, size, className })} disabled {...props}>
+//       {children}
+//     </button>
+//   );
+// };
 
 const Demo: React.FC = () => {
   return (
-    <div>
-      <Button variant="danger"> hello</Button>
+    <div className="w-full h-full">
       <div aria-disabled onClick={() => console.log('run')}>
         kaka
       </div>
+      <Button variant={'destructive'} size={'lg'}>
+        button
+      </Button>
     </div>
   );
 };
