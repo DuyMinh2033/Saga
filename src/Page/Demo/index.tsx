@@ -46,12 +46,9 @@ type ButtonProps = ComponentProps<'button'> & VariantProps<typeof button>;
 
 const Demo: React.FC = () => {
   return (
-    <div className="w-full h-full">
-      <div aria-disabled onClick={() => console.log('run')}>
-        kaka
-      </div>
-      <Button variant={'destructive'} size={'lg'}>
-        button
+    <div className="w-full h-[100vh] flex justify-center items-center">
+      <Button variant={'outline'} size={'lg'} onClick={() => console.log('hello')}>
+        Button
       </Button>
     </div>
   );

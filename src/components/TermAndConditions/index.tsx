@@ -1,17 +1,18 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import { arrTerm } from "../../contanst.js/arrTerm";
-import ListCheck from "../ListCheck";
-import ViewTerm from "../ViewTerm";
+import { useState } from 'react';
+
+import ListCheck from '../ListCheck';
+import ViewTerm from '../ViewTerm';
+import { arrTerm } from '@/contanst.ts/arrTerm';
 
 const TermAndCondition = ({ onSubmit }) => {
   const [checked, setChecked] = useState([]);
 
   const [viewTerm, setViewTerm] = useState({
-    title: "",
+    title: '',
     isOpen: false,
-    content: "",
-    value: "",
+    content: '',
+    value: '',
   });
 
   const handleClickView = (value) => {
@@ -44,10 +45,7 @@ const TermAndCondition = ({ onSubmit }) => {
         checked={checked}
         onClickView={handleClickView}
       />
-      <button
-        onClick={onSubmit}
-        disabled={arrTerm.options.length !== checked.length}
-      >
+      <button onClick={onSubmit} disabled={arrTerm.options.length !== checked.length}>
         Submit
       </button>
       <ViewTerm
