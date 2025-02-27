@@ -139,3 +139,42 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+@layer utilities {
+  @keyframes slide-up {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0); }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.2s forwards ease-in;
+  }
+
+  @keyframes slide-down {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100%); }
+  }
+
+  .animate-slide-down {
+    animation: slide-down 0.2s forwards ease-in;
+  }
+
+  @keyframes fade-in {
+    0% { opacity: 0 ; visibility: hidden; }
+    100% { opacity: 1; visibility: visible; }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out forwards;
+  }
+
+  @keyframes fade-out {
+    0% { opacity: 1;  visibility: visible;}
+    100% { opacity: 0; visibility: hidden;}
+  }
+
+  .animate-fade-out {
+    animation: fade-out 0.2s ease-in forwards;
+  }
+}

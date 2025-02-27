@@ -1,7 +1,8 @@
-import { ComponentProps } from 'react';
+import { ComponentProps, useState } from 'react';
 import './styles.scss';
 import { tv, VariantProps } from 'tailwind-variants';
 import { Button } from '@/components/ui/button';
+import TailWindCss from '@/components/TailwindCss';
 
 const button = tv({
   base: [
@@ -45,11 +46,19 @@ type ButtonProps = ComponentProps<'button'> & VariantProps<typeof button>;
 // };
 
 const Demo: React.FC = () => {
+  const [state, setState] = useState(false);
   return (
     <div className="w-full h-[100vh] flex justify-center items-center">
-      <Button variant={'outline'} size={'lg'} onClick={() => console.log('hello')}>
+      <Button variant={'outline'} size={'lg'} onClick={() => setState(true)}>
         Button
       </Button>
+      <TailWindCss open={state} onClose={() => setState(false)}>
+        <div className="h-[300px] bg-white">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis accusantium laborum
+          praesentium, libero dignissimos eveniet totam laboriosam quos! Earum sapiente debitis
+          quisquam quae obcaecati quas unde sequi repudiandae cum maxime!
+        </div>
+      </TailWindCss>
     </div>
   );
 };
