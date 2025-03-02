@@ -32,17 +32,18 @@ const Tooltip = ({
       <div
         onFocus={() => setIsVisible(true)}
         onBlur={() => setIsVisible(false)}
-        className="after:content-[''] after:absolute after:h-[10px] after:w-[10px] after:bg-white after:rotate-45 after:shadow-[0px_0px_16px_0px_rgba(18,20,24,0.1607843137)"
+        className="after:content-[''] after:absolute after:h-[10px] after:w-[10px] after:bg-white after:rotate-45 after:shadow-[0px_30px_16px_0px_rgba(18,20,24,0.1607843137)"
         aria-describedby={isVisible ? tooltipId : undefined}
         tabIndex={0}
-      >box-shadow: 
+      >
+        box-shadow:
         {children}
       </div>
 
       {isVisible && (
         <>
           <div
-            className={`absolute border-l-7  border-b-7 border-r-7 border-transparent  shadow-[0px_0px_16px_0px_rgba(18,20,24,0.16)] border-b-red-800 z-[100] ${arrowClasses[position]}`}
+            className={`absolute border-l-10  border-b-10 border-r-10 border-transparent  shadow-[0px_0px_16px_0px_rgba(18,20,24,0.16)] border-b-white z-[100] ${arrowClasses[position]}`}
           />
           <div
             id={tooltipId}
@@ -51,7 +52,7 @@ const Tooltip = ({
               absolute pointer-events-none  m-0  
                w-max 
                max-w-[264px] 
-               shadow-[0px_0px_16px_0px_rgba(18,20,24,0.16)]
+               shadow-[0px_-13px_20px_-20px_rgba(0,0,0,0.45),0px_20px_20px_-20px_rgba(0,0,0,0.4)]
                py-3 px-5
                 bg-white text-black  rounded-sm text-sm break-words ${className} ${positionClasses[position]} `}
           >
