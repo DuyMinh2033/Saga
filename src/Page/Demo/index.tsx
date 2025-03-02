@@ -3,6 +3,8 @@ import './styles.scss';
 import { tv, VariantProps } from 'tailwind-variants';
 import { Button } from '@/components/ui/button';
 import TailWindCss from '@/components/TailwindCss';
+import ToolTip from '@/components/Tooltip';
+import Tooltip from '@/components/Tooltip';
 
 const button = tv({
   base: [
@@ -37,28 +39,49 @@ const button = tv({
 
 type ButtonProps = ComponentProps<'button'> & VariantProps<typeof button>;
 
-// export const Button = ({ variant, size, className, children, ...props }: ButtonProps) => {
-//   return (
-//     <button className={button({ variant, size, className })} disabled {...props}>
-//       {children}
-//     </button>
-//   );
-// };
-
 const Demo: React.FC = () => {
   const [state, setState] = useState(false);
   return (
-    <div className="w-full h-[100vh] flex justify-center items-center">
+    <div className="w-full h-[100vh] flex justify-center items-center flex-col">
       <Button variant={'outline'} size={'lg'} onClick={() => setState(true)}>
         Button
       </Button>
-      <TailWindCss open={state} onClose={() => setState(false)}>
-        <div className="h-[300px] bg-white">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis accusantium laborum
-          praesentium, libero dignissimos eveniet totam laboriosam quos! Earum sapiente debitis
-          quisquam quae obcaecati quas unde sequi repudiandae cum maxime!
+      <div className="p-8 flex gap-8 justify-center items-center flex-col">
+        {/* Top Tooltip */}
+        <Tooltip
+          text="Top tooltip  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla id quo eius modi earum"
+          position="top"
+        >
+          <button className="btn">Hover Top</button>
+        </Tooltip>
+        {/* Bottom Tooltip */}
+        <Tooltip text="Bottom tooltip" position="bottom">
+          <button className="btn">Hover Bottom</button>
+        </Tooltip>
+        {/* Left Tooltip */}
+        <Tooltip text="Left tooltip" position="left">
+          <button className="btn">Hover Left</button>
+        </Tooltip>
+        {/* Right Tooltip */}
+        <Tooltip text="Right tooltip" position="right">
+          <button className="btn">Hover Right</button>
+        </Tooltip>
+        <Tooltip text="Top Right" position="top_right">
+          <button className="btn">Top Right</button>
+        </Tooltip>
+        {/* <div className="border-l-7 border-b-7 border-r-7 border-transparent border-b-gray-600 border-t-8"></div>
+        <div className="relative bg-gray-800 text-white p-2.5 rounded-lg w-fit">
+          Tooltip content
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 rotate-180 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-gray-800"></div>
         </div>
-      </TailWindCss>
+        <div className="relative bg-gray-800 text-white p-2.5 rounded-lg shadow-xl w-fit">
+          Tooltip content
+          <div
+            className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-gray-800 
+              before:absolute before:-bottom-4 before:left-1/2 before:-translate-x-1/2 before:border-l-8 before:border-r-8 before:border-b-8 before:border-transparent before:border-b-black/10"
+          ></div>
+        </div> */}
+      </div>
     </div>
   );
 };
