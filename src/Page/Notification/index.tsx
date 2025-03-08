@@ -1,8 +1,9 @@
-import { useState } from "react";
-import SelectFrequencyBottom from "../../common/components/SelectFrequecyBottom";
-import FrequencyCty from "../../common/components/FrequencyCty/FrequencyCty";
-import ViewBottomTerm from "../../common/components/ViewBottomTerm";
-import SelectTime from "../../common/components/SelectYear";
+import { useState } from 'react';
+
+import FrequencyCty from '../../common/components/FrequencyCty/FrequencyCty';
+import SelectFrequencyBottom from '../../common/components/SelectFrequecyBottom';
+import SelectTime from '../../common/components/SelectYear';
+import ViewBottomTerm from '../../common/components/ViewBottomTerm';
 
 const Notification = () => {
   const [isOpen, setIsOpen] = useState(false);

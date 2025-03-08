@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
-import "./style.scss";
+import { useRef, useState } from 'react';
+
+import './style.scss';
 
 const RandomOptions = () => {
   const [options, setOptions] = useState([]);
-  const [input, setInput] = useState("1. ");
-  console.log("🚀 ~ RandomOptions ~ input:", input);
+  const [input, setInput] = useState('1. ');
+  console.log('🚀 ~ RandomOptions ~ input:', input);
   const [spinning, setSpinning] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -16,14 +17,14 @@ const RandomOptions = () => {
   const handleAddOptions = () => {
     trigger.current = true;
     const newOptions = input
-      .split("\n")
+      .split('\n')
       .map((line) => {
         const match = line.match(/^\d+\.\s*(.+)$/);
         return match ? match[1].trim() : null;
       })
       .filter((option) => option);
     setOptions(newOptions);
-    alert("your options added");
+    alert('your options added');
   };
 
   const handleSpin = () => {
@@ -37,9 +38,9 @@ const RandomOptions = () => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.preventDefault();
-      const lines = input.split("\n");
+      const lines = input.split('\n');
       const nextNumber = lines.length + 1;
       setInput(input + `\n${nextNumber}. `);
     }

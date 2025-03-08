@@ -1,8 +1,8 @@
 export const usersInfo = {
-  GET_INFO_USER_INFO: "http://localhost:8800/api/user/get-users",
+  GET_INFO_USER_INFO: 'http://localhost:8800/api/user/get-users',
 };
 
-export const UserInfoFeatureName = "usersInfo";
+export const UserInfoFeatureName = 'usersInfo';
 
 export const ActionType = {
   GET_INFO_USER_REQUEST: `${UserInfoFeatureName}/GET_INFO_USER_REQUEST`,

@@ -1,16 +1,3 @@
-export const hours = [
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "11",
-  "12",
-];
+export const hours = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
 
-export const today = ["PM", "AM"];
+export const today = ['PM', 'AM'];

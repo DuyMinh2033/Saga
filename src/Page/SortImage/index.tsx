@@ -1,5 +1,6 @@
-import { useState } from "react";
-import "./styles.scss";
+import { useState } from 'react';
+
+import './styles.scss';
 
 const SortImage = () => {
   const [files, setFiles] = useState([]);
@@ -36,13 +37,10 @@ const SortImage = () => {
     }
   };
   const handleDrop = (index) => {
-    console.log("s >>>", { draggedIndex, index });
+    console.log('s >>>', { draggedIndex, index });
     if (draggedIndex !== null && draggedIndex !== index) {
       const newFiles = [...files];
-      [newFiles[draggedIndex], newFiles[index]] = [
-        newFiles[index],
-        newFiles[draggedIndex],
-      ];
+      [newFiles[draggedIndex], newFiles[index]] = [newFiles[index], newFiles[draggedIndex]];
       setFiles(newFiles);
     }
     setHoveredIndex(null);
@@ -55,13 +53,10 @@ const SortImage = () => {
 
   const handleTouchMove = (e) => {
     const touchLocation = e.touches[0];
-    const targetElement = document.elementFromPoint(
-      touchLocation.clientX,
-      touchLocation.clientY
-    );
+    const targetElement = document.elementFromPoint(touchLocation.clientX, touchLocation.clientY);
 
-    if (targetElement && targetElement.tagName === "IMG") {
-      const src = targetElement.getAttribute("src");
+    if (targetElement && targetElement.tagName === 'IMG') {
+      const src = targetElement.getAttribute('src');
       const indexTarget = files.indexOf(src);
       if (indexTarget !== draggedIndex) handleDrop(indexTarget);
     }
@@ -70,7 +65,7 @@ const SortImage = () => {
   const renderItemImg = (file, index) => {
     return (
       <div
-        className={`item  ${hoveredIndex === index ? "hovering" : ""}`}
+        className={`item  ${hoveredIndex === index ? 'hovering' : ''}`}
         key={index}
         draggable
         onDragStart={() => handleDragStart(index)}
@@ -81,10 +76,7 @@ const SortImage = () => {
       >
         {file ? (
           <div className="img">
-            <button
-              className="icon__remove"
-              onClick={() => handleRemoveImg(index)}
-            >
+            <button className="icon__remove" onClick={() => handleRemoveImg(index)}>
               X
             </button>
             <img src={file} alt="Preview" className="preview__img" />
@@ -108,9 +100,7 @@ const SortImage = () => {
 
   return (
     <div className="container__image">
-      <div className="section">
-        {files.map((file, index) => renderItemImg(file, index))}
-      </div>
+      <div className="section">{files.map((file, index) => renderItemImg(file, index))}</div>
       <button onClick={addNewSection}>Add section more</button>
     </div>
   );

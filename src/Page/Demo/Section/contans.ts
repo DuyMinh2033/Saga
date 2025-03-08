@@ -1,8 +1,8 @@
 export const InputOptions = {
-  country: "country",
-  city: "city",
+  country: 'country',
+  city: 'city',
 };
 export const Name = {
-  [InputOptions.country]: "",
-  [InputOptions.city]: "",
+  [InputOptions.country]: '',
+  [InputOptions.city]: '',
 };

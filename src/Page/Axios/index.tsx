@@ -1,27 +1,29 @@
-import { apiCall } from "../../Shared/apiCall";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+
+import { apiCall } from '../../Shared/apiCall';
+
 const Axios = () => {
-  const [respone, setRespone] = useState("");
+  const [respone, setRespone] = useState('');
 
   const convertData = () => {
     const result = {};
-    if (respone !== "") {
+    if (respone !== '') {
       for (const key in respone) {
-        result[key] = "";
+        result[key] = '';
       }
     }
     return result;
   };
 
   const handle = async () => {
-    const url = "http://localhost:8800/api/test/test-form";
-    const fetch = await apiCall(url, "post", { data: "hello" });
+    const url = 'http://localhost:8800/api/test/test-form';
+    const fetch = await apiCall(url, 'post', { data: 'hello' });
     setRespone(fetch);
   };
 
   useEffect(() => {
     const data = convertData();
-    console.log("🚀 ~ useEffect ~ data:", data);
+    console.log('🚀 ~ useEffect ~ data:', data);
   }, [respone]);
 
   // useEffect(() => {

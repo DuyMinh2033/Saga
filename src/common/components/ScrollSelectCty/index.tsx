@@ -1,7 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
-import { useEffect, useRef } from "react";
-import "./styles.scss";
+import { useEffect, useRef } from 'react';
+
+import './styles.scss';
 
 const itemHeight = 30;
 let scrollTimeout = null;
@@ -15,11 +14,7 @@ const ScrollSelect = ({
   const containerRef = useRef(null);
 
   const scrollToIndex = (index, isModify = true) => {
-    onChangeValue?.(
-      options[index]?.value !== undefined
-        ? options[index]?.value
-        : options[index]
-    );
+    onChangeValue?.(options[index]?.value !== undefined ? options[index]?.value : options[index]);
 
     if (containerRef.current) {
       containerRef.current.scrollTop = itemHeight * index;
@@ -34,21 +29,21 @@ const ScrollSelect = ({
 
     if (children) {
       Array.from(children).forEach((child) => {
-        child.classList.remove("selected");
-        child.classList.remove("rotateTop");
-        child.classList.remove("rotateBottom");
+        child.classList.remove('selected');
+        child.classList.remove('rotateTop');
+        child.classList.remove('rotateBottom');
       });
 
       if (children[index]) {
-        children[index].classList.add("selected");
+        children[index].classList.add('selected');
       }
 
       if (children?.[index - 2]) {
-        children[index - 2].classList.add("rotateTop");
+        children[index - 2].classList.add('rotateTop');
       }
 
       if (children?.[index + 2]) {
-        children[index + 2].classList.add("rotateBottom");
+        children[index + 2].classList.add('rotateBottom');
       }
     }
   };
@@ -56,7 +51,7 @@ const ScrollSelect = ({
   useEffect(() => {
     if (options.length > 0) {
       const currentIdx = options.findIndex(
-        (option) => option?.value === defaultValue || option === defaultValue
+        (option) => option?.value === defaultValue || option === defaultValue,
       );
       scrollToIndex(currentIdx < 0 ? 0 : currentIdx);
     }
@@ -76,10 +71,10 @@ const ScrollSelect = ({
         }, 200);
       };
 
-      containerRef.current?.addEventListener("scroll", handleEventScroll);
+      containerRef.current?.addEventListener('scroll', handleEventScroll);
 
       return () => {
-        containerRef.current?.removeEventListener("scroll", handleEventScroll);
+        containerRef.current?.removeEventListener('scroll', handleEventScroll);
 
         if (scrollTimeout) {
           clearTimeout(scrollTimeout);

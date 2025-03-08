@@ -1,8 +1,7 @@
-import { forwardRef } from "react";
+import { forwardRef } from 'react';
 
-// eslint-disable-next-line react/display-name
 const ProductSection = forwardRef((props, ref) => {
-  // eslint-disable-next-line react/prop-types, no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   const { products = [], tabClass, title, className } = props;
 
   return (

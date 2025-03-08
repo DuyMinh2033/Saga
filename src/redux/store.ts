@@ -1,6 +1,7 @@
-import { createStore, applyMiddleware, combineReducers, compose } from "redux";
-import createSagaMiddleware from "redux-saga";
-import rootSaga from "./Saga/saga";
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+
+import rootSaga from './Saga/saga';
 
 const createSagaInjector = (runSaga, rootSaga) => {
   let runningSagas = {};
@@ -26,7 +27,7 @@ const createSagaInjector = (runSaga, rootSaga) => {
   };
 
   if (rootSaga) {
-    injectSagas([{ key: "rootSaga", saga: rootSaga }]);
+    injectSagas([{ key: 'rootSaga', saga: rootSaga }]);
   }
 
   return { injectSagas, ejectSagas };
@@ -65,10 +66,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  rootReducer(),
-  composeEnhancers(applyMiddleware(sagaMiddleware))
-);
+const store = createStore(rootReducer(), composeEnhancers(applyMiddleware(sagaMiddleware)));
 
 store.sagaManager = createSagaInjector(sagaMiddleware.run, null);
 

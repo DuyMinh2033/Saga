@@ -1,8 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-import { useRef } from "react";
-import BottomSheet from "../BottomSheet";
-import "./style.scss";
+import { useRef } from 'react';
+
+import BottomSheet from '../BottomSheet';
+import './style.scss';
+
 const ViewTerm = ({ open, title, onClose, content, value, confirm }) => {
   const refBottom = useRef(null);
   const refContainer = useRef(null);
@@ -12,7 +12,7 @@ const ViewTerm = ({ open, title, onClose, content, value, confirm }) => {
       const container = refContainer.current.getBoundingClientRect().bottom;
       if (container < Math.floor(bottom)) {
         refBottom.current.scrollIntoView({
-          behavior: "smooth",
+          behavior: 'smooth',
         });
       } else if (container >= Math.floor(bottom)) {
         confirm(value);
@@ -25,7 +25,7 @@ const ViewTerm = ({ open, title, onClose, content, value, confirm }) => {
       <div className="container__term">
         <div className="content" ref={refContainer}>
           <p>{content}</p>
-          <div ref={refBottom}></div>
+          <div ref={refBottom} />
         </div>
         <div className="btn">
           <button onClick={handleConFirm}>Confirm</button>

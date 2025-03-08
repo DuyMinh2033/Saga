@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 function useRestoreSelection() {
-  const [priorSelectionInformation, setPriorSelectionInformation] =
-    useState(null);
+  const [priorSelectionInformation, setPriorSelectionInformation] = useState(null);
   // eslint-disable-next-line no-unused-vars
   const priorFocusedElemRef = useRef(null);
 
@@ -34,21 +33,13 @@ function useRestoreSelection() {
   // Khôi phục trạng thái cuộn và selection khi focus trở lại
   const restoreSelection = () => {
     if (priorSelectionInformation) {
-      const { focusedElem, selectionRange, ancestors } =
-        priorSelectionInformation;
+      const { focusedElem, selectionRange, ancestors } = priorSelectionInformation;
 
       const curFocusedElem = document.activeElement;
-      if (
-        curFocusedElem !== focusedElem &&
-        focusedElem &&
-        focusedElem.isConnected
-      ) {
+      if (curFocusedElem !== focusedElem && focusedElem && focusedElem.isConnected) {
         if (selectionRange && focusedElem.setSelectionRange) {
           // Khôi phục selection nếu có
-          focusedElem.setSelectionRange(
-            selectionRange.startOffset,
-            selectionRange.endOffset
-          );
+          focusedElem.setSelectionRange(selectionRange.startOffset, selectionRange.endOffset);
         }
 
         // Lưu lại các vị trí cuộn của các phần tử tổ tiên
@@ -59,7 +50,7 @@ function useRestoreSelection() {
         });
 
         // Focus lại vào phần tử
-        if (typeof focusedElem.focus === "function") {
+        if (typeof focusedElem.focus === 'function') {
           focusedElem.focus();
         }
       }
@@ -68,13 +59,13 @@ function useRestoreSelection() {
 
   // Lắng nghe sự kiện focus trên tất cả các input
   useEffect(() => {
-    document.querySelectorAll("input, textarea").forEach((input) => {
-      input.addEventListener("focus", handleFocus);
+    document.querySelectorAll('input, textarea').forEach((input) => {
+      input.addEventListener('focus', handleFocus);
     });
 
     return () => {
-      document.querySelectorAll("input, textarea").forEach((input) => {
-        input.removeEventListener("focus", handleFocus);
+      document.querySelectorAll('input, textarea').forEach((input) => {
+        input.removeEventListener('focus', handleFocus);
       });
     };
   }, []);

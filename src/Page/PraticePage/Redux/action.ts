@@ -1,5 +1,6 @@
-import { dispatch } from "../../../redux/store";
-import { ActionType } from "./type";
+import { dispatch } from '../../../redux/store';
+
+import { ActionType } from './type';
 
 export const getUserInfo = (payload) =>
   dispatch({ type: ActionType.GET_INFO_USER_REQUEST, payload });

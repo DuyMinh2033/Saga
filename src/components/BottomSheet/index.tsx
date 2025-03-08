@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
+
 import './style.scss';
 
 const BottomSheet = ({ open, children, title, onClose }) => {

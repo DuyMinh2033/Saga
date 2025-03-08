@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
-import "./styles.scss";
-// eslint-disable-next-line react/prop-types
+import { useRef, useState } from 'react';
+
+import './styles.scss';
+
 const AnchorTabPractice = ({ data = [], children }) => {
   const containerRef = useRef(null);
   const [selectedAnchor, setSelectedAnchor] = useState(0);
@@ -13,8 +14,8 @@ const AnchorTabPractice = ({ data = [], children }) => {
     setSelectedAnchor(idx);
     if (data[idx].ref.current) {
       data[idx].ref.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+        behavior: 'smooth',
+        block: 'start',
       });
       setHasScroll(true);
       timOut.current = setTimeout(() => {
@@ -48,20 +49,14 @@ const AnchorTabPractice = ({ data = [], children }) => {
         {data.map((item, idx) => (
           <div
             key={item.title}
-            className={`header__item__anchor ${
-              idx === selectedAnchor && "selected__anchor"
-            }`}
+            className={`header__item__anchor ${idx === selectedAnchor && 'selected__anchor'}`}
             onClick={() => handleClick(idx)}
           >
             <p>{item.title}</p>
           </div>
         ))}
       </div>
-      <div
-        ref={containerRef}
-        className="anchor__scroll"
-        onScroll={handleScroll}
-      >
+      <div ref={containerRef} className="anchor__scroll" onScroll={handleScroll}>
         {children}
       </div>
     </div>

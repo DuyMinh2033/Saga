@@ -1,14 +1,9 @@
-import { Fragment } from "react";
-import "./style.scss";
-import { MdNavigateNext } from "react-icons/md";
-/* eslint-disable react/prop-types */
-const ListCheck = ({
-  config,
-  checked,
-  setChecked,
-  hidden = false,
-  onClickView,
-}) => {
+import { Fragment } from 'react';
+import { MdNavigateNext } from 'react-icons/md';
+
+import './style.scss';
+
+const ListCheck = ({ config, checked, setChecked, hidden = false, onClickView }) => {
   const { selectAllLabel, options = [] } = config;
 
   const handleOnchange = (e, value) => {
@@ -31,7 +26,7 @@ const ListCheck = ({
   return (
     <div>
       <div>
-        <label style={{ display: "flex", gap: "10px", position: "relative" }}>
+        <label style={{ display: 'flex', gap: '10px', position: 'relative' }}>
           <input
             onChange={onchangeAll}
             type="checkbox"
@@ -43,15 +38,15 @@ const ListCheck = ({
 
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-          marginTop: "20px",
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '10px',
+          marginTop: '20px',
         }}
       >
         {options.map((item) => (
           <Fragment key={item}>
-            <div style={{ position: "relative" }}>
+            <div style={{ position: 'relative' }}>
               <label className="item__term">
                 <input
                   type="checkbox"
@@ -60,11 +55,8 @@ const ListCheck = ({
                 />
                 <p>{item.label}</p>
               </label>
-              <div className={`icon__view ${hidden ? "hidden" : ""}`}>
-                <MdNavigateNext
-                  size={25}
-                  onClick={() => handleClickView(item.value)}
-                />
+              <div className={`icon__view ${hidden ? 'hidden' : ''}`}>
+                <MdNavigateNext size={25} onClick={() => handleClickView(item.value)} />
               </div>
             </div>
           </Fragment>

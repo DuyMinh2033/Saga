@@ -1,11 +1,11 @@
-import BottomSheet from "../../../components/BottomSheet";
-import "./styles.scss";
-// eslint-disable-next-line react/prop-types
+import BottomSheet from '../../../components/BottomSheet';
+import './styles.scss';
+
 const ViewMapBottom = ({ isOpen, onClose }) => {
   const handleClick = () => {
     const url =
-      "https://www.google.com/maps/place/5000+Yonge+St+b2,+North+York,+ON+M2N+7E9,+Canada/@43.766246,-79.412752,19z/data=!4m5!3m4!1s0x882b2d4e208c6a2d:0x7e978570243dfde7!8m2!3d43.7661592!4d-79.4129487?hl=en&entry=ttu&g_ep=EgoyMDI0MTIwMy4wIKXMDSoASAFQAw%3D%3D";
-    window.open(url, "_blank"); // Mở trong tab mới
+      'https://www.google.com/maps/place/5000+Yonge+St+b2,+North+York,+ON+M2N+7E9,+Canada/@43.766246,-79.412752,19z/data=!4m5!3m4!1s0x882b2d4e208c6a2d:0x7e978570243dfde7!8m2!3d43.7661592!4d-79.4129487?hl=en&entry=ttu&g_ep=EgoyMDI0MTIwMy4wIKXMDSoASAFQAw%3D%3D';
+    window.open(url, '_blank'); // Mở trong tab mới
   };
 
   return (
@@ -20,7 +20,7 @@ const ViewMapBottom = ({ isOpen, onClose }) => {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           title="response"
-        ></iframe>
+        />
         <div className="link" onClick={handleClick} />
       </div>
     </BottomSheet>

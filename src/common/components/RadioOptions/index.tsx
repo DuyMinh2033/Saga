@@ -1,8 +1,9 @@
-/* eslint-disable react/prop-types */
-import { useState } from "react";
-import "./styles.scss";
+import { useState } from 'react';
+
+import './styles.scss';
+
 const RadioOptions = ({ options = [], onChangeValue = () => {} }) => {
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState('');
   const handleSelected = (item) => {
     setSelected(item);
     onChangeValue?.(item);
@@ -12,7 +13,7 @@ const RadioOptions = ({ options = [], onChangeValue = () => {} }) => {
       {options.map((item, index) => (
         <div
           key={index}
-          className={`radio__item ${selected === item && "selected"}`}
+          className={`radio__item ${selected === item && 'selected'}`}
           onClick={() => handleSelected(item)}
         >
           <p>{item}</p>

@@ -1,7 +1,9 @@
 /* eslint-disable no-unsafe-optional-chaining */
-import { useEffect, useRef, useState } from "react";
-import { hours } from "./constanst";
-import "./styles.scss";
+import { useEffect, useRef, useState } from 'react';
+
+import { hours } from './constanst';
+import './styles.scss';
+
 const SelectTime = () => {
   const containerRef = useRef();
   const [selected, setSelected] = useState(0);
@@ -15,7 +17,7 @@ const SelectTime = () => {
       const scrollPosition = idx * 30;
       containerRef.current.scrollTo({
         top: scrollPosition,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   };
@@ -37,9 +39,9 @@ const SelectTime = () => {
       handleSrollEnd(newNumber);
       onChangeNumber(newNumber);
     };
-    containerRef?.current?.addEventListener("scroll", handleScroll);
+    containerRef?.current?.addEventListener('scroll', handleScroll);
     return () => {
-      containerRef?.current?.removeEventListener("scroll", handleScroll);
+      containerRef?.current?.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -47,10 +49,7 @@ const SelectTime = () => {
     <div ref={containerRef} className="select-container__time">
       {hours.map((item, idx) => {
         return (
-          <div
-            key={item}
-            className={`hours__item ${idx === selected && "selected"}`}
-          >
+          <div key={item} className={`hours__item ${idx === selected && 'selected'}`}>
             <p>{item}</p>
           </div>
         );

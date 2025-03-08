@@ -9,7 +9,6 @@
 //   const [open, setIsOpen] = useState(false);
 //   const [scale, setScale] = useState(1);
 
-
 //   const initialDistance = useRef(0);
 //   const deviceWidth =
 //     window.innerWidth ||
@@ -18,7 +17,6 @@
 
 //   const [origin, setOrigin] = useState({ x: 0, y: 0 });
 //   const lastDistanceRef = useRef(null);
-
 
 //   const handleTouchStart = (e) => {
 //     if (e.touches.length === 2) {

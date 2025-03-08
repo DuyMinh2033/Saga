@@ -1,9 +1,9 @@
-import { useState } from "react";
-import FieldEditor from "../FieldEditor";
+import { useState } from 'react';
 
-// eslint-disable-next-line react/prop-types
+import FieldEditor from '../FieldEditor';
+
 function FormBuilder({ formFields = [], onAddField, onRemoveField }) {
-  const [newField, setNewField] = useState({ label: "", type: "text" });
+  const [newField, setNewField] = useState({ label: '', type: 'text' });
 
   const handleFieldChange = (e) => {
     const { name, value } = e.target;
@@ -15,14 +15,14 @@ function FormBuilder({ formFields = [], onAddField, onRemoveField }) {
 
   const handleAdd = () => {
     onAddField(newField);
-    setNewField({ label: "", type: "text" });
+    setNewField({ label: '', type: 'text' });
   };
 
   return (
     <div>
       <h2>Form Builder</h2>
       <FieldEditor field={newField} onFieldChange={handleFieldChange} />
-      <button onClick={handleAdd} style={{ color: "white" }}>
+      <button onClick={handleAdd} style={{ color: 'white' }}>
         Add Field
       </button>
 
@@ -33,10 +33,7 @@ function FormBuilder({ formFields = [], onAddField, onRemoveField }) {
             <span>
               {field.label} ({field.type})
             </span>
-            <button
-              onClick={() => onRemoveField(index)}
-              style={{ color: "white" }}
-            >
+            <button onClick={() => onRemoveField(index)} style={{ color: 'white' }}>
               Remove
             </button>
           </div>

@@ -1,12 +1,8 @@
-/* eslint-disable react/prop-types */
-import { useState, useRef, useEffect } from "react";
-import "./styles.scss";
+import { useEffect, useRef, useState } from 'react';
 
-const SelectDate = ({
-  options = [],
-  onChangeValue = () => {},
-  defaultOption = "",
-}) => {
+import './styles.scss';
+
+const SelectDate = ({ options = [], onChangeValue = () => {}, defaultOption = '' }) => {
   const viewRer = useRef(null);
   const [selected, setSelected] = useState(0);
   useEffect(() => {
@@ -47,18 +43,17 @@ const SelectDate = ({
       handleSrollEnd(newNumber);
     };
     if (viewRer.current) {
-      viewRer.current.addEventListener("scroll", handleScroll);
+      viewRer.current.addEventListener('scroll', handleScroll);
     }
     return () => {
       if (viewRer.current) {
-        viewRer.current.removeEventListener("scroll", handleScroll);
+        viewRer.current.removeEventListener('scroll', handleScroll);
       }
     };
   }, []);
 
   useEffect(() => {
-    onChangeValue?.(options[selected]?.label || "");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    onChangeValue?.(options[selected]?.label || '');
   }, [selected]);
   return (
     <>
@@ -67,7 +62,7 @@ const SelectDate = ({
           {options.map((item, idx) => (
             <div
               key={idx}
-              className={`item ${selected === idx ? "selected" : ""}`}
+              className={`item ${selected === idx ? 'selected' : ''}`}
               onClick={() => scrollToNumber(idx)}
             >
               <span>{item?.label}</span>

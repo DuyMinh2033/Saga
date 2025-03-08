@@ -1,6 +1,6 @@
-import "./styles.scss";
+import './styles.scss';
+
 const AnchorTab = (props) => {
-  // eslint-disable-next-line react/prop-types
   const { clazz, type, segments = [], active } = props;
   const handleClickChip = (index, chipItem) => {
     chipItem.handleClick(chipItem.value);
@@ -12,9 +12,7 @@ const AnchorTab = (props) => {
         return (
           <div
             key={idx}
-            className={`anchor__tab__item ${type} ${clazz} ${
-              active === chip.value ? "active__tab" : ""
-            }`}
+            className={`anchor__tab__item ${type} ${clazz} ${active === chip.value ? 'active__tab' : ''}`}
             onClick={() => handleClickChip(idx, chip)}
           >
             <span>{chip.label}</span>

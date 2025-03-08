@@ -1,7 +1,7 @@
-import { call, put } from "redux-saga/effects";
+import { call, put } from 'redux-saga/effects';
 
-import { setHttpFailure, setHttpRequesting, setHttpSuccess } from "./http";
-import { apiCall } from "./apiCall";
+import { apiCall } from './apiCall';
+import { setHttpFailure, setHttpRequesting, setHttpSuccess } from './http';
 
 export default function* workerSaga(url, method, options, action) {
   try {
@@ -12,7 +12,7 @@ export default function* workerSaga(url, method, options, action) {
       yield put(setHttpSuccess(type));
       yield put({ type: `${type}_SUCCESS`, payload: response });
     } else {
-      yield put(setHttpFailure(type, "No data received from API"));
+      yield put(setHttpFailure(type, 'No data received from API'));
       yield put({ type: `${type}_FAILED`, payload: null });
     }
   } catch (error) {

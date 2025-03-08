@@ -1,21 +1,20 @@
-/* eslint-disable react/prop-types */
-import { useEffect, useRef, useState } from "react";
-import AnchorTab from "../AnchorTab/AnchorTab";
+import { useEffect, useRef, useState } from 'react';
+
+import AnchorTab from '../AnchorTab/AnchorTab';
 
 const ScrollAnchor = ({ sections, options, children }) => {
   const containerRef = useRef();
   const { classHeader, classAnchor } = options;
-  const [activeTab, setActiveTab] = useState(sections[0]?.tab || "1");
+  const [activeTab, setActiveTab] = useState(sections[0]?.tab || '1');
 
   const handleScrollToTitle = (ref) => {
     const headerHeight = document.querySelector(classHeader)?.offsetHeight || 0;
     const anchorHeight = document.querySelector(classAnchor)?.offsetHeight || 0;
-    const topPosition =
-      ref.current.getBoundingClientRect().top + containerRef.current.scrollTop;
+    const topPosition = ref.current.getBoundingClientRect().top + containerRef.current.scrollTop;
 
     containerRef.current.scrollTo({
       top: topPosition - headerHeight - anchorHeight,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -23,13 +22,11 @@ const ScrollAnchor = ({ sections, options, children }) => {
     const scrollContainer = containerRef.current;
     const scrollTop = scrollContainer.scrollTop || window.scrollY;
     const headerHeight = document.querySelector(classHeader)?.offsetHeight || 0;
-    const anchorTabHeight =
-      document.querySelector(classAnchor)?.offsetHeight || 0;
+    const anchorTabHeight = document.querySelector(classAnchor)?.offsetHeight || 0;
 
     const getSectionOffsets = (sectionRef) => {
       if (sectionRef?.current) {
-        const offsetTop =
-          sectionRef.current.offsetTop - headerHeight - anchorTabHeight - 20;
+        const offsetTop = sectionRef.current.offsetTop - headerHeight - anchorTabHeight - 20;
         const offsetBottom = offsetTop + sectionRef.current.offsetHeight;
         return { offsetTop, offsetBottom };
       }
@@ -51,10 +48,10 @@ const ScrollAnchor = ({ sections, options, children }) => {
       const handleScroll = () => {
         handleScrollToActive();
       };
-      scrollContainer?.addEventListener("scroll", handleScroll);
+      scrollContainer?.addEventListener('scroll', handleScroll);
       return () => {
         if (scrollContainer) {
-          return scrollContainer.removeEventListener("scroll", handleScroll);
+          return scrollContainer.removeEventListener('scroll', handleScroll);
         }
       };
     }

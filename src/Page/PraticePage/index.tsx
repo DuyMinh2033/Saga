@@ -1,23 +1,23 @@
-import { useEffect, useRef, useState } from "react";
-import DropDown from "../../components/DropDown/DropDown";
-import InputDropDown from "../../components/InputDropDown/InputDropDown";
-import { countries as data } from "./constans";
-import "./styles.scss";
-import { useForm, Controller } from "react-hook-form";
-import Alert from "../../components/Alert/Alert";
-import { FaCloudUploadAlt } from "react-icons/fa";
-import { getUserInfo } from "./Redux/action";
-import useSagas from "../../hooks/useSaga";
-import { getUserInfoSaga } from "./Redux/saga";
-import { infoUserReducer } from "./Redux/reducer";
-import { UserInfoFeatureName } from "./Redux/type";
-import { useSelector } from "react-redux";
-import { usersInfoSelector } from "./Redux/selector";
-import useReducers from "../../hooks/useReducer";
+import { useEffect, useRef, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { FaCloudUploadAlt } from 'react-icons/fa';
+
+import Alert from '../../components/Alert/Alert';
+import DropDown from '../../components/DropDown/DropDown';
+import InputDropDown from '../../components/InputDropDown/InputDropDown';
+import useReducers from '../../hooks/useReducer';
+import useSagas from '../../hooks/useSaga';
+
+import { countries as data } from './constans';
+import { getUserInfo } from './Redux/action';
+import { infoUserReducer } from './Redux/reducer';
+import { getUserInfoSaga } from './Redux/saga';
+import { UserInfoFeatureName } from './Redux/type';
+import './styles.scss';
 
 const dataInfo = {
-  email: "Minh",
-  countries: "Canada",
+  email: 'Minh',
+  countries: 'Canada',
 };
 const PraticePage = () => {
   const {
@@ -29,7 +29,7 @@ const PraticePage = () => {
     formState: { errors },
   } = useForm();
 
-  const [countries, isUpLoad] = watch(["countries", "isUpLoad"]);
+  const [countries, isUpLoad] = watch(['countries', 'isUpLoad']);
   useSagas([{ key: UserInfoFeatureName, saga: getUserInfoSaga }]);
   useReducers([{ key: UserInfoFeatureName, reducer: infoUserReducer }]);
 
@@ -39,7 +39,7 @@ const PraticePage = () => {
   const refInput = useRef(null);
   const [showAlert, setShowAlert] = useState({
     isShow: false,
-    title: "",
+    title: '',
   });
 
   useEffect(() => {
@@ -62,13 +62,13 @@ const PraticePage = () => {
     if (checked) {
       return setShowAlert({
         isShow: true,
-        title: "Pls inter upload file",
+        title: 'Pls inter upload file',
       });
     }
     getUserInfo();
   };
   const handleSelect = (value) => {
-    console.log("🚀 ~ handleSelect ~ value:", value);
+    console.log('🚀 ~ handleSelect ~ value:', value);
   };
 
   const [imageSrc, setImageSrc] = useState(null);
@@ -82,7 +82,7 @@ const PraticePage = () => {
       };
       reader.readAsDataURL(file);
     }
-    setValue("isUpLoad", file);
+    setValue('isUpLoad', file);
   };
 
   return (
@@ -99,12 +99,7 @@ const PraticePage = () => {
           name="countries"
           control={control}
           render={({ field }) => (
-            <DropDown
-              showIcon
-              data={data}
-              onSelectect={handleSelect}
-              {...field}
-            />
+            <DropDown showIcon data={data} onSelectect={handleSelect} {...field} />
           )}
         />
         <div className="upload__file" onClick={() => refInput.current.click()}>
@@ -114,12 +109,7 @@ const PraticePage = () => {
               <FaCloudUploadAlt size={50} />
             </div>
           )}
-          <input
-            ref={refInput}
-            type="file"
-            onChange={handleUpload}
-            className="input__file"
-          />
+          <input ref={refInput} type="file" onChange={handleUpload} className="input__file" />
         </div>
 
         <button type="submit" onClick={handleSubmit(submitForm)}>

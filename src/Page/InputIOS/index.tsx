@@ -1,6 +1,8 @@
 import { useRef } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+
 import './styles.scss';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+
 const InputIOS = () => {
   const inputRefs = useRef([]);
   const containerRef = useRef(null);

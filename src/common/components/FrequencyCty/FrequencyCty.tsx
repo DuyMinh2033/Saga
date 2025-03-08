@@ -1,14 +1,13 @@
-/* eslint-disable react/prop-types */
+import { useCallback, useMemo, useRef, useState } from 'react';
 
-import { useCallback, useMemo, useRef, useState } from "react";
-import BottomSheet from "../../../components/BottomSheet";
-import ScrollSelect from "../ScrollSelectCty";
+import BottomSheet from '../../../components/BottomSheet';
+import ScrollSelect from '../ScrollSelectCty';
 import {
   frequencyOnceOptions,
   FrequencyType,
   frequencyTypeOptions,
   frequencyValueByTypeOptions,
-} from "../SelectFrequecyBottom/constants";
+} from '../SelectFrequecyBottom/constants';
 
 const FrequencyCty = ({ open, onClose, onChange = () => {}, value = {} }) => {
   const valueRef = useRef({});
@@ -19,7 +18,7 @@ const FrequencyCty = ({ open, onClose, onChange = () => {}, value = {} }) => {
 
   const handleConfirm = () => {
     const { value } = valueRef.current;
-    console.log("🚀 ~ handleConfirm ~  { type, value }:", {
+    console.log('🚀 ~ handleConfirm ~  { type, value }:', {
       selectTypeOption,
       value,
     });
@@ -41,16 +40,14 @@ const FrequencyCty = ({ open, onClose, onChange = () => {}, value = {} }) => {
   };
 
   const valueOptions = useMemo(() => {
-    return (
-      frequencyValueByTypeOptions[selectTypeOption] || frequencyOnceOptions
-    );
+    return frequencyValueByTypeOptions[selectTypeOption] || frequencyOnceOptions;
   }, [selectTypeOption]);
 
   const changeValueOption = useCallback(
     debounceChangeOption((value) => {
       setSelectTypeOption(value);
     }, 200),
-    []
+    [],
   );
 
   return (
@@ -66,7 +63,7 @@ const FrequencyCty = ({ open, onClose, onChange = () => {}, value = {} }) => {
           defaultValue={selectedValue}
           // type={"test"}
           onChangeValue={(value) => {
-            valueRef.current.value = value || "";
+            valueRef.current.value = value || '';
           }}
         />
       </div>

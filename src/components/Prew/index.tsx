@@ -1,6 +1,3 @@
-
-
-// eslint-disable-next-line react/prop-types
 function FormPreview({ fields = [] }) {
   return (
     <div>
@@ -11,10 +8,10 @@ function FormPreview({ fields = [] }) {
         fields.map((field, index) => (
           <div key={index}>
             <label>{field.label}:</label>
-            {field.type === "text" && <input type="text" />}
-            {field.type === "number" && <input type="number" />}
-            {field.type === "checkbox" && <input type="checkbox" />}
-            {field.type === "dropdown" && (
+            {field.type === 'text' && <input type="text" />}
+            {field.type === 'number' && <input type="number" />}
+            {field.type === 'checkbox' && <input type="checkbox" />}
+            {field.type === 'dropdown' && (
               <select>
                 <option value="">Select an option</option>
               </select>

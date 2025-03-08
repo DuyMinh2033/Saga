@@ -1,8 +1,6 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/display-name */
+import { forwardRef, useEffect, useRef } from 'react';
 
 const remainingTime = 180;
-import { forwardRef, useEffect, useRef } from "react";
 
 // eslint-disable-next-line no-unused-vars
 const Timer = forwardRef((props, ref) => {
@@ -14,7 +12,7 @@ const Timer = forwardRef((props, ref) => {
   const formatSecondsDisplay = (seconds) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
   const updateCountdown = () => {

@@ -1,4 +1,5 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
+
 import { apiCall } from '../../Shared/apiCall.js';
 type TypeData = {
   data?: any;

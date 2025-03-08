@@ -1,7 +1,8 @@
-/* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
-import "./styles.scss";
-import { FaAngleDown } from "react-icons/fa6";
+import { useEffect, useState } from 'react';
+import { FaAngleDown } from 'react-icons/fa6';
+
+import './styles.scss';
+
 const Accordion = ({ option, onClick, isExpand, children }) => {
   const { value, title } = option;
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +22,7 @@ const Accordion = ({ option, onClick, isExpand, children }) => {
         <p>{value}</p>
         <FaAngleDown />
       </div>
-      <div className={`${isOpen ? "show" : "unShow"}`}>{children}</div>
+      <div className={`${isOpen ? 'show' : 'unShow'}`}>{children}</div>
     </div>
   );
 };

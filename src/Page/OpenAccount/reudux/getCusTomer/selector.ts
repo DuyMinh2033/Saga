@@ -1,13 +1,13 @@
-import { CustomerFeatureName } from "./type";
+import { CustomerFeatureName } from './type';
 
 export const customerInfo = (state) => {
-    return state[CustomerFeatureName]?.customer?.data;
+  return state[CustomerFeatureName]?.customer?.data;
 };
 
 export const customerLoadState = (state) => {
-    return state[CustomerFeatureName]?.isLoading;
+  return state[CustomerFeatureName]?.isLoading;
 };
 
 export const getCustomerFailedMsg = (state) => {
-    return state[CustomerFeatureName]?.customer?.elHeader?.resMsg;
+  return state[CustomerFeatureName]?.customer?.elHeader?.resMsg;
 };

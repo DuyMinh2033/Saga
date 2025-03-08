@@ -1,12 +1,13 @@
-import { all, takeLatest } from "redux-saga/effects";
-import workerSaga from '../../../../Shared/SagaWoker'
-import { Actiontype, customerUrl } from "./type";
+import { all, takeLatest } from 'redux-saga/effects';
 
+import workerSaga from '../../../../Shared/SagaWoker';
+
+import { Actiontype, customerUrl } from './type';
 
 const Method = {
-  POST: "post",
-  GET: "get",
-  PUT: "put",
+  POST: 'post',
+  GET: 'get',
+  PUT: 'put',
 };
 
 const EMPTY_OBJ = {};
@@ -18,9 +19,9 @@ export function* getCustomer() {
     customerUrl.POST_CUSTOMER_INFO,
     Method.GET,
     {
-      dataPath: "",
+      dataPath: '',
       defaultResponse: EMPTY_OBJ,
-    }
+    },
   );
 }
 

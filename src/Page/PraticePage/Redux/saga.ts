@@ -1,12 +1,13 @@
-import { all, takeLatest } from "redux-saga/effects";
+import { all, takeLatest } from 'redux-saga/effects';
 
-import { ActionType, usersInfo } from "./type";
-import workerSaga from "../../../Shared/SagaWoker";
+import workerSaga from '../../../Shared/SagaWoker';
+
+import { ActionType, usersInfo } from './type';
 
 const Method = {
-  POST: "post",
-  GET: "get",
-  PUT: "put",
+  POST: 'post',
+  GET: 'get',
+  PUT: 'put',
 };
 
 const EMPTY_OBJ = {};
@@ -18,9 +19,9 @@ export function* getUser() {
     usersInfo.GET_INFO_USER_INFO,
     Method.GET,
     {
-      dataPath: "",
+      dataPath: '',
       defaultResponse: EMPTY_OBJ,
-    }
+    },
   );
 }
 

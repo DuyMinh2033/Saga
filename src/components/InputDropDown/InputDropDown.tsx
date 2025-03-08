@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import "./style.scss";
+import './style.scss';
 
 const InputDropDown =
   // eslint-disable-next-line no-unused-vars

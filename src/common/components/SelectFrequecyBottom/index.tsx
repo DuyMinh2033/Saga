@@ -1,15 +1,16 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
-import { useCallback, useMemo, useRef, useState } from "react";
-import BottomSheet from "../../../components/BottomSheet";
+import { useCallback, useMemo, useRef, useState } from 'react';
+
+import BottomSheet from '../../../components/BottomSheet';
+import SelectDate from '../ScrollSelectDate';
+
 import {
   FrequencyType,
   frequencyTypeOptions,
   frequencyValueByTypeOptions,
   frequencyWeekOptions,
-} from "./constants";
-import SelectDate from "../ScrollSelectDate";
-import "./styles.scss";
+} from './constants';
+import './styles.scss';
+
 //TODO: Handle logic
 const SelectFrequencyBottom = ({ open, onClose, onChange, value = {} }) => {
   const valueRef = useRef({});
@@ -20,7 +21,7 @@ const SelectFrequencyBottom = ({ open, onClose, onChange, value = {} }) => {
 
   const handleConfirm = () => {
     const { type, value } = valueRef.current;
-    console.log("🚀 ~ handleConfirm ~  { type, value }:", { type, value });
+    console.log('🚀 ~ handleConfirm ~  { type, value }:', { type, value });
     onChange({
       type,
       value,
@@ -38,9 +39,7 @@ const SelectFrequencyBottom = ({ open, onClose, onChange, value = {} }) => {
   };
 
   const valueOptions = useMemo(() => {
-    return (
-      frequencyValueByTypeOptions[selectTypeOption] || frequencyWeekOptions
-    );
+    return frequencyValueByTypeOptions[selectTypeOption] || frequencyWeekOptions;
   }, [selectTypeOption]);
 
   const changeValueOption = useCallback(
@@ -48,7 +47,7 @@ const SelectFrequencyBottom = ({ open, onClose, onChange, value = {} }) => {
       valueRef.current.type = value;
       setSelectTypeOption(value);
     }, 100),
-    []
+    [],
   );
 
   return (
@@ -64,7 +63,7 @@ const SelectFrequencyBottom = ({ open, onClose, onChange, value = {} }) => {
             options={valueOptions}
             onChangeValue={(value) => {
               // const convert = valueOptions.find((item) => item.label === value);
-              valueRef.current.value = value || "";
+              valueRef.current.value = value || '';
             }}
           />
         </div>

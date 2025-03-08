@@ -1,52 +1,53 @@
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-import "./style.scss";
+import { Controller, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+
+import './style.scss';
 
 const openAccountSchema = Yup.object().shape({
-  accountNo: Yup.string().required("Required field"),
-  amount: Yup.string().required("Required field"),
-  intendedUseAccount: Yup.string().required("Required field"),
+  accountNo: Yup.string().required('Required field'),
+  amount: Yup.string().required('Required field'),
+  intendedUseAccount: Yup.string().required('Required field'),
   debitCardIssuance: Yup.boolean(),
   thirdPartyChecked: Yup.boolean(),
-  thirdPartyName: Yup.string().when("thirdPartyChecked", {
+  thirdPartyName: Yup.string().when('thirdPartyChecked', {
     is: true,
-    then: (schema) => schema.required("Third Party Name is required"),
+    then: (schema) => schema.required('Third Party Name is required'),
     otherwise: (schema) => schema.notRequired(),
   }),
-  dob: Yup.string().when("thirdPartyChecked", {
+  dob: Yup.string().when('thirdPartyChecked', {
     is: true,
-    then: (schema) => schema.required("Date of Birth is required"),
+    then: (schema) => schema.required('Date of Birth is required'),
     otherwise: (schema) => schema.notRequired(),
   }),
-  address: Yup.string().when("thirdPartyChecked", {
+  address: Yup.string().when('thirdPartyChecked', {
     is: true,
-    then: (schema) => schema.required("Address is required"),
+    then: (schema) => schema.required('Address is required'),
     otherwise: (schema) => schema.notRequired(),
   }),
-  city: Yup.string().when("thirdPartyChecked", {
+  city: Yup.string().when('thirdPartyChecked', {
     is: true,
-    then: (schema) => schema.required("City is required"),
+    then: (schema) => schema.required('City is required'),
     otherwise: (schema) => schema.notRequired(),
   }),
-  province: Yup.string().when("thirdPartyChecked", {
+  province: Yup.string().when('thirdPartyChecked', {
     is: true,
-    then: (schema) => schema.required("Province is required"),
+    then: (schema) => schema.required('Province is required'),
     otherwise: (schema) => schema.notRequired(),
   }),
-  postalCode: Yup.string().when("thirdPartyChecked", {
+  postalCode: Yup.string().when('thirdPartyChecked', {
     is: true,
-    then: (schema) => schema.required("Postal Code is required"),
+    then: (schema) => schema.required('Postal Code is required'),
     otherwise: (schema) => schema.notRequired(),
   }),
-  occupation: Yup.string().when("thirdPartyChecked", {
+  occupation: Yup.string().when('thirdPartyChecked', {
     is: true,
-    then: (schema) => schema.required("Occupation is required"),
+    then: (schema) => schema.required('Occupation is required'),
     otherwise: (schema) => schema.notRequired(),
   }),
-  relationship: Yup.string().when("thirdPartyChecked", {
+  relationship: Yup.string().when('thirdPartyChecked', {
     is: true,
-    then: (schema) => schema.required("Relationship is required"),
+    then: (schema) => schema.required('Relationship is required'),
     otherwise: (schema) => schema.notRequired(),
   }),
   referralCode: Yup.string(),
@@ -78,7 +79,7 @@ const SchemaForm = () => {
     // },
   });
 
-  const thirdPartyChecked = watch("thirdPartyChecked");
+  const thirdPartyChecked = watch('thirdPartyChecked');
 
   const onSubmit = (data) => {
     console.log(data);
@@ -99,11 +100,7 @@ const SchemaForm = () => {
 
       <div>
         <label>Amount</label>
-        <Controller
-          name="amount"
-          control={control}
-          render={({ field }) => <input {...field} />}
-        />
+        <Controller name="amount" control={control} render={({ field }) => <input {...field} />} />
         {errors.amount && <p>{errors.amount.message}</p>}
       </div>
 
@@ -114,9 +111,7 @@ const SchemaForm = () => {
           control={control}
           render={({ field }) => <input {...field} />}
         />
-        {errors.intendedUseAccount && (
-          <p>{errors.intendedUseAccount.message}</p>
-        )}
+        {errors.intendedUseAccount && <p>{errors.intendedUseAccount.message}</p>}
       </div>
 
       <div>
@@ -151,11 +146,7 @@ const SchemaForm = () => {
 
           <div>
             <label>Date of Birth</label>
-            <Controller
-              name="dob"
-              control={control}
-              render={({ field }) => <input {...field} />}
-            />
+            <Controller name="dob" control={control} render={({ field }) => <input {...field} />} />
             {errors.dob && <p>{errors.dob.message}</p>}
           </div>
 

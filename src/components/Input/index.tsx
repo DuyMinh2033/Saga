@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
-import { useRef, useState } from "react";
-import "./style.scss";
+import { useRef, useState } from 'react';
+
+import './style.scss';
 
 const Input = (props) => {
   const {
@@ -9,7 +9,7 @@ const Input = (props) => {
     className,
     onChange = () => {},
     regex,
-    type = "text",
+    type = 'text',
     value,
     maxLength,
     ...other
@@ -22,7 +22,7 @@ const Input = (props) => {
     let checkMaxLength;
     if (regex) {
       if (isProcessKey.current) return;
-      value = value.replace(regex, "");
+      value = value.replace(regex, '');
     }
     if (maxLength) {
       let enc = new TextEncoder();
@@ -38,7 +38,7 @@ const Input = (props) => {
 
   const handleOnChange = (e) => {
     let value = e.target.value;
-    console.log("🚀 ~ handleOnChange ~ value:", value);
+    console.log('🚀 ~ handleOnChange ~ value:', value);
     validateInput(value);
   };
 
@@ -51,7 +51,7 @@ const Input = (props) => {
     if (!isEnterKeyBoard.current) isEnterKeyBoard.current = true;
     // if (!regex) return;
     const { key } = event;
-    if (key === "Backspace") {
+    if (key === 'Backspace') {
       setIsTrick(true);
     }
     // const newRegex = new RegExp(regex);
@@ -70,7 +70,7 @@ const Input = (props) => {
   const ref = useRef(null);
 
   const handleClear = () => {
-    onChange("");
+    onChange('');
     if (ref.current) {
       ref.current.focus();
     }

@@ -7,7 +7,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import importPlugin from 'eslint-plugin-import';
 import unusedImports from 'eslint-plugin-unused-imports';
 import eslintComments from 'eslint-plugin-eslint-comments';
-import prettier from 'eslint-config-prettier';
+import prettier from 'eslint-plugin-prettier';
 
 export default [
   js.configs.recommended,
@@ -18,6 +18,11 @@ export default [
       parserOptions: {
         project: './tsconfig.json',
       },
+      globals: {
+        console: 'readonly',
+        window: 'readonly',
+        document: 'readonly',
+      },
     },
     plugins: {
       '@typescript-eslint': tseslint,
@@ -27,8 +32,10 @@ export default [
       import: importPlugin,
       'unused-imports': unusedImports,
       'eslint-comments': eslintComments,
+      prettier,
     },
     rules: {
+      'react/self-closing-comp': 'error',
       // Cấm dùng `any`
       '@typescript-eslint/no-explicit-any': 'error',
 
@@ -36,10 +43,13 @@ export default [
       'unused-imports/no-unused-imports': 'warn',
 
       // Cảnh báo khi có biến không sử dụng
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-
-      // Cấm console.log (trừ error & warn)
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+        },
+      ],
 
       // Kiểm tra import theo thứ tự hợp lý
       'import/order': [
@@ -56,7 +66,8 @@ export default [
 
       // ESLint comments plugin
       'eslint-comments/no-unused-disable': 'warn',
+
+      'prettier/prettier': 'error',
     },
   },
-  prettier,
 ];

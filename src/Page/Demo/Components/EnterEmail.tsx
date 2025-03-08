@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 const EnterEmail = ({ navigatePersonal, navigateThankYou }) => {
   const handleOnClick = () => {
     // Generate a random boolean
@@ -11,7 +10,7 @@ const EnterEmail = ({ navigatePersonal, navigateThankYou }) => {
   };
 
   return (
-    <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+    <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
       <button onClick={handleOnClick}>next</button>
     </div>
   );

@@ -1,4 +1,4 @@
-import { UserInfoFeatureName } from "./type";
+import { UserInfoFeatureName } from './type';
 
 export const usersInfoSelector = (state) => {
   return state[UserInfoFeatureName]?.userInfo?.data?.data;

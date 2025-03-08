@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react';
 
 import ListCheck from '../ListCheck';
 import ViewTerm from '../ViewTerm';
+
 import { arrTerm } from '@/contanst.ts/arrTerm';
 
 const TermAndCondition = ({ onSubmit }) => {

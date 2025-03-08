@@ -8,9 +8,7 @@ const TailWindCss = ({ open, children, title, onClose }) => {
       }`}
     >
       <div
-        className={`w-full px-6 bg-white rounded-t-2xl transform  ${
-          open ? 'animate-slide-up' : 'animate-slide-down'
-        }`}
+        className={`w-full px-6 bg-white rounded-t-2xl transform  ${open ? 'animate-slide-up' : 'animate-slide-down'}`}
       >
         <div className="flex items-center justify-between h-14">
           <p className="flex-grow font-medium text-gray-900 text-lg">{title}</p>

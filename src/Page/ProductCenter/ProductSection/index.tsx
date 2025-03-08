@@ -1,5 +1,5 @@
-import "./styles.scss";
-// eslint-disable-next-line react/prop-types
+import './styles.scss';
+
 const ProductSection = ({ data = [], containerRef }) => {
   return (
     <div className="product__section" ref={containerRef}>

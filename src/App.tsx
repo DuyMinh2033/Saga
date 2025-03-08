@@ -1,96 +1,94 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import OpenAccount from "./Page/OpenAccount";
-import SchemaForm from "./Page/ShemaForm";
-import AddressForm from "./Page/AdressCustomer";
-import TestPage from "./Page/TestPage";
-import Axios from "./Page/Axios";
-import DynamicPage from "./Page/Dynamic";
-import ScrollPage from "./Page/ScrollPage";
-import ProductList from "./Page/ProductList/ProductList";
-import PraticePage from "./Page/PraticePage";
-import ScrollFetch from "./Page/ScrollFetch";
-import SelectDate from "./common/components/ScrollSelectDate";
-import Notification from "./Page/Notification";
-import ProductCenter from "./Page/ProductCenter";
-import TestAnchorTab from "./Page/TestAnchorTab";
+import './App.css';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import React from 'react';
 
-
-import InputIOS from "./Page/InputIOS";
-import KeyBoard from "./Page/TestOpenKeyboard";
-import { useEffect } from "react";
-import RandomOptions from "./Page/RandomOptions";
-import Home from "./Home";
-import SortImage from "./Page/SortImage";
-import React from "react";
-import Demo from "./Page/Demo";
+import OpenAccount from './Page/OpenAccount';
+import SchemaForm from './Page/ShemaForm';
+import AddressForm from './Page/AdressCustomer';
+import TestPage from './Page/TestPage';
+import Axios from './Page/Axios';
+import DynamicPage from './Page/Dynamic';
+import ScrollPage from './Page/ScrollPage';
+import ProductList from './Page/ProductList/ProductList';
+import PraticePage from './Page/PraticePage';
+import ScrollFetch from './Page/ScrollFetch';
+import SelectDate from './common/components/ScrollSelectDate';
+import Notification from './Page/Notification';
+import ProductCenter from './Page/ProductCenter';
+import TestAnchorTab from './Page/TestAnchorTab';
+import InputIOS from './Page/InputIOS';
+import KeyBoard from './Page/TestOpenKeyboard';
+import RandomOptions from './Page/RandomOptions';
+import Home from './Home';
+import SortImage from './Page/SortImage';
+import Demo from './Page/Demo';
 
 // import LoginPage from "./Page/Login";
 
 const route = [
   {
-    path: "/",
+    path: '/',
     element: <Home />,
   },
   {
-    path: "/open-account",
+    path: '/open-account',
     element: <OpenAccount />,
   },
   {
-    path: "/form-schema",
+    path: '/form-schema',
     element: <SchemaForm />,
   },
   {
-    path: "/address",
+    path: '/address',
     element: <AddressForm />,
   },
   {
-    path: "/test-api",
+    path: '/test-api',
     element: <TestPage />,
   },
   {
-    path: "/axios",
+    path: '/axios',
     element: <Axios />,
   },
   {
-    path: "/dynamic",
+    path: '/dynamic',
     element: <DynamicPage />,
   },
   {
-    path: "/scroll-page",
+    path: '/scroll-page',
     element: <ScrollPage />,
   },
   {
-    path: "/products",
+    path: '/products',
     element: <ProductList />,
   },
   {
-    path: "/pratice",
+    path: '/pratice',
     element: <PraticePage />,
   },
   {
-    path: "/scroll-fetch",
+    path: '/scroll-fetch',
     element: <ScrollFetch />,
   },
   {
-    path: "/select-date",
+    path: '/select-date',
     element: <SelectDate />,
   },
   {
-    path: "/notification",
+    path: '/notification',
     element: <Notification />, // scroll select date
   },
   {
-    path: "/product-center",
+    path: '/product-center',
     element: <ProductCenter />, //scroll to bottom then fetch data
   },
   {
-    path: "/anchor-tab",
+    path: '/anchor-tab',
     element: <TestAnchorTab />, //anchor tab
   },
   {
-    path: "/demo",
+    path: '/demo',
     element: <Demo />,
   },
   // {
@@ -98,19 +96,19 @@ const route = [
   //   element: <Pdfss />,
   // },
   {
-    path: "/ios",
+    path: '/ios',
     element: <InputIOS />,
   },
   {
-    path: "/KeyBoard",
+    path: '/KeyBoard',
     element: <KeyBoard />,
   },
   {
-    path: "/random",
+    path: '/random',
     element: <RandomOptions />,
   },
   {
-    path: "/sort-image",
+    path: '/sort-image',
     element: <SortImage />,
   },
 
@@ -128,10 +126,10 @@ function App() {
   const navigate = useNavigate();
   useEffect(() => {
     document.addEventListener(
-      "redirect",
+      'redirect',
       (e: any) => {
         try {
-          if (typeof e.detail === "object") {
+          if (typeof e.detail === 'object') {
             const data = e.detail;
             const path = String(data.src);
             navigate(path);
@@ -140,7 +138,7 @@ function App() {
           console.log(error);
         }
       },
-      false
+      false,
     );
   }, []);
 

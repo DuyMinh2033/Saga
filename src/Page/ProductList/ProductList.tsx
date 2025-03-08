@@ -1,5 +1,9 @@
-import { useMemo, useRef } from "react";
-import "./styles.scss";
+import { useMemo, useRef } from 'react';
+
+import Header from '../../components/Header';
+
+import ScrollAnchor from './components/AnChorScroll/AnchorSscroll';
+import Banker from './components/Banker';
 import {
   bannerBaseProductCode,
   dataBanker,
@@ -7,15 +11,12 @@ import {
   productListData,
   ProductTab,
   ProductTabDisplay,
-} from "./constans";
-
-import ScrollAnchor from "./components/AnChorScroll/AnchorSscroll";
-import Header from "../../components/Header";
-import Banker from "./components/Banker";
+} from './constans';
+import './styles.scss';
 
 const options = {
-  classHeader: ".header__wrapper",
-  classAnchor: ".anchor__tab__wrapper",
+  classHeader: '.header__wrapper',
+  classAnchor: '.anchor__tab__wrapper',
 };
 
 const ProductList = () => {
@@ -25,15 +26,15 @@ const ProductList = () => {
   const bankerTitle = useRef(null);
   const sections = useMemo(
     () => [
-      { ref: bankingTitleRef, tab: ProductTab.BANKING, label: "Banking" },
+      { ref: bankingTitleRef, tab: ProductTab.BANKING, label: 'Banking' },
       {
         ref: investmentTitleRef,
         tab: ProductTab.INVESTMENT,
-        label: "Investment",
+        label: 'Investment',
       },
-      { ref: borrowingTitleRef, tab: ProductTab.BORROWING, label: "Borrowing" },
+      { ref: borrowingTitleRef, tab: ProductTab.BORROWING, label: 'Borrowing' },
     ],
-    []
+    [],
   );
 
   const filterProduct = useMemo(() => {
@@ -45,9 +46,9 @@ const ProductList = () => {
       };
       for (let i = 0; i < product.length; i++) {
         const item = product[i];
-        if (item.dep_sjt_class === "1") data.banking.push(item);
-        if (item.dep_sjt_class === "2") data.investment.push(item);
-        if (item.dep_sjt_class === "3") data.borrowing.push(item);
+        if (item.dep_sjt_class === '1') data.banking.push(item);
+        if (item.dep_sjt_class === '2') data.investment.push(item);
+        if (item.dep_sjt_class === '3') data.borrowing.push(item);
       }
       return data;
     };
@@ -73,15 +74,12 @@ const ProductList = () => {
                     <div className="banner__container">
                       <div className="product-banner__desc">
                         <div className="product__type">
-                          <span style={{ color: "green", fontSize: "20px" }}>
-                            {product?.name}
-                          </span>
+                          <span style={{ color: 'green', fontSize: '20px' }}>{product?.name}</span>
                         </div>
                         <div className="product__desc">
                           <span>
-                            This product provides high interest rate even for a
-                            day saving with convenient deposit and withdrawal
-                            system.
+                            This product provides high interest rate even for a day saving with
+                            convenient deposit and withdrawal system.
                           </span>
                         </div>
                       </div>
@@ -90,18 +88,14 @@ const ProductList = () => {
                           <div className="item__label">Rate</div>
                           <div className="item__value">
                             <span className="item__unit">up to</span>
-                            <span className="item__quantity">
-                              ~{product?.ntfct_intrt}
-                            </span>
+                            <span className="item__quantity">~{product?.ntfct_intrt}</span>
                             <span className="item__unit">%</span>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="product-banner__image">
-                      <span style={{ color: "red", fontSize: "18px" }}>
-                        {itemImg}
-                      </span>
+                      <span style={{ color: 'red', fontSize: '18px' }}>{itemImg}</span>
                     </div>
                   </div>
                 ) : (
@@ -122,32 +116,26 @@ const ProductList = () => {
         {renderProductSection(
           bankingTitleRef,
           filterProduct(productListData).banking,
-          "banking",
+          'banking',
           ProductTabDisplay[ProductTab.BANKING],
-          "banking"
+          'banking',
         )}
         {renderProductSection(
           investmentTitleRef,
           filterProduct(productListData).investment,
-          "investment",
+          'investment',
           ProductTabDisplay[ProductTab.INVESTMENT],
-          "investment"
+          'investment',
         )}
         {renderProductSection(
           borrowingTitleRef,
           filterProduct(productListData).borrowing,
-          "borrowing",
+          'borrowing',
           ProductTabDisplay[ProductTab.BORROWING],
-          "borrowing"
+          'borrowing',
         )}
 
-        {renderProductSection(
-          bankerTitle,
-          dataBanker,
-          "banker",
-          "banker",
-          "banker"
-        )}
+        {renderProductSection(bankerTitle, dataBanker, 'banker', 'banker', 'banker')}
       </ScrollAnchor>
     </div>
   );

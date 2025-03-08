@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import AnchorTabPractice from "../../common/components/AnchorTab";
-import Header from "../../components/Header";
-import { productListData } from "../ProductList/constans";
-import "./styles.scss";
+import { useEffect, useRef, useState } from 'react';
+
+import AnchorTabPractice from '../../common/components/AnchorTab';
+import Header from '../../components/Header';
+import { productListData } from '../ProductList/constans';
+import './styles.scss';
+
 const TestAnchorTab = () => {
   const refBanking = useRef(null);
   const refInvestment = useRef(null);
@@ -12,15 +14,15 @@ const TestAnchorTab = () => {
   const arrDataAnchor = [
     {
       ref: refBanking,
-      title: "Banking",
+      title: 'Banking',
     },
     {
       ref: refInvestment,
-      title: "Investment",
+      title: 'Investment',
     },
     {
       ref: refBorrowing,
-      title: "Borrowing",
+      title: 'Borrowing',
     },
   ];
 
@@ -38,9 +40,9 @@ const TestAnchorTab = () => {
 
   const Product = data.reduce((acc, item) => {
     const map = {
-      1: "bank",
-      2: "investment",
-      3: "borrowing",
+      1: 'bank',
+      2: 'investment',
+      3: 'borrowing',
     };
 
     const key = map[item.dep_sjt_class];
@@ -55,12 +57,12 @@ const TestAnchorTab = () => {
     return (
       <div className="item__product" ref={ref}>
         <div>
-          <p style={{ color: "green" }}>{title}</p>
+          <p style={{ color: 'green' }}>{title}</p>
         </div>
         {products?.map((item) => {
           return (
             <div key={item.id}>
-              <p style={{ color: "red" }}>{item.name}</p>
+              <p style={{ color: 'red' }}>{item.name}</p>
               <p>{item.description}</p>
             </div>
           );
@@ -74,13 +76,9 @@ const TestAnchorTab = () => {
       <Header />
       <AnchorTabPractice data={arrDataAnchor}>
         <div className="container__productList">
-          {renderProductSection(Product.bank, "Bank", refBanking)}
-          {renderProductSection(
-            Product.investment,
-            "Investment",
-            refInvestment
-          )}
-          {renderProductSection(Product.borrowing, "Borrowing", refBorrowing)}
+          {renderProductSection(Product.bank, 'Bank', refBanking)}
+          {renderProductSection(Product.investment, 'Investment', refInvestment)}
+          {renderProductSection(Product.borrowing, 'Borrowing', refBorrowing)}
         </div>
       </AnchorTabPractice>
     </div>

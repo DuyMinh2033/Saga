@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
 const AddressForm = () => {
   const [addresses, setAddresses] = useState([]);
@@ -14,7 +14,7 @@ const AddressForm = () => {
     formState: { errors },
   } = useForm();
 
-  const watchedFields = watch(["addressId", "street", "city"]);
+  const watchedFields = watch(['addressId', 'street', 'city']);
 
   useEffect(() => {
     const fetchAddresses = async () => {
@@ -22,17 +22,17 @@ const AddressForm = () => {
         addresses: [
           {
             id: 1,
-            type: "home",
-            value: "Home Address",
-            street: "123 Home St",
-            city: "Hometown",
+            type: 'home',
+            value: 'Home Address',
+            street: '123 Home St',
+            city: 'Hometown',
           },
           {
             id: 2,
-            type: "work",
-            value: "Work Address",
-            street: "456 Work Ave",
-            city: "Workville",
+            type: 'work',
+            value: 'Work Address',
+            street: '456 Work Ave',
+            city: 'Workville',
           },
         ],
       };
@@ -51,13 +51,10 @@ const AddressForm = () => {
 
   useEffect(() => {
     const [selectedAddressId, street, city] = watchedFields;
-    const selectedAddress = addresses.find(
-      (addr) => addr.id === Number(selectedAddressId)
-    );
+    const selectedAddress = addresses.find((addr) => addr.id === Number(selectedAddressId));
 
-    if (selectedAddress?.type === "home") {
-      const isChanged =
-        street !== initialValues.street || city !== initialValues.city;
+    if (selectedAddress?.type === 'home') {
+      const isChanged = street !== initialValues.street || city !== initialValues.city;
       setRequireVerification(isChanged);
     } else {
       setRequireVerification(false);
@@ -66,7 +63,7 @@ const AddressForm = () => {
 
   const onSubmit = (data) => {
     if (requireVerification && !data.verificationImage) {
-      alert("Please upload a verification image for changed home address");
+      alert('Please upload a verification image for changed home address');
       return;
     }
     console.log(data);
@@ -74,10 +71,10 @@ const AddressForm = () => {
 
   const handleAddressChange = (e) => {
     const selectedId = Number(e.target.value);
-    setValue("addressId", selectedId);
+    setValue('addressId', selectedId);
     const selected = addresses.find((addr) => addr.id === selectedId);
-    setValue("street", selected.street);
-    setValue("city", selected.city);
+    setValue('street', selected.street);
+    setValue('city', selected.city);
   };
 
   return (
@@ -85,7 +82,7 @@ const AddressForm = () => {
       <Controller
         name="addressId"
         control={control}
-        rules={{ required: "Address is required" }}
+        rules={{ required: 'Address is required' }}
         render={({ field }) => (
           <select {...field} onChange={handleAddressChange}>
             <option value="">Select an address</option>
@@ -102,7 +99,7 @@ const AddressForm = () => {
       <Controller
         name="street"
         control={control}
-        rules={{ required: "Street is required" }}
+        rules={{ required: 'Street is required' }}
         render={({ field }) => <input {...field} placeholder="Street" />}
       />
       {errors.street && <p>{errors.street.message}</p>}
@@ -110,7 +107,7 @@ const AddressForm = () => {
       <Controller
         name="city"
         control={control}
-        rules={{ required: "City is required" }}
+        rules={{ required: 'City is required' }}
         render={({ field }) => <input {...field} placeholder="City" />}
       />
       {errors.city && <p>{errors.city.message}</p>}
@@ -120,29 +117,24 @@ const AddressForm = () => {
           name="verificationImage"
           control={control}
           rules={{
-            required: "Verification image is required for changed home address",
+            required: 'Verification image is required for changed home address',
             validate: (value) => {
               if (!value) {
-                alert(
-                  "Please upload a verification image for changed home address"
-                );
-                return "Verification image is required";
+                alert('Please upload a verification image for changed home address');
+                return 'Verification image is required';
               }
               return true;
             },
           }}
           render={({ field }) => (
-            <input
-              type="file"
-              onChange={(e) => field.onChange(e.target.files[0])}
-            />
+            <input type="file" onChange={(e) => field.onChange(e.target.files[0])} />
           )}
         />
       )}
       {errors.verificationImage && <p>{errors.verificationImage.message}</p>}
 
       <button type="submit">Submit</button>
-    </form>    
+    </form>
   );
 };
 

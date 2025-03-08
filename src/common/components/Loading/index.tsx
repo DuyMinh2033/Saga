@@ -1,6 +1,7 @@
-import { AiOutlineLoading } from "react-icons/ai";
+import { AiOutlineLoading } from 'react-icons/ai';
 
-import "./styles.scss";
+import './styles.scss';
+
 const Loading = () => {
   return (
     <div className="loading">

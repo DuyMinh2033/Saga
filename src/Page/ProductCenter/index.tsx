@@ -1,12 +1,13 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef, useState } from "react";
-import Header from "../../components/Header";
-import { dataContent } from "./constanst";
-import ProductSection from "./ProductSection";
-import { apiCall } from "../../Shared/apiCall";
-import Loading from "../../common/components/Loading";
+import { useEffect, useRef, useState } from 'react';
 
-const url = "https://66ce967d901aab24841ee608.mockapi.io/api/v1/project";
+import Loading from '../../common/components/Loading';
+import Header from '../../components/Header';
+import { apiCall } from '../../Shared/apiCall';
+
+import { dataContent } from './constanst';
+import ProductSection from './ProductSection';
+
+const url = 'https://66ce967d901aab24841ee608.mockapi.io/api/v1/project';
 
 const ProductCenter = () => {
   const containerRef = useRef(null);
@@ -24,16 +25,16 @@ const ProductCenter = () => {
       }
     };
     if (containerRef.current) {
-      containerRef.current.addEventListener("scroll", handleScroll);
+      containerRef.current.addEventListener('scroll', handleScroll);
     }
     return () => {
-      containerRef?.current?.removeEventListener("scroll", handleScroll);
+      containerRef?.current?.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  
+
   const handleFetchData = async () => {
     setLoading(true);
-    const fetch = await apiCall(url, "get");
+    const fetch = await apiCall(url, 'get');
     if (fetch.data) {
       setLoading(false);
     }
@@ -48,7 +49,7 @@ const ProductCenter = () => {
       {loading && <Loading />}
       <Header />
       <ProductSection data={dataContent} containerRef={containerRef} />
-      <div></div>
+      <div />
     </div>
   );
 };

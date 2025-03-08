@@ -1,6 +1,7 @@
-import { useState } from "react";
-import FormPreview from "../../components/Prew";
-import FormBuilder from "../../components/FormBuilder";
+import { useState } from 'react';
+
+import FormBuilder from '../../components/FormBuilder';
+import FormPreview from '../../components/Prew';
 
 const DynamicPage = () => {
   const [formFields, setFormFields] = useState([]);
@@ -18,7 +19,7 @@ const DynamicPage = () => {
   const togglePreview = () => setPreview(!preview);
 
   return (
-    <div style={{ color: "white" }}>
+    <div style={{ color: 'white' }}>
       <h1>Dynamic Form Builder</h1>
       {preview ? (
         <FormPreview fields={formFields} />
@@ -29,8 +30,8 @@ const DynamicPage = () => {
           onRemoveField={handleRemoveField}
         />
       )}
-      <button style={{ color: "white" }} onClick={togglePreview}>
-        {preview ? "Edit Form" : "Preview Form"}
+      <button style={{ color: 'white' }} onClick={togglePreview}>
+        {preview ? 'Edit Form' : 'Preview Form'}
       </button>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 const ScrollFetch = () => {
   const notificationListRef = useRef(null);
@@ -27,31 +27,20 @@ const ScrollFetch = () => {
   const fetchDataWhenScrollBottom = () => {
     debugger;
     const elementScroll = notificationListRef.current;
-    const listAllItem = document.querySelectorAll(".notification__list");
-    const lastItemEle = listAllItem.length
-      ? listAllItem[listAllItem.length - 1]
-      : null;
+    const listAllItem = document.querySelectorAll('.notification__list');
+    const lastItemEle = listAllItem.length ? listAllItem[listAllItem.length - 1] : null;
 
     const elementScrollOffset = elementScroll.scrollTop;
     const elementScrollHeight = elementScroll.clientHeight;
     const paddingEleStr = window.getComputedStyle(elementScroll).paddingBottom;
 
-    const paddingEleNumber = +paddingEleStr.substring(
-      0,
-      paddingEleStr.length - 2
-    );
+    const paddingEleNumber = +paddingEleStr.substring(0, paddingEleStr.length - 2);
 
-    const lastRowOffset =
-      lastItemEle.offsetTop + lastItemEle.clientHeight + paddingEleNumber;
+    const lastRowOffset = lastItemEle.offsetTop + lastItemEle.clientHeight + paddingEleNumber;
 
-    console.log(
-      "🚀 ~ fetchDataWhenScrollBottom ~ lastItemEle.offsetTop:",
-      lastItemEle.offsetTop
-    );
+    console.log('🚀 ~ fetchDataWhenScrollBottom ~ lastItemEle.offsetTop:', lastItemEle.offsetTop);
 
-    if (
-      lastRowOffset > Math.floor(elementScrollOffset + elementScrollHeight + 1)
-    ) {
+    if (lastRowOffset > Math.floor(elementScrollOffset + elementScrollHeight + 1)) {
       setLoadMoreNotify(false);
     } else {
       setLoadMoreNotify(true);
@@ -60,75 +49,60 @@ const ScrollFetch = () => {
 
   useEffect(() => {
     const notificationDiv = notificationListRef.current;
-    notificationDiv.addEventListener("touchmove", fetchDataWhenScrollBottom);
+    notificationDiv.addEventListener('touchmove', fetchDataWhenScrollBottom);
 
     return () => {
-      notificationDiv.removeEventListener(
-        "touchmove",
-        fetchDataWhenScrollBottom
-      );
+      notificationDiv.removeEventListener('touchmove', fetchDataWhenScrollBottom);
     };
   }, [loadMoreNotify]);
 
   useEffect(() => {
     if (loadMoreNotify) {
-      console.log("Load more notifications...");
+      console.log('Load more notifications...');
     }
   }, [loadMoreNotify]);
 
   return (
-    <div
-      ref={notificationListRef}
-      className=""
-      style={{ height: "300px", overflowY: "scroll" }}
-    >
+    <div ref={notificationListRef} className="" style={{ height: '300px', overflowY: 'scroll' }}>
       <div className="notification__list">Notification 1</div>
       <div className="notification__list">Notification 2</div>
       <div className="notification__list">Notification 3</div>
       <div className="notification__list">Notification 4</div>
       <div className="notification__list">Notification 5</div>
       <div className="notification__list">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum
-        dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit
-        amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
-        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur
-        adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing
-        elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem
-        ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor
-        sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
-        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur
-        adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing
-        elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem
-        ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor
-        sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
-        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur
-        adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing
-        elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem
-        ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor
-        sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
-        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur
-        adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing
-        elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem
-        ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor
-        sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
-        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur
-        adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing
-        elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem
-        ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor
-        sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
-        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur
-        adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing
-        elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem
-        ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor
-        sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
-        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur
-        adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing
-        elit... Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem
-        ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor
-        sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
-        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur
-        adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing
-        elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit... Lorem ipsum dolor sit amet
+        consectetur adipisicing elit... Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        Lorem ipsum dolor sit amet consectetur adipisicing elit...
       </div>
     </div>
   );

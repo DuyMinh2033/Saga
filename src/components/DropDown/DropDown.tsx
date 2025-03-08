@@ -1,9 +1,9 @@
-/* eslint-disable react/prop-types */
-import { useState } from "react";
-import { FaChevronDown } from "react-icons/fa";
-import BottomSheet from "../BottomSheet/index";
+import { useState } from 'react';
+import { FaChevronDown } from 'react-icons/fa';
 
-import "./styles.scss";
+import BottomSheet from '../BottomSheet/index';
+import './styles.scss';
+
 const DropDown = ({ showIcon = false, data = [], onSelectect, ...field }) => {
   const { onChange, value } = field;
   const [showBs, setShowBs] = useState(false);
@@ -19,11 +19,7 @@ const DropDown = ({ showIcon = false, data = [], onSelectect, ...field }) => {
         <label className="label">{value}</label>
         {showIcon && <FaChevronDown onClick={() => setShowBs(true)} />}
       </div>
-      <BottomSheet
-        open={showBs}
-        title={"countries"}
-        onClose={() => setShowBs(false)}
-      >
+      <BottomSheet open={showBs} title={'countries'} onClose={() => setShowBs(false)}>
         <div className="dropdown">
           {data.map((item) => (
             <div
