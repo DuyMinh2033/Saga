@@ -1,10 +1,7 @@
-import { ComponentProps, useState } from 'react';
+import { ComponentProps } from 'react';
 import './styles.scss';
 import { tv, VariantProps } from 'tailwind-variants';
-import { Button } from '@/components/ui/button';
-import TailWindCss from '@/components/TailwindCss';
-import ToolTip from '@/components/Tooltip';
-import Tooltip from '@/components/Tooltip';
+
 import Tabs from '@/components/Tabs';
 
 const button = tv({
@@ -40,7 +37,7 @@ const button = tv({
 
 type ButtonProps = ComponentProps<'button'> & VariantProps<typeof button>;
 
-const Demo: React.FC = () => {
+const Demo = () => {
   return (
     <div className="w-full h-[100vh] flex justify-center items-center flex-col">
       <div className="px-[24px] w-full">

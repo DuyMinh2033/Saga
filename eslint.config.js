@@ -1,32 +1,62 @@
+import js from '@eslint/js';
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import importPlugin from 'eslint-plugin-import';
+import unusedImports from 'eslint-plugin-unused-imports';
+import eslintComments from 'eslint-plugin-eslint-comments';
+import prettier from 'eslint-config-prettier';
+
 export default [
-  { ignores: ["dist"] },
+  js.configs.recommended,
   {
-    files: ["**/*.{ts,tsx}"],
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      parser: tsParser,
       parserOptions: {
-        ecmaVersion: "latest",
-        ecmaFeatures: { tsx: true },
-        sourceType: "module",
+        project: './tsconfig.json',
       },
     },
-    settings: { react: { version: "18.3" } },
     plugins: {
+      '@typescript-eslint': tseslint,
       react,
-      "react-hooks": reactHooks,
-      "react-refresh": reactRefresh,
+      'react-hooks': reactHooks,
+      'jsx-a11y': jsxA11y,
+      import: importPlugin,
+      'unused-imports': unusedImports,
+      'eslint-comments': eslintComments,
     },
     rules: {
-      ...js.configs.recommended.rules,
-      ...react.configs.recommended.rules,
-      ...react.configs["jsx-runtime"].rules,
-      ...reactHooks.configs.recommended.rules,
-      "react/jsx-no-target-blank": "off", // Tắt quy tắc này
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true },
+      // Cấm dùng `any`
+      '@typescript-eslint/no-explicit-any': 'error',
+
+      // Cấm import không dùng
+      'unused-imports/no-unused-imports': 'warn',
+
+      // Cảnh báo khi có biến không sử dụng
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+
+      // Cấm console.log (trừ error & warn)
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+
+      // Kiểm tra import theo thứ tự hợp lý
+      'import/order': [
+        'warn',
+        {
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          'newlines-between': 'always',
+        },
       ],
+
+      // React-specific rules
+      'react/prop-types': 'off',
+      'react/react-in-jsx-scope': 'off',
+
+      // ESLint comments plugin
+      'eslint-comments/no-unused-disable': 'warn',
     },
   },
+  prettier,
 ];
