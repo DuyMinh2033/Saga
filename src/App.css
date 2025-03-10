@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
-@plugin "tailwindcss-animate";
 
-@custom-variant dark (&:is(.dark *));
 /* * {
   margin: 0;
   padding: 0;
@@ -177,4 +175,28 @@ body {
   .animate-fade-out {
     animation: fade-out 0.2s ease-in forwards;
   }
+}
+
+@layer components {
+  .value-dropdown{
+  @apply invisible transition-all duration-200 ease-in-out opacity-0
+  }
+  .drop-down{
+    @apply  min-h-[56px] relative duration-100 ease-in-out transition-all border border-[#D6DBE1] rounded-[12px] py-[16px] px-[18px] focus:border-[#005DF9] flex items-end;
+    .label {
+      @apply absolute left-[18px] text-[16px] leading-[21px] text-[#808892]
+    }
+  }
+  .drop-down.focus {
+    @apply min-h-[72px] !py-[14.5px];
+      .value-dropdown{
+        @apply visible opacity-100 text-[16px] font-medium leading-[21px]
+        }
+        .icon{
+          @apply rotate-180
+        }
+        .label {
+          @apply !top-[14.5px] text-[13px] leading-[18px]
+        }
+}
 }

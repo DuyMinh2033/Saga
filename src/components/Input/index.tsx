@@ -25,7 +25,7 @@ const Input = (props) => {
       value = value.replace(regex, '');
     }
     if (maxLength) {
-      let enc = new TextEncoder();
+    let enc = new TextEncoder();
       let uint8 = enc.encode(value);
       checkMaxLength = uint8.length > maxLength;
     }
