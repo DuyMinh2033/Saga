@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import * as Yup from 'yup';
 
 import { validateDateFormat, validateDateLogic } from './Section/schema';
