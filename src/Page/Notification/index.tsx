@@ -10,7 +10,7 @@ const Notification = () => {
   const [isOpen2, setIsOpen2] = useState(false);
   const [isOpen3, setIsopen3] = useState(false);
   return (
-    <div>
+    <div className="flex flex-col gap-20">
       <SelectFrequencyBottom open={isOpen} onClose={() => setIsOpen(false)} />
       <button onClick={() => setIsOpen(true)}>Select One</button>
       <FrequencyCty open={isOpen2} onClose={() => setIsOpen2(false)} />
