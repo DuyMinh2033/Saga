@@ -1,5 +1,11 @@
+<<<<<<< Updated upstream
 import { useEffect, useRef } from 'react';
 
+=======
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
+import { useEffect, useRef } from 'react';
+>>>>>>> Stashed changes
 import './styles.scss';
 
 const itemHeight = 30;
@@ -14,6 +20,10 @@ const ScrollSelect = ({
   const containerRef = useRef(null);
 
   const scrollToIndex = (index, isModify = true) => {
+<<<<<<< Updated upstream
+=======
+    console.log('🚀 ~ scrollToIndex ~ index:', index);
+>>>>>>> Stashed changes
     onChangeValue?.(options[index]?.value !== undefined ? options[index]?.value : options[index]);
 
     if (containerRef.current) {
