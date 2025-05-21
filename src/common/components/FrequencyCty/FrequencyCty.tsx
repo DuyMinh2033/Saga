@@ -1,9 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 
-<<<<<<< Updated upstream
-=======
-import { useCallback, useMemo, useRef, useState } from 'react';
->>>>>>> Stashed changes
 import BottomSheet from '../../../components/BottomSheet';
 import ScrollSelect from '../ScrollSelectCty';
 import {
@@ -15,7 +11,7 @@ import {
 
 const FrequencyCty = ({ open, onClose, onChange = () => {}, value = {} }) => {
   const valueRef = useRef({});
-  const selectedType = value?.type || FrequencyType.WEEKLY;
+  const selectedType = value?.type || FrequencyType.ONCE;
   const selectedValue = value?.value || frequencyOnceOptions[0].value;
 
   const [selectTypeOption, setSelectTypeOption] = useState(selectedValue);
@@ -60,16 +56,16 @@ const FrequencyCty = ({ open, onClose, onChange = () => {}, value = {} }) => {
         <ScrollSelect
           options={frequencyTypeOptions}
           onChangeValue={(value) => changeValueOption(value)}
-          defaultValue={'11'}
+          defaultValue={selectedType}
         />
-        {/* <ScrollSelect
+        <ScrollSelect
           options={valueOptions}
           defaultValue={selectedValue}
           // type={"test"}
           onChangeValue={(value) => {
             valueRef.current.value = value || '';
           }}
-        /> */}
+        />
       </div>
       <button onClick={handleConfirm}>Confirm</button>
     </BottomSheet>

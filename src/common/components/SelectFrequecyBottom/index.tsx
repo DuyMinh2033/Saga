@@ -1,28 +1,16 @@
-<<<<<<< Updated upstream
 import { useCallback, useMemo, useRef, useState } from 'react';
 
 import BottomSheet from '../../../components/BottomSheet';
 import SelectDate from '../ScrollSelectDate';
 
-=======
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
-import { useCallback, useMemo, useRef, useState } from 'react';
-import BottomSheet from '../../../components/BottomSheet';
->>>>>>> Stashed changes
 import {
   FrequencyType,
   frequencyTypeOptions,
   frequencyValueByTypeOptions,
   frequencyWeekOptions,
 } from './constants';
-<<<<<<< Updated upstream
 import './styles.scss';
 
-=======
-import SelectDate from '../ScrollSelectDate';
-import './styles.scss';
->>>>>>> Stashed changes
 //TODO: Handle logic
 const SelectFrequencyBottom = ({ open, onClose, onChange, value = {} }) => {
   const valueRef = useRef({});
@@ -69,7 +57,7 @@ const SelectFrequencyBottom = ({ open, onClose, onChange, value = {} }) => {
           <SelectDate
             options={frequencyTypeOptions}
             onChangeValue={(value) => changeValueOption(value)}
-            defaultOption={'11'}
+            defaultOption={selectedType}
           />
           <SelectDate
             options={valueOptions}
