@@ -15,6 +15,15 @@ const Demo = () => {
   const prevStep = () => {
     if (step > 0) setStep(step - 1);
   };
+  const downloadFile = () => {
+    const link = document.createElement('a');
+    link.href = './pdf-test.pdf';
+    link.download = 'helloWorld.pdf';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div className="px-6 mt-20">
@@ -48,6 +57,7 @@ const Demo = () => {
         >
           Next Step
         </button>
+        <button onClick={downloadFile}>download file</button>
       </div>
     </div>
   );
