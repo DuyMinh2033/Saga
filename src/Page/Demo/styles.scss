@@ -25,3 +25,7 @@
 input {
   border: 1px solid black;
 }
+.segment-lines > :first-child,
+.segment-lines > :last-child {
+  width: 0;
+}

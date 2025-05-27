@@ -1,41 +1,53 @@
+/* eslint-disable prettier/prettier */
+import { useState } from 'react';
 import './styles.scss';
-import { Controller, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect } from 'react';
-
-import { dobSchema, formatBirthDay } from './contanst';
+const TOTAL_STEPS = 10;
+const TOTAL_SEGMENTS = 8;
 
 const Demo = () => {
-  const {
-    control,
-    formState: { errors },
-  } = useForm({
-    mode: 'onChange',
-    resolver: yupResolver(dobSchema),
-    defaultValues: { test: '' },
-  });
+  const [step, setStep] = useState(0);
+  const percent = ((step + 1) / TOTAL_STEPS) * 100;
 
-  useEffect(() => {
-    console.log(formatBirthDay('02292005'));
-  }, []);
+  const nextStep = () => {
+    if (step < TOTAL_STEPS - 1) setStep(step + 1);
+  };
+
+  const prevStep = () => {
+    if (step > 0) setStep(step - 1);
+  };
 
   return (
-    <div className="w-full h-[100vh] flex justify-center items-center flex-col">
-      <div className="px-[24px] w-full">
-        <Controller
-          control={control}
-          name="test"
-          render={({ field: { onChange, value = '' } }) => (
-            <input
-              type="text"
-              value={value}
-              onChange={(e) => {
-                onChange(formatBirthDay(e.target.value, value));
-              }}
-            />
-          )}
+    <div className="px-6 mt-20">
+      <div className="w-full h-[4px] bg-gray-300 rounded-[2px] overflow-hidden relative">
+        <div
+          className="bg-blue-500 h-full transition-all duration-300 relative z-10"
+          style={{ width: `${percent}%` }}
         />
-        {errors?.test && <p style={{ color: 'red', fontSize: '13px' }}>{errors.test.message}</p>}
+        <div className="segment-lines absolute inset-0 flex justify-between z-20">
+          {Array.from({ length: TOTAL_SEGMENTS + 1 }).map((_, idx) => (
+            <div key={idx} className="h-full bg-white w-[2px]" />
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-4 text-sm text-gray-600">
+        Step {step + 1} of {TOTAL_STEPS} ({Math.round(percent)}%)
+      </div>
+      <div className="mt-4 space-x-2">
+        <button
+          onClick={prevStep}
+          className="bg-gray-500 text-white px-4 py-2 rounded disabled:opacity-50"
+          disabled={step === 0}
+        >
+          Prev Step
+        </button>
+        <button
+          onClick={nextStep}
+          className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
+          disabled={step === TOTAL_STEPS - 1}
+        >
+          Next Step
+        </button>
       </div>
     </div>
   );
