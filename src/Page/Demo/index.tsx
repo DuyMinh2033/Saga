@@ -27,14 +27,14 @@ const Demo = () => {
 
   return (
     <div className="px-6 mt-20">
-      <div className="w-full h-[4px] bg-gray-300 rounded-[2px] overflow-hidden relative">
+      <div className="process-wrapper">
         <div
           className="bg-blue-500 h-full transition-all duration-300 relative z-10"
           style={{ width: `${percent}%` }}
         />
-        <div className="segment-lines absolute inset-0 flex justify-between z-20">
+        <div className="segment-lines">
           {Array.from({ length: TOTAL_SEGMENTS + 1 }).map((_, idx) => (
-            <div key={idx} className="h-full bg-white w-[2px]" />
+            <div key={idx} className="segment-item" />
           ))}
         </div>
       </div>
