@@ -1,20 +1,38 @@
 /* eslint-disable prettier/prettier */
+// file: Demo.tsx
 import { useState } from 'react';
 import './styles.scss';
-const TOTAL_STEPS = 10;
+
+const TOTAL_STEPS = 4;
 const TOTAL_SEGMENTS = 8;
 
+const stepsScreens = {
+  step1: 'step1',
+  step2: 'step2',
+  step3: 'step3',
+  step4: 'step4',
+};
+
+const stepsArray = Object.values(stepsScreens); // ['step1', 'step2', ...]
+
 const Demo = () => {
-  const [step, setStep] = useState(0);
-  const percent = ((step + 1) / TOTAL_STEPS) * 100;
+  const [step, setStep] = useState(stepsScreens.step1);
+
+  const currentIndex = stepsArray.indexOf(step);
+  const percent = ((currentIndex + 1) / TOTAL_STEPS) * 100;
 
   const nextStep = () => {
-    if (step < TOTAL_STEPS - 1) setStep(step + 1);
+    if (currentIndex < stepsArray.length - 1) {
+      setStep(stepsArray[currentIndex + 1]);
+    }
   };
 
   const prevStep = () => {
-    if (step > 0) setStep(step - 1);
+    if (currentIndex > 0) {
+      setStep(stepsArray[currentIndex - 1]);
+    }
   };
+
   const downloadFile = () => {
     const link = document.createElement('a');
     link.href = './pdf-test.pdf';
@@ -40,20 +58,21 @@ const Demo = () => {
       </div>
 
       <div className="mt-4 text-sm text-gray-600">
-        Step {step + 1} of {TOTAL_STEPS} ({Math.round(percent)}%)
+        Step {currentIndex + 1} of {TOTAL_STEPS} ({Math.round(percent)}%)
       </div>
+
       <div className="mt-4 space-x-2">
         <button
           onClick={prevStep}
           className="bg-gray-500 text-white px-4 py-2 rounded disabled:opacity-50"
-          disabled={step === 0}
+          disabled={currentIndex === 0}
         >
           Prev Step
         </button>
         <button
           onClick={nextStep}
           className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
-          disabled={step === TOTAL_STEPS - 1}
+          disabled={currentIndex === stepsArray.length - 1}
         >
           Next Step
         </button>
