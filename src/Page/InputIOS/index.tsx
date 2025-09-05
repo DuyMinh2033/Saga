@@ -33,22 +33,6 @@ const InputIOS = () => {
   return (
     <div className="scroll-header">
       <div
-        style={{
-          position: 'sticky',
-          height: '56px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          right: '0',
-          left: '0',
-          top: '0',
-          background: 'green',
-        }}
-      >
-        Header
-      </div>
-
-      <div
         className="content__container"
         ref={containerRef}
         style={{
