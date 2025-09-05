@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 // eslint-disable-next-line prettier/prettier
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 
 import './styles.scss';
@@ -38,6 +38,28 @@ const InputIOS = () => {
       });
     }, 300); // delay một chút để chờ bàn phím iOS xuất hiện
   };
+
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+
+    const handleResize = () => {
+      if (buttonRef.current) {
+        // Tính toán lại bottom dựa trên bàn phím
+        const bottomOffset = window.innerHeight - viewport.height - viewport.offsetTop;
+        buttonRef.current.style.transform = `translateY(-${bottomOffset}px)`;
+      }
+    };
+
+    viewport.addEventListener('resize', handleResize);
+    viewport.addEventListener('scroll', handleResize);
+
+    return () => {
+      viewport.removeEventListener('resize', handleResize);
+      viewport.removeEventListener('scroll', handleResize);
+    };
+  }, []);
+
   return (
     <div className="scroll-header">
       <div

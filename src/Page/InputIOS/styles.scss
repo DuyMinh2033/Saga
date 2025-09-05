@@ -23,7 +23,7 @@
   padding: 0 24px;
   background-color: white;
   // z-index: 10000;
-  transform: translate(0, 0);
+    transition: transform 0.2s ease; // thêm cho mượt
 }
 
 .button {
@@ -32,4 +32,5 @@
   padding: 15px 0;
   border: none;
   border-radius: 20px;
+  
 }
