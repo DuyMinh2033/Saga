@@ -16,26 +16,19 @@ const InputIOS = () => {
 
   const handleFocus = (event) => {
     setTimeout(() => {
+      // Scroll container tới vị trí của input (đảm bảo input lộ ra)
       event.target.scrollIntoView({
         behavior: 'smooth',
-        block: 'start',
+        block: 'center',
       });
-    }, 300); // delay một chút để chờ bàn phím iOS xuất hiện
+
+      // Đồng thời scroll xuống cuối trang để đảm bảo button không bị che
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth',
+      });
+    }, 300); // delay để chờ bàn phím iOS hiển thị
   };
-
-  useEffect(() => {
-    const viewport = window.visualViewport;
-    if (!viewport) return;
-
-    const handleResize = () => {
-      if (document.getElementById('content__container')) {
-        document.getElementById('content__container')?.scrollIntoView({ behavior: 'smooth' });
-      }
-    };
-
-    viewport.addEventListener('resize', handleResize);
-    return () => viewport.removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <div className="scroll-header">
