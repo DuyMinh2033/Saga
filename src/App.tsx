@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import './App.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
