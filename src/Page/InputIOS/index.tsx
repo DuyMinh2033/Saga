@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 // eslint-disable-next-line prettier/prettier
 import { useRef } from 'react';
@@ -29,7 +30,14 @@ const InputIOS = () => {
   //     viewPort.removeEventListener("resize", handleResize);
   //   };
   // }, []);
-
+  const handleFocus = (event) => {
+    setTimeout(() => {
+      event.target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }, 300); // delay một chút để chờ bàn phím iOS xuất hiện
+  };
   return (
     <div className="scroll-header">
       <div
@@ -55,6 +63,7 @@ const InputIOS = () => {
                 ref={(el) => (inputRefs.current[index] = el)}
                 type="text"
                 placeholder={`Input ${index + 1}`}
+                onFocus={handleFocus}
               />
             ))}
         </div>
