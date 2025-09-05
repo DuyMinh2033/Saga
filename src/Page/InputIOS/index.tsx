@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+// eslint-disable-next-line prettier/prettier
 import { useRef } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 
@@ -29,13 +31,7 @@ const InputIOS = () => {
   // }, []);
 
   return (
-    <div
-      className="scroll-header"
-      style={{
-        height: '100vh',
-        position: 'relative',
-      }}
-    >
+    <div className="scroll-header">
       <div
         style={{
           position: 'sticky',
