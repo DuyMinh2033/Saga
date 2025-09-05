@@ -11,25 +11,9 @@ const InputIOS = () => {
   const containerRef = useRef(null);
   const buttonRef = useRef(null);
   const queryClient = useQueryClient();
-  const cachedData = queryClient.getQueryData(['test']); // Lấy từ cache
+  const cachedData = queryClient.getQueryData(['test']);
   console.log('🚀 ~ InputIOS ~ cachedData:', cachedData);
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     const newHeight = window.innerHeight;
-  //     const heightDiff = window.outerHeight - newHeight;
-  //     console.log("🚀 ~ handleResize ~ newHeight:", { newHeight, heightDiff });
-  //     document.documentElement.style.setProperty(
-  //       "--heightKeyBoard",
-  //       heightDiff
-  //     );
-  //   };
-  //   const viewPort = window.visualViewport ? window.visualViewport : window;
 
-  //   viewPort.addEventListener("resize", handleResize);
-  //   return () => {
-  //     viewPort.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
   const handleFocus = (event) => {
     setTimeout(() => {
       event.target.scrollIntoView({
@@ -44,25 +28,19 @@ const InputIOS = () => {
     if (!viewport) return;
 
     const handleResize = () => {
-      if (buttonRef.current) {
-        // Tính toán lại bottom dựa trên bàn phím
-        const bottomOffset = window.innerHeight - viewport.height - viewport.offsetTop;
-        buttonRef.current.style.transform = `translateY(-${bottomOffset}px)`;
+      if (document.getElementById('content__container')) {
+        document.getElementById('content__container')?.scrollIntoView({ behavior: 'smooth' });
       }
     };
 
     viewport.addEventListener('resize', handleResize);
-    viewport.addEventListener('scroll', handleResize);
-
-    return () => {
-      viewport.removeEventListener('resize', handleResize);
-      viewport.removeEventListener('scroll', handleResize);
-    };
+    return () => viewport.removeEventListener('resize', handleResize);
   }, []);
 
   return (
     <div className="scroll-header">
       <div
+        id="content__container"
         className="content__container"
         ref={containerRef}
         style={{
