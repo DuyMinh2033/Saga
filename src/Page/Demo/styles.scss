@@ -25,3 +25,33 @@
 input {
   border: 1px solid black;
 }
+
+.process-wrapper {
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  position: relative;
+  background-color: #f0f4fa;
+  border-radius: 2px;
+  .process-line {
+    background-color: #005df9;
+    height: 100%;
+    transition: all 0.3s;
+  }
+  .segment-lines {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-between;
+    z-index: 20;
+  }
+  .segment-item {
+    height: 100%;
+    background-color: white;
+    width: 2px;
+  }
+  .segment-lines > :first-child,
+  .segment-lines > :last-child {
+    width: 0;
+  }
+}

@@ -57,7 +57,6 @@ const InputIOS = () => {
         ref={containerRef}
         style={{
           padding: '0 24px',
-          paddingBottom: '200px',
         }}
       >
         <div
@@ -79,9 +78,9 @@ const InputIOS = () => {
               />
             ))}
         </div>
-      </div>
-      <div className="fixed__btn" ref={buttonRef}>
-        <button className="button">Submit</button>
+        <div className="fixed__btn" ref={buttonRef}>
+          <button className="button">Submit</button>
+        </div>
       </div>
     </div>
   );
