@@ -1,10 +1,14 @@
+/* eslint-disable no-undef */
 import { useEffect, useRef } from 'react';
 
 const Home = () => {
   const ref = useRef<null>(null);
 
   useEffect(() => {
-    ref.current?.focus();
+    const timeOut = setTimeout(() => {
+      ref.current?.focus();
+    }, 100);
+    return () => clearTimeout(timeOut);
   }, []);
 
   return (
