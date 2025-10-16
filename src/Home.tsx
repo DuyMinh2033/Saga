@@ -1,10 +1,15 @@
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
 
 const Home = () => {
-  const navigate = useNavigate();
+  const ref = useRef<null>(null);
+
+  useEffect(() => {
+    ref.current?.focus();
+  }, []);
+
   return (
     <div>
-      <button onClick={() => navigate('/demo')}>Move to demo page</button>
+      <input type="text" inputMode="numeric" ref={ref} autoComplete="off" autoCapitalize="off" />
     </div>
   );
 };
