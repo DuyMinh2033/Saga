@@ -7,7 +7,7 @@ const Home = () => {
   useEffect(() => {
     const timeOut = setTimeout(() => {
       ref.current?.focus();
-    }, 200);
+    }, 5000);
     return () => clearTimeout(timeOut);
   }, []);
 
