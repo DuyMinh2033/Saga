@@ -2,12 +2,13 @@
 import { useEffect, useRef } from 'react';
 
 const Home = () => {
-  const ref = useRef<null>(null);
+  const ref = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const timeOut = setTimeout(() => {
-      ref.current?.focus();
-    }, 5000);
+      buttonRef.current?.click();
+    }, 3000);
     return () => clearTimeout(timeOut);
   }, []);
 
@@ -15,7 +16,9 @@ const Home = () => {
     <div className="h-screen w-screen flex justify-center items-center">
       <input type="text" inputMode="numeric" ref={ref} autoComplete="off" autoCapitalize="off" />
 
-      <button onClick={() => ref.current?.focus()}>click to focus</button>
+      <button ref={buttonRef} onClick={() => ref.current?.focus()}>
+        click to focus
+      </button>
     </div>
   );
 };
