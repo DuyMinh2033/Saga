@@ -14,6 +14,8 @@ const Home = () => {
   return (
     <div className="h-screen w-screen flex justify-center items-center">
       <input type="text" inputMode="numeric" ref={ref} autoComplete="off" autoCapitalize="off" />
+
+      <button onClick={() => ref.current?.focus()}>click to focus</button>
     </div>
   );
 };
