@@ -7,12 +7,12 @@ const Home = () => {
   useEffect(() => {
     const timeOut = setTimeout(() => {
       ref.current?.focus();
-    }, 100);
+    }, 200);
     return () => clearTimeout(timeOut);
   }, []);
 
   return (
-    <div>
+    <div className="h-screen w-screen flex justify-center items-center">
       <input type="text" inputMode="numeric" ref={ref} autoComplete="off" autoCapitalize="off" />
     </div>
   );
