@@ -10,7 +10,7 @@ const Home = () => {
   const [showInput, setShowInput] = useState(false);
 
   const handleClick = () => {
-    setShowInput(true);
+    setShowInput((prev) => !prev);
     console.log('showInput:', showInput);
   };
 
@@ -26,7 +26,7 @@ const Home = () => {
   return (
     <div className="h-screen w-screen flex justify-center items-center flex-col gap-4">
       <button ref={buttonRef} onClick={handleClick}>
-        show input
+        {showInput ? 'hide input' : 'show Input'}
       </button>
 
       {showInput && (
