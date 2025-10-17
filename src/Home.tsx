@@ -36,6 +36,7 @@ const Home = () => {
           inputMode="numeric"
           autoComplete="off"
           autoCapitalize="off"
+          autoFocus={true}
           ref={ref}
         />
       )}
