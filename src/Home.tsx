@@ -1,41 +1,44 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-debugger */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
-import { useEffect, useRef } from 'react';
+
+import { useEffect, useRef, useState } from 'react';
 const Home = () => {
   const ref = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const [showInput, setShowInput] = useState(false);
+
+  const handleClick = () => {
+    setShowInput(true);
+    console.log('showInput:', showInput);
+  };
 
   useEffect(() => {
-    let timeOut: number | undefined;
-    const input = document.getElementById('input-text') as HTMLInputElement;
-    if (input || ref.current) {
-      timeOut = setTimeout(() => {
-        console.log('focus', input);
-        input.focus();
-        // ref.current?.focus();
+    if (showInput && ref.current) {
+      setTimeout(() => {
+        ref.current?.focus();
       }, 0);
+      console.log('Input focused');
     }
-
-    return () => {
-      clearTimeout(timeOut);
-    };
-  }, []);
+  }, [showInput]);
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
-      <input
-        id="input-text"
-        type="text"
-        inputMode="numeric"
-        autoComplete="off"
-        autoCapitalize="off"
-        className="input-box"
-        ref={ref}
-      />
-      <button ref={buttonRef} onClick={() => ref.current?.focus()}>
-        click to focus
+    <div className="h-screen w-screen flex justify-center items-center flex-col gap-4">
+      <button ref={buttonRef} onClick={handleClick}>
+        show input
       </button>
+
+      {showInput && (
+        <input
+          id="input"
+          type="text"
+          inputMode="numeric"
+          autoComplete="off"
+          autoCapitalize="off"
+          ref={ref}
+        />
+      )}
     </div>
   );
 };
