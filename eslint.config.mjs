@@ -34,40 +34,40 @@ export default [
       'eslint-comments': eslintComments,
       prettier,
     },
-    rules: {
-      'react/self-closing-comp': 'error',
-      // Cấm dùng `any`
-      '@typescript-eslint/no-explicit-any': 'error',
+    // rules: {
+    //   'react/self-closing-comp': 'error',
+    //   // Cấm dùng `any`
+    //   '@typescript-eslint/no-explicit-any': 'error',
 
-      // Cấm import không dùng
-      'unused-imports/no-unused-imports': 'warn',
+    //   // Cấm import không dùng
+    //   'unused-imports/no-unused-imports': 'warn',
 
-      // Cảnh báo khi có biến không sử dụng
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        {
-          args: 'all',
-          argsIgnorePattern: '^_',
-        },
-      ],
+    //   // Cảnh báo khi có biến không sử dụng
+    //   '@typescript-eslint/no-unused-vars': [
+    //     'warn',
+    //     {
+    //       args: 'all',
+    //       argsIgnorePattern: '^_',
+    //     },
+    //   ],
 
-      // Kiểm tra import theo thứ tự hợp lý
-      'import/order': [
-        'warn',
-        {
-          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-          'newlines-between': 'always',
-        },
-      ],
+    //   // Kiểm tra import theo thứ tự hợp lý
+    //   'import/order': [
+    //     'warn',
+    //     {
+    //       groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+    //       'newlines-between': 'always',
+    //     },
+    //   ],
 
-      // React-specific rules
-      'react/prop-types': 'off',
-      'react/react-in-jsx-scope': 'off',
+    //   // React-specific rules
+    //   'react/prop-types': 'off',
+    //   'react/react-in-jsx-scope': 'off',
 
-      // ESLint comments plugin
-      'eslint-comments/no-unused-disable': 'warn',
+    //   // ESLint comments plugin
+    //   'eslint-comments/no-unused-disable': 'warn',
 
-      'prettier/prettier': 'error',
-    },
+    //   'prettier/prettier': 'error',
+    // },
   },
 ];

@@ -1,43 +1,29 @@
-/* eslint-disable no-debugger */
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-undef */
-import { useEffect, useRef } from 'react';
-const Home = () => {
-  const ref = useRef<HTMLInputElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+import { useState } from 'react';
 
-  useEffect(() => {
-    let timeOut: number | undefined;
-    const input = document.getElementById('input-text') as HTMLInputElement;
-    if (input || ref.current) {
-      timeOut = setTimeout(() => {
-        console.log('focus', input);
-        input.focus();
-        // ref.current?.focus();
-      }, 0);
-    }
+export default function Home() {
+  const [count, setCount] = useState(0);
 
-    return () => {
-      clearTimeout(timeOut);
-    };
-  }, []);
+  console.log('✅ Parent rendered');
+
+  const heavyObject = {
+    user: { name: 'Minh', age: 22 },
+    time: Date.now(), // luôn thay đổi → luôn re-render Child nếu không có compiler
+  };
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
-      <input
-        id="input-text"
-        type="text"
-        inputMode="numeric"
-        autoComplete="off"
-        autoCapitalize="off"
-        className="input-box"
-        ref={ref}
-      />
-      <button ref={buttonRef} onClick={() => ref.current?.focus()}>
-        click to focus
-      </button>
+    <div style={{ padding: 20 }}>
+      <h2>React Compiler Test (Strong Example)</h2>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount((c) => c + 1)}>Increase</button>
+      <HeavyChild data={heavyObject} />
     </div>
   );
-};
+}
 
-export default Home;
+function HeavyChild({ data }) {
+  console.log('🔥 HeavyChild re-rendered');
+  let total = 0;
+  for (let i = 0; i < 5_000_000; i++) total += i;
+
+  return <p>Heavy child done: {data.user.name}</p>;
+}
