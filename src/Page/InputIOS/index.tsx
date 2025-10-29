@@ -27,7 +27,7 @@ const InputIOS = () => {
         behavior: 'smooth',
         block: 'center',
       });
-    }, 1000);
+    }, 2000);
   };
 
   return (
