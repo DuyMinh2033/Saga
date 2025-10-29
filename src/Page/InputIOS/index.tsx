@@ -3,7 +3,7 @@
 // eslint-disable-next-line prettier/prettier
 import { useRef } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import animateScrollTo from 'animated-scroll-to';
+
 import './styles.scss';
 
 const InputIOS = () => {
@@ -14,23 +14,20 @@ const InputIOS = () => {
   const cachedData = queryClient.getQueryData(['test']);
   console.log('🚀 ~ InputIOS ~ cachedData:', cachedData);
 
-  const handleFocus = async (event) => {
-    // setTimeout(() => {
-    //   window.scrollTo({
-    //     top: document.body.scrollHeight,
-    //     behavior: 'smooth',
-    //   });
-    // }, 300);
-    // window.addEventListener('scrollend', () => {
-    //   alert('scroll end');
-    //   event.target.scrollIntoView({
-    //     behavior: 'smooth',
-    //     block: 'center',
-    //   });
-    // });
+  const handleFocus = (event) => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth',
+      });
+    }, 300);
 
-    await animateScrollTo(document.body.scrollHeight);
-    animateScrollTo(event.target, { speed: 500 });
+    setTimeout(() => {
+      event.target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }, 1000);
   };
 
   return (
