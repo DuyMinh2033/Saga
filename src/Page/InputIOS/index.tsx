@@ -14,18 +14,29 @@ const InputIOS = () => {
   const cachedData = queryClient.getQueryData(['test']);
   console.log('🚀 ~ InputIOS ~ cachedData:', cachedData);
 
-  const handleFocus = (event) => {
-    setTimeout(() => {
-      // event.target.scrollIntoView({
-      //   behavior: 'smooth',
-      //   block: 'center',
-      // });
+  const smoothScrollTo = (targetY) => {
+    return new Promise((resolve) => {
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
 
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth',
-      });
-    }, 300);
+      let oldScroll = window.scrollY;
+      let timer = setInterval(() => {
+        const newScroll = window.scrollY;
+        if (newScroll === oldScroll) {
+          clearInterval(timer);
+          resolve(); // Scroll kết thúc
+        }
+        oldScroll = newScroll;
+      }, 100); // check mỗi 100ms
+    });
+  };
+
+  const handleFocus = async (event) => {
+    await smoothScrollTo(document.body.scrollHeight); // Scroll xuống cuối trước
+
+    event.target.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
   };
 
   return (
