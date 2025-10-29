@@ -22,16 +22,13 @@ const InputIOS = () => {
       });
     }, 300);
 
-    window.addEventListener(
-      'scrollend',
-      () => {
-        event.target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-        });
-      },
-      { once: true },
-    );
+    window.addEventListener('scrollend', () => {
+      alert('scroll end');
+      event.target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    });
     // event.target.scrollIntoView({
     //   behavior: 'smooth',
     //   block: 'nearest',
