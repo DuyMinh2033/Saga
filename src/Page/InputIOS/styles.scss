@@ -5,13 +5,12 @@
 }
 
 .content__container {
-  position: relative;
   height: 100vh;
   overflow: auto;
 }
 
 .fixed__btn {
-  position: sticky;
+  position: fixed;
   right: 0;
   left: 0;
   bottom: 0;
@@ -21,8 +20,7 @@
   height: 110px;
   padding: 0 24px;
   background-color: white;
-  // z-index: 10000;
-    transition: transform 0.2s ease; // thêm cho mượt
+  z-index: 1000;
 }
 
 .button {
