@@ -16,10 +16,10 @@ const InputIOS = () => {
 
   const handleFocus = (event) => {
     setTimeout(() => {
-      event.target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-      });
+      // event.target.scrollIntoView({
+      //   behavior: 'smooth',
+      //   block: 'center',
+      // });
 
       window.scrollTo({
         top: document.body.scrollHeight,
