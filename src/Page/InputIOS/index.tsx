@@ -16,7 +16,7 @@ const InputIOS = () => {
 
   const smoothScrollTo = (targetY) => {
     return new Promise((resolve) => {
-      window.scrollTo({ top: targetY, behavior: 'smooth' });
+      window.scrollTo({ top: targetY });
 
       let oldScroll = window.scrollY;
       let timer = setInterval(() => {
@@ -35,7 +35,7 @@ const InputIOS = () => {
 
     event.target.scrollIntoView({
       behavior: 'smooth',
-      block: 'center',
+      block: 'start',
     });
   };
 
