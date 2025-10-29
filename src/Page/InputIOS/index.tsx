@@ -16,16 +16,26 @@ const InputIOS = () => {
 
   const handleFocus = (event) => {
     setTimeout(() => {
-      // event.target.scrollIntoView({
-      //   behavior: 'smooth',
-      //   block: 'nearest',
-      // });
-
       window.scrollTo({
         top: document.body.scrollHeight,
         behavior: 'smooth',
       });
     }, 300);
+
+    window.addEventListener(
+      'scrollend',
+      () => {
+        event.target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      },
+      { once: true },
+    );
+    // event.target.scrollIntoView({
+    //   behavior: 'smooth',
+    //   block: 'nearest',
+    // });
   };
 
   return (
