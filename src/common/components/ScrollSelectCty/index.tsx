@@ -74,7 +74,9 @@ const ScrollSelect = ({
       containerRef.current?.addEventListener('scroll', handleEventScroll);
 
       return () => {
-        containerRef.current?.removeEventListener('scroll', handleEventScroll);
+        if (containerRef?.current) {
+          containerRef?.current?.removeEventListener('scroll', handleEventScroll);
+        }
 
         if (scrollTimeout) {
           clearTimeout(scrollTimeout);

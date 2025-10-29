@@ -17,7 +17,9 @@ const ViewBottomTerm = ({ isOpen, onClose }) => {
     };
     containerRef?.current.addEventListener('scroll', handleScroll);
     return () => {
-      containerRef?.current.removeEventListener('scroll', handleScroll);
+      if (containerRef?.current) {
+        containerRef?.current?.removeEventListener('scroll', handleScroll);
+      }
     };
   }, []);
   1;

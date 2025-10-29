@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 // eslint-disable-next-line prettier/prettier
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 
 import './styles.scss';
@@ -16,18 +16,16 @@ const InputIOS = () => {
 
   const handleFocus = (event) => {
     setTimeout(() => {
-      // Scroll container tới vị trí của input (đảm bảo input lộ ra)
-      event.target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-      });
+      // event.target.scrollIntoView({
+      //   behavior: 'smooth',
+      //   block: 'center',
+      // });
 
-      // Đồng thời scroll xuống cuối trang để đảm bảo button không bị che
       window.scrollTo({
         top: document.body.scrollHeight,
         behavior: 'smooth',
       });
-    }, 300); // delay để chờ bàn phím iOS hiển thị
+    }, 0);
   };
 
   return (
