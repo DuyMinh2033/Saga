@@ -15,17 +15,17 @@ const InputIOS = () => {
   console.log('🚀 ~ InputIOS ~ cachedData:', cachedData);
 
   const handleFocus = (event) => {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth',
-    });
-
     setTimeout(() => {
-      event.target.scrollIntoView({
+      // event.target.scrollIntoView({
+      //   behavior: 'smooth',
+      //   block: 'nearest',
+      // });
+
+      window.scrollTo({
+        top: document.body.scrollHeight,
         behavior: 'smooth',
-        block: 'nearest',
       });
-    }, 500);
+    }, 300);
   };
 
   return (
