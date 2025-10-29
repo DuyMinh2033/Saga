@@ -15,6 +15,9 @@ const InputIOS = () => {
   console.log('🚀 ~ InputIOS ~ cachedData:', cachedData);
 
   const handleFocus = (event) => {
+    const element = event.target;
+    const container = containerRef.current;
+
     setTimeout(() => {
       window.scrollTo({
         top: document.body.scrollHeight,
@@ -23,10 +26,20 @@ const InputIOS = () => {
     }, 300);
 
     setTimeout(() => {
-      event.target.scrollIntoView({
+      const containerRect = container?.getBoundingClientRect();
+      const elementRect = element.getBoundingClientRect();
+
+      // Tính toạ độ để scroll phần tử ra giữa container
+      const elementOffset =
+        elementRect.top -
+        containerRect.top + // vị trí tương đối trong container
+        container?.scrollTop - // thêm phần đã scroll
+        container?.clientHeight / 2 + // trừ nửa chiều cao container
+        elementRect.height / 2; // cộng nửa chiều cao input
+
+      container?.scrollTo({
+        top: elementOffset,
         behavior: 'smooth',
-        block: 'center',
-        inline: 'nearest',
       });
     }, 2000);
   };
