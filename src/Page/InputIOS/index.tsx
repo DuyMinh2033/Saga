@@ -38,7 +38,7 @@ const InputIOS = () => {
         elementRect.height / 2; // cộng nửa chiều cao input
 
       container?.scrollTo({
-        top: elementOffset,
+        top: elementOffset - 150,
         behavior: 'smooth',
       });
     }, 2000);
