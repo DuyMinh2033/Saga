@@ -26,6 +26,7 @@ const InputIOS = () => {
       event.target.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
+        inline: 'nearest',
       });
     }, 2000);
   };
